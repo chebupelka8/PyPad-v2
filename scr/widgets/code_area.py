@@ -3,12 +3,8 @@ from scr.scripts import (
     JsonCodeHighLighter, StyleCodeHighLighter, HtmlCodeHighlighter
 )
 from .text_area import TextEditorArea
-from scr.scripts import AutoCompleter
-from scr.subwidgets import WindowCompleter
 
-from PySide6.QtCore import Qt, QThreadPool
-
-# from jedi import Script
+from PySide6.QtCore import Qt
 
 
 class _CodeEditorArea(TextEditorArea):
@@ -103,16 +99,6 @@ class PythonCodeEditorArea(_CodeEditorArea):
         self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
         self.setObjectName("code-area")
 
-        self.thread_pool = QThreadPool()
-        self.thread_pool.setMaxThreadCount(1)
-
-        self.completer = WindowCompleter(self)
-        self.completer.show()
-        self.completer.setVisible(False)
-
-        # self.textChanged.connect(self.__auto_completer_run)
-        # self.cursorPositionChanged.connect(self.__auto_completer_run)
-
         if __path is not None:
             text = FileLoader.load_python_file(__path)
             self.insertPlainText(CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text)))
@@ -120,33 +106,6 @@ class PythonCodeEditorArea(_CodeEditorArea):
         PythonCodeHighlighter(self)  # set highlighter
 
         # self.set_default_text_color(PythonTheme.DEFAULT)
-
-    def __auto_completer_run(self):
-        self.completer.move(
-            self.cursorRect().x() + self.font().pointSize() + self.get_number_area_width(),
-            self.cursorRect().y() + self.font().pointSize() * 1.2
-        )
-
-        auto_completer = AutoCompleter(
-            self.get_full_path(),
-            self.toPlainText(),
-            self.get_current_line(),
-            self.textCursor().positionInBlock()
-        )
-
-        auto_completer.signal.res.connect(self.__show_completer)
-        self.thread_pool.start(auto_completer)
-
-    def __show_completer(self, __items) -> None:
-        self.completer.clear()
-
-        if __items is None or len(__items) == 0:
-            self.completer.setVisible(False)
-            return
-
-        self.completer.set_items(__items)
-        self.completer.setVisible(True)
-        # self.completer.setFocus()
 
     def keyPressEvent(self, event):
         key_func = lambda: (
