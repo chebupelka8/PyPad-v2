@@ -1,0 +1,112 @@
+QWidget#window-completer {
+    padding: 0;
+    background-color: #252525;
+}
+
+QListWidget {
+    background-color: #252525;
+    color: white;
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+QListWidget::item {
+    padding: 2px 15px;
+    border-radius: 4px;
+}
+
+QListWidget::item:selected {
+    background-color: #303030;
+}
+
+/*  SCROLLBAR:VERTICAL  */
+QScrollBar:vertical {
+    border: none;
+    width: 10px;
+    background-color: #252525;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:vertical {
+    background-color: #424242;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:vertical:hover {
+    background-color: #484848;
+}
+
+QScrollBar:handle:vertical:pressed {
+    background-color: #525252;
+}
+
+QScrollBar::sub-line::vertical {
+    border: none;
+    background: #252525;
+    height: 15px;
+    border-radius: 7px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line::vertical {
+    border: none;
+    background: #252525;
+    height: 15px;
+    border-radius: 7px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: #252525;
+    border: none;
+}
+
+
+/*  SCROLLBAR:horizontal */
+QScrollBar:horizontal {
+    border: none;
+    height: 10px;
+    background-color: #252525;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:horizontal {
+    background-color: #424242;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:horizontal:hover {
+    background-color: #484848;
+}
+
+QScrollBar:handle:horizontal:pressed {
+    background-color: #525252;
+}
+
+QScrollBar::sub-line::horizontal {
+    border: none;
+    background: #252525;
+    width: 15px;
+    border-radius: 7px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line::horizontal {
+    border: none;
+    background: #252525;
+    width: 15px;
+    border-radius: 7px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: #252525;
+    border: none;
+}

@@ -1,0 +1,26 @@
+{
+    "workbench": {
+        "font": {
+            "family": "Cascadia Mono",
+            "size": 14,
+            "bold": false,
+            "italic": false
+        }
+    },
+    "editor": {
+        "font": {
+            "family": "Consolas",
+            "size": 17,
+            "bold": false,
+            "italic": false
+        },
+        "cursor": {
+            "style": "block"
+        },
+        "tab-width": 4
+    },
+    "theme": {
+        "path": "scr/data/themes/one-dark.json",
+        "name": "One Dark"
+    }
+}

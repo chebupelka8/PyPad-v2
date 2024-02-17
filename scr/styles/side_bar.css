@@ -1,0 +1,25 @@
+QFrame#side-bar {
+    background-color: #232323;
+    border: 1px solid #2c2c2c;
+    border-radius: 4px;
+    /*padding: 3px;*/
+    color: #ffffff;
+}
+
+QPushButton {
+    background-color: #232323;
+    border: none;
+    border-radius: 4px;
+    /*padding: 3px;*/
+    color: #ffffff;
+}
+
+QPushButton:hover {
+    background-color: #303030;
+    border: 1px solid #2c2c2c;
+}
+
+QPushButton:pressed {
+    background-color: #323232;
+    border: 1px solid #2c2c2c;
+}

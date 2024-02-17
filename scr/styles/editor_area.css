@@ -1,0 +1,98 @@
+QPlainTextEdit {
+    background-color: #272727;
+    border-radius: 4px;
+    border: none;
+    padding: 3px;
+}
+
+/*  SCROLLBAR:VERTICAL  */
+QScrollBar:vertical {
+    border: none;
+    width: 10px;
+    background-color: #272727;
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+QScrollBar:handle:vertical {
+    background-color: #424242;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:vertical:hover {
+    background-color: #484848;
+}
+
+QScrollBar:handle:vertical:pressed {
+    background-color: #525252;
+}
+
+QScrollBar::sub-line::vertical {
+    border: none;
+    background: #272727;
+    height: 15px;
+    border-radius: 7px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line::vertical {
+    border: none;
+    background: #272727;
+    height: 15px;
+    border-radius: 7px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: #272727;
+    border: none;
+}
+
+
+/*  SCROLLBAR:horizontal */
+QScrollBar:horizontal {
+    border: none;
+    height: 10px;
+    background-color: #272727;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:horizontal {
+    background-color: #424242;
+    border-radius: 4px;
+}
+
+QScrollBar:handle:horizontal:hover {
+    background-color: #484848;
+}
+
+QScrollBar:handle:horizontal:pressed {
+    background-color: #525252;
+}
+
+QScrollBar::sub-line::horizontal {
+    border: none;
+    background: #272727;
+    width: 15px;
+    border-radius: 7px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-line::horizontal {
+    border: none;
+    background: #272727;
+    width: 15px;
+    border-radius: 7px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: #272727;
+    border: none;
+}
