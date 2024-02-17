@@ -8,6 +8,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
+pyside6 = "6.6.1"
+pillow = "^10.2.0"
 
 
 [build-system]
