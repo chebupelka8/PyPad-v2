@@ -1,4 +1,4 @@
-from scr.scripts import FileLoader, restart_application, ThemeManager
+from scr.scripts import restart_application, ThemeManager
 from scr.interface.additional import Dialog, ListChanger
 
 
