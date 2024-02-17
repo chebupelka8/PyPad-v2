@@ -25,7 +25,7 @@ QTabBar::tab:selected {
 }
 
 QTabBar::close-button {
-    image: url("assets/icons/system_icons/close.png");
+    image: url(":/system_icons/close.png");
     border: none;
     border-radius: 4px;
     padding: 4px;
