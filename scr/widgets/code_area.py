@@ -3,9 +3,8 @@ from scr.scripts import (
     JsonCodeHighLighter, StyleCodeHighLighter, HtmlCodeHighlighter
 )
 from .text_area import TextEditorArea
-from scr.subwidgets import WindowCompleter
 
-from PySide6.QtCore import Qt, QThreadPool
+from PySide6.QtCore import Qt
 
 
 class _CodeEditorArea(TextEditorArea):
@@ -99,13 +98,6 @@ class PythonCodeEditorArea(_CodeEditorArea):
 
         self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
         self.setObjectName("code-area")
-
-        self.thread_pool = QThreadPool()
-        self.thread_pool.setMaxThreadCount(1)
-
-        self.completer = WindowCompleter(self)
-        self.completer.show()
-        self.completer.setVisible(False)
 
         if __path is not None:
             text = FileLoader.load_python_file(__path)
