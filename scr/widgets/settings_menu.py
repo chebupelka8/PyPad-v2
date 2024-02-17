@@ -1,6 +1,7 @@
 from scr.scripts import EditorFontManager, FileLoader, Font, WorkbenchFontManager, EditorSettingsUpdater
 from scr.subwidgets import ThemeChanger
 from scr.interface.basic import UiTitles
+from scr.interface.additional import TransparentDialogWindow, AbstractWindow
 
 from PySide6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QComboBox, QLabel,
@@ -201,9 +202,9 @@ class SettingTree(QListWidget):
         self.__commands[__text]()
 
 
-class SettingsMenu(QDialog):
-    def __init__(self, __parent, restarter) -> None:
-        super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
+class SettingsMenuWidget(AbstractWindow):
+    def __init__(self, restarter) -> None:
+        super().__init__()
 
         self.restarter = restarter
 
@@ -232,5 +233,16 @@ class SettingsMenu(QDialog):
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(self.settingTree, stretch=1)
         self.mainLayout.addWidget(self.settingsArea, stretch=3)
+
+        self.setLayout(self.mainLayout)
+
+
+class SettingsMenu(TransparentDialogWindow):
+    def __init__(self, __parent, restarter) -> None:
+        super().__init__(__parent)
+
+        self.mainLayout = QHBoxLayout()
+        self.menuWidget = SettingsMenuWidget(restarter)
+        self.mainLayout.addWidget(self.menuWidget)
 
         self.setLayout(self.mainLayout)

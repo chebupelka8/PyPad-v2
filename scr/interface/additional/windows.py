@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import (
     QDialog, QHBoxLayout, QVBoxLayout, QLabel,
-    QPushButton, QLineEdit, QListWidget
+    QPushButton, QLineEdit, QListWidget, QFrame
 )
 from PySide6.QtCore import Qt
 
@@ -141,3 +141,11 @@ class ListChanger(TransparentDialogWindow):
 
     def get_current_item(self):
         return self.listWidget.currentItem()
+
+
+class AbstractWindow(QFrame):
+    def __init__(self) -> None:
+        super().__init__()
+
+        self.setStyleSheet(FileLoader.load_style("scr/styles/ui.css"))
+        self.setObjectName("abstract-window")
