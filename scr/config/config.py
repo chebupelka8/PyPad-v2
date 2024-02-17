@@ -2,6 +2,8 @@ from PySide6.QtGui import QTextCharFormat, QFont, QColor
 
 from scr.scripts import FileLoader
 
+import scr.config.ico_cfg
+
 
 WINDOW_SIZE = (1200, 800)
 
@@ -9,26 +11,32 @@ WINDOW_SIZE = (1200, 800)
 class IconPaths:
 
     class FileIcons:
-        PYTHON = "assets/icons/file_icons/python.png"
-        CSS = "assets/icons/file_icons/css.png"
-        JSON = "assets/icons/file_icons/json.png"
-        TXT = "assets/icons/file_icons/txt.png"
-        PICTURE = "assets/icons/file_icons/image.png"
-        HTML = "assets/icons/file_icons/html.png"
-        JS = "assets/icons/file_icons/js.png"
-        JAVA = "assets/icons/file_icons/java.png"
-        README = "assets/icons/file_icons/readme.png"
-        ZIP = "assets/icons/zip-file.png"
-        DEFAULT = "assets/icons/symbol.png"
+        PYTHON = ":/file_icons/python.png"
+        CSS = ":/file_icons/css.png"
+        JSON = ":/file_icons/json.png"
+        TXT = ":/file_icons/txt.png"
+        PICTURE = ":/file_icons/image.png"
+        HTML = ":/file_icons/html.png"
+        JS = ":/file_icons/js.png"
+        JAVA = ":/file_icons/java.png"
+        README = ":/file_icons/readme.png"
+        ZIP = ":/zip-file.png"
+        DEFAULT = ":/symbol.png"
 
     class SystemIcons:
-        MAIN = "assets/icons/system_icons/window_icon.png"
-        WELCOME = "assets/icons/system_icons/welcome.png"
+        MAIN = ":/system_icons/window_icon.png"
+        WELCOME = ":/system_icons/welcome.png"
+        APPS = ":/system_icons/apps.png"
+        FOLDER_OPEN = ":/system_icons/folder-open.png"
+        SEARCH = ":/system_icons/search.png"
+        RUN = ":/system_icons/play.png"
+        SETTINGS = ":/system_icons/settings.png"
+        LOGO = ":/system_icons/Logo PyPad.png"
 
     class FolderIcons:
-        DEFAULT = "assets/icons/folder_icons/Yellow-folder.ico"
-        MUSIC = "assets/icons/folder_icons/Yellow-folder-music.ico"
-        PICTURE = "assets/icons/folder_icons/Yellow-folder-pictures.ico"
+        DEFAULT = ":/folder_icons/Yellow-folder.ico"
+        MUSIC = ":/folder_icons/Yellow-folder-music.ico"
+        PICTURE = ":/folder_icons/Yellow-folder-pictures.ico"
 
 
 class PythonPatterns:

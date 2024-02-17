@@ -1,0 +1,30 @@
+<RCC>
+    <qresource>
+        <file>.\folder_icons/Yellow-folder.ico</file>
+        <file>.\file_icons\css.png</file>
+        <file>.\file_icons\html.png</file>
+        <file>.\file_icons\image.png</file>
+        <file>.\file_icons\java.png</file>
+        <file>.\file_icons\js.png</file>
+        <file>.\file_icons\json.png</file>
+        <file>.\file_icons\python.png</file>
+        <file>.\file_icons\readme.png</file>
+        <file>.\file_icons\txt.png</file>
+        <file>.\system_icons\apps.png</file>
+        <file>.\system_icons\close.png</file>
+        <file>.\system_icons\down-arrow.png</file>
+        <file>.\system_icons\folder-open.png</file>
+        <file>.\system_icons\folder.png</file>
+        <file>.\system_icons\icon.ico</file>
+        <file>.\system_icons\Logo PyPad.png</file>
+        <file>.\system_icons\interpreter.png</file>
+        <file>.\system_icons\search.png</file>
+        <file>.\system_icons\settings.png</file>
+        <file>.\system_icons\play.png</file>
+        <file>.\system_icons\welcome.png</file>
+        <file>.\system_icons\themes.png</file>
+        <file>.\system_icons\main.png</file>
+        <file>.\system_icons\user.png</file>
+        <file>.\system_icons\window_icon.png</file>
+    </qresource>
+</RCC>

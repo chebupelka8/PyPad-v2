@@ -1,4 +1,5 @@
 from scr.scripts import FileLoader, Font
+from scr.config import IconPaths
 
 from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout
 from PySide6.QtCore import Qt
@@ -16,7 +17,7 @@ class WelcomeScreen(QWidget):
         self.mainLayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         logoLabel = self.__label()
-        icon = QPixmap("assets/icons/system_icons/Logo PyPad.png")
+        icon = QPixmap(IconPaths.SystemIcons.LOGO)
         logoLabel.setPixmap(icon)
 
         infoLabel = self.__label("""PyPad - is a code editor for different programming languages.
