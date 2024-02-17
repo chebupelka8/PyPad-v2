@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pypad"
+version = "0.2.2-alpha"
+description = ""
+authors = ["chebupelka8 <stpzamyatin@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
