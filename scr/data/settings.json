@@ -1,7 +1,7 @@
 {
     "workbench": {
         "font": {
-            "family": "Cascadia Mono",
+            "family": "Candara",
             "size": 14,
             "bold": false,
             "italic": false
@@ -9,7 +9,7 @@
     },
     "editor": {
         "font": {
-            "family": "Consolas",
+            "family": "Cascadia Code Light",
             "size": 17,
             "bold": false,
             "italic": false
