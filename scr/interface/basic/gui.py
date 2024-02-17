@@ -23,6 +23,7 @@ class UiTitles:
     @staticmethod
     def description(__text: str) -> QLabel:
         label = QLabel(__text)
+        label.setWordWrap(True)
         label.setFont(Font.get_font_by_path("assets/fonts/CascadiaMono.ttf", 10))
 
         return label

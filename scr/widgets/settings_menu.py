@@ -1,5 +1,6 @@
 from scr.scripts import EditorFontManager, FileLoader, Font, WorkbenchFontManager, EditorSettingsUpdater
 from scr.subwidgets import ThemeChanger
+from scr.interface.basic import UiTitles
 
 from PySide6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QComboBox, QLabel,
@@ -9,30 +10,6 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt
 
 import os
-
-
-class _UI:
-
-    @staticmethod
-    def title(__text: str) -> QLabel:
-        label = QLabel(__text)
-        label.setFont(Font.get_font_by_path("assets/fonts/CascadiaMono.ttf", 17, True))
-
-        return label
-
-    @staticmethod
-    def subtitle(__text: str) -> QLabel:
-        label = QLabel(__text)
-        label.setFont(Font.get_font_by_path("assets/fonts/CascadiaMono.ttf", 14, False))
-
-        return label
-
-    @staticmethod
-    def description(__text: str) -> QLabel:
-        label = QLabel(__text)
-        label.setFont(Font.get_font_by_path("assets/fonts/CascadiaMono.ttf", 10))
-
-        return label
 
 
 class _SettingFrame(QFrame):
@@ -50,10 +27,10 @@ class _SettingFrame(QFrame):
         self.setLayout(self.mainLayout)
 
     def add_subtitle(self, __text: str) -> None:
-        self.mainLayout.addWidget(_UI.subtitle(__text))
+        self.mainLayout.addWidget(UiTitles.subtitle(__text))
 
     def add_description(self, __text: str) -> None:
-        self.mainLayout.addWidget(_UI.description(__text))
+        self.mainLayout.addWidget(UiTitles.description(__text))
 
     def add_combobox(self, __values: list, __width: int = 200, *, should_return: bool = True) -> QComboBox | None:
         combobox = QComboBox()
@@ -124,7 +101,7 @@ class MainSettingsWidget(_SettingsWidget):
 
         self.update_values()
 
-        self.mainLayout.addWidget(_UI.title("Font Settings"))
+        self.mainLayout.addWidget(UiTitles.title("Font Settings"))
         self.mainLayout.addWidget(self.font_family_changer)
         self.mainLayout.addWidget(self.font_size_changer)
 
@@ -155,12 +132,12 @@ class EditorSettingsWidget(_SettingsWidget):
 
         self.update_values()
 
-        self.mainLayout.addWidget(_UI.title("Font Settings"))
+        self.mainLayout.addWidget(UiTitles.title("Font Settings"))
         self.mainLayout.addWidget(self.font_family_changer)
         self.mainLayout.addWidget(self.font_size_changer)
-        self.mainLayout.addWidget(_UI.title("Cursor Settings"))
+        self.mainLayout.addWidget(UiTitles.title("Cursor Settings"))
         self.mainLayout.addWidget(self.cursor_style_changer)
-        self.mainLayout.addWidget(_UI.title("Tab Settings"))
+        self.mainLayout.addWidget(UiTitles.title("Tab Settings"))
         self.mainLayout.addWidget(self.tab_width_changer)
 
     def update_values(self):
@@ -180,7 +157,7 @@ class ThemeSettingsWidget(_SettingsWidget):
         self.change_theme = self.font_theme_changer.add_button("Change color theme...", is_highlighted=True)
         self.change_theme.clicked.connect(self.show_theme_changer)
 
-        self.mainLayout.addWidget(_UI.title("Theme Settings"))
+        self.mainLayout.addWidget(UiTitles.title("Theme Settings"))
         self.mainLayout.addWidget(self.font_theme_changer)
 
     def show_theme_changer(self):
