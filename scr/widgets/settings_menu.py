@@ -5,8 +5,8 @@ from scr.interface.additional import TransparentDialogWindow, AbstractWindow
 
 from PySide6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QComboBox, QLabel,
-    QSpinBox, QDialog, QFrame,
-    QScrollArea, QWidget, QListWidget, QPushButton
+    QSpinBox, QFrame, QListWidget, QPushButton,
+    QScrollArea, QWidget
 )
 from PySide6.QtCore import Qt
 

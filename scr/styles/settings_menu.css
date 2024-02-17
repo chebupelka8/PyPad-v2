@@ -32,7 +32,7 @@ QComboBox:hover {
 }
 
 QComboBox::down-arrow {
-    image: url(assets/icons/system_icons/down-arrow.png);
+    image: url(:/system_icons/down-arrow.png);
     width: 10px;
 }
 
