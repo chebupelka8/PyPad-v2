@@ -22,8 +22,14 @@ class _CodeHighlighter(QSyntaxHighlighter):
 
 
 class PythonCodeHighlighter(_CodeHighlighter):
+    __high_matches = []
+    
     def __init__(self, target):
         super().__init__(target.document())
+
+    @classmethod
+    def add_high_match(cls, __pattern, __format) -> None:
+        cls.__high_matches.append([__pattern, __format])
 
     def highlightBlock(self, text):
         self.highlight_match(PythonPatterns.CLASS_NAME, PythonTheme.CLASS_NAMES, text)
@@ -43,6 +49,12 @@ class PythonCodeHighlighter(_CodeHighlighter):
         self.highlight_match(PythonPatterns.STRING_APOSTROPHE, PythonTheme.STRING, text)
         self.highlight_match(PythonPatterns.LONG_STRING, PythonTheme.STRING, text)
 
+        for mat in self.__high_matches:
+            self.highlight_match(mat[0], mat[1], text)
+            print(mat)
+        
+        # # super().highlightBlock(text)
+
 
 class JsonCodeHighLighter(_CodeHighlighter):
     def __init__(self, target) -> None:
@@ -56,6 +68,8 @@ class JsonCodeHighLighter(_CodeHighlighter):
         self.highlight_match(JsonPatterns.BRACKETS, JsonTheme.BRACKETS, text)
         self.highlight_match(JsonPatterns.STRING, JsonTheme.STRING, text)
 
+        # super().highlightBlock(text)
+
 
 class StyleCodeHighLighter(_CodeHighlighter):
     def __init__(self, target):
@@ -67,6 +81,8 @@ class StyleCodeHighLighter(_CodeHighlighter):
         self.highlight_match(StylePatterns.SYMBOLS, StyleTheme.SYMBOLS, text)
         self.highlight_match(StylePatterns.COMMENT, StyleTheme.COMMENT, text)
 
+        # super().highlightBlock(text)
+
 
 class HtmlCodeHighlighter(_CodeHighlighter):
     def __init__(self, target):
@@ -77,3 +93,5 @@ class HtmlCodeHighlighter(_CodeHighlighter):
         self.highlight_match(HtmlPatterns.STRING, HtmlTheme.STRING, text)
         self.highlight_match(HtmlPatterns.SYMBOLS, HtmlTheme.SYMBOLS, text)
         self.highlight_match(HtmlPatterns.COMMENT, HtmlTheme.COMMENT, text)
+
+        # super().highlightBlock(text)

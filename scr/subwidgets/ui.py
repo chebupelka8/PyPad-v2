@@ -1,12 +1,11 @@
 from scr.scripts import restart_application, ThemeManager
-from scr.interface.additional import Dialog, ListChanger
+from scr.interface.additional import Dialog, ListChanger, InputDialog
 
 
 class Restarter(Dialog):
     def __init__(self, __parent) -> None:
-        super().__init__(__parent, "Do you want to restart the IDE to save the changes", "Restart")
+        super().__init__(__parent, "Do you want to restart the IDE to save the changes", "Restart", width=500)
 
-        self.setMinimumWidth(500)
         self.__command = None
 
     def set_command_after_restart(self, __command):
@@ -42,3 +41,17 @@ class ThemeChanger(ListChanger):
 
     def accept(self):
         self.change_theme(self.get_current_item().text())
+
+
+class Searching(InputDialog):
+    def __init__(self, __parent, __command) -> None:
+        """__command must get one argument -> text: str"""
+
+        super().__init__(__parent, "What do you want to find?", place_holder_text="Type something...", width=500)
+
+        self.__command = __command
+
+    def accept(self):
+        self.__command(self.get_entered_text())
+        self.clear_text()
+        self.close()

@@ -8,6 +8,23 @@ QDialog {
     border-radius: 6px;
 }
 
+QLineEdit {
+    background-color: #282828;
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+    margin: 7px 0;
+    color: white;
+    padding: 4px;
+}
+
+QLineEdit::placeholder {
+    color: #808080;
+}
+
+QLineEdit:hover {
+    background-color: #303030;
+}
+
 QFrame#abstract-window {
     background-color: #252525;
     border: 1px solid #3c3c3c;

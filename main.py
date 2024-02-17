@@ -5,7 +5,7 @@ from scr import (
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
     ImageViewer, TextEditorArea, WINDOW_SIZE, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater
+    EditorSettingsUpdater, Searching, PythonCodeHighlighter, PythonTheme
 )
 
 import os
@@ -42,6 +42,8 @@ class MainWidget(QWidget):
         self.restarter = Restarter(self)
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
+        self.searchWindow = Searching(
+            self, lambda txt: PythonCodeHighlighter.add_high_match(r"\b({})\b".format(txt), PythonTheme.SELECTED))
 
         # layouts
         self.workbenchLayout.addWidget(self.sideBar, stretch=1)
@@ -67,6 +69,9 @@ class MainWidget(QWidget):
         )
         QShortcut("Ctrl+P", self).activated.connect(
             lambda: self.__click_file_tree(self.fileTree.open_file(FileDialog.get_open_file_name()))
+        )
+        QShortcut("Ctrl+F", self).activated.connect(
+            self.searchWindow.show
         )
 
         EditorFontManager.add_font_updater(self.tabEditor.update_all_tabs_font)

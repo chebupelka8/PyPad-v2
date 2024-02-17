@@ -109,7 +109,7 @@ class TextCharCreator:
     @classmethod
     def create_char_format_background(cls, __bg_color: str, italic: bool = False, bold: bool = False):
         res = QTextCharFormat()
-        res.setForeground(QColor(__bg_color))
+        res.setBackground(QColor(__bg_color))
         res.setFontItalic(italic)
         if bold:
             res.setFontWeight(QFont.Bold)
@@ -119,6 +119,7 @@ class TextCharCreator:
 
 class _AbstractTheme:
     theme = FileLoader.load_json(FileLoader.load_json("scr/data/settings.json")["theme"]["path"])
+    SELECTED = TextCharCreator.create_char_format_background("#dee2ff")
 
     @classmethod
     def reload_theme(cls) -> None:

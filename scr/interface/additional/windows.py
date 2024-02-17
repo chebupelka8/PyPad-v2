@@ -10,24 +10,26 @@ from typing import Any
 
 
 class DialogWindow(QDialog):
-    def __init__(self, __parent: Any = None, *, frameless: bool = True) -> None:
+    def __init__(self, __parent: Any = None, *, frameless: bool = True, width: int = 200) -> None:
         if frameless: super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
         else: super().__init__(__parent)
+
+        self.setMinimumWidth(width)
 
         self.setStyleSheet(FileLoader.load_style("scr/styles/ui.css"))
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
 
 class TransparentDialogWindow(DialogWindow):
-    def __init__(self, __parent: Any = None, *, frameless: bool = True) -> None:
-        super().__init__(__parent, frameless=frameless)
+    def __init__(self, __parent: Any = None, *, frameless: bool = True, width: int = 200) -> None:
+        super().__init__(__parent, frameless=frameless, width=width)
 
         self.setAttribute(Qt.WA_TranslucentBackground)
 
 
 class Dialog(DialogWindow):
-    def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel") -> None:
-        super().__init__(__parent)
+    def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel", *, width: int = 200) -> None:
+        super().__init__(__parent, width=width)
 
         self.mainLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
@@ -63,9 +65,10 @@ class InputDialog(DialogWindow):
             self, __parent,
             __message: str,
             pasted_text: str = "", place_holder_text: str = "",
-            accept_title: str = "Ok", reject_title: str = "Cancel"
+            accept_title: str = "Ok", reject_title: str = "Cancel", *,
+            width: int = 200
     ) -> None:
-        super().__init__(__parent)
+        super().__init__(__parent, width=width)
 
         self.mainLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
@@ -78,7 +81,8 @@ class InputDialog(DialogWindow):
         self.inputLine = QLineEdit()
         self.inputLine.setText(pasted_text)
         self.inputLine.setPlaceholderText(place_holder_text)
-        self.mainLayout.addWidget(self.inputLine)
+        self.inputLine.setFixedWidth(width * 0.8)
+        self.mainLayout.addWidget(self.inputLine, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         # buttons
         self.mainLayout.addLayout(self.buttonLayout)
@@ -95,6 +99,12 @@ class InputDialog(DialogWindow):
         self.buttonLayout.addWidget(self.rejectBtn, alignment=Qt.AlignmentFlag.AlignLeft)
 
         self.setLayout(self.mainLayout)
+
+    def get_entered_text(self) -> str:
+        return self.inputLine.text()
+
+    def clear_text(self) -> None:
+        self.inputLine.clear()
 
 
 class ListChanger(TransparentDialogWindow):
