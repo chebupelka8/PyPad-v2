@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icons/system_icons/Logo PyPad.png">
+  <img src="Logo.png">
 </p>
 
 <h1></h1>
