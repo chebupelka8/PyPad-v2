@@ -1,8 +1,6 @@
 from jedi import Script
 from PySide6.QtCore import QRunnable, QObject, Slot, Signal
 
-from random import randint
-
 
 class CompleterSignal(QObject):
     res = Signal(list)
@@ -26,16 +24,15 @@ class AutoCompleter(QRunnable):
         self.__text = __text
 
         try:
-            # self.__script = Script(__text, path=self.__path)
-            # completions = self.__script.complete()
+            self.__script = Script(__text, path=self.__path)
+            completions = self.__script.complete(__line, __column)
 
-            # res = [i.name for i in completions]
-            res = ["".join(chr(randint(0, 256)) for _ in range(randint(0, 50))) for _ in range(randint(0, 256))]
+            res = [i.name for i in completions]
 
             return res
 
         except Exception as e:
-            print(e)
+            ...
 
     def get(self):
         return self.__completions

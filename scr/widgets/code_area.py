@@ -110,8 +110,8 @@ class PythonCodeEditorArea(_CodeEditorArea):
         self.completer.show()
         self.completer.setVisible(False)
 
-        # self.textChanged.connect(self.__auto_completer_run)
-        # self.cursorPositionChanged.connect(self.__auto_completer_run)
+        self.textChanged.connect(self.__auto_completer_run)
+        self.cursorPositionChanged.connect(self.__auto_completer_run)
 
         if __path is not None:
             text = FileLoader.load_python_file(__path)
