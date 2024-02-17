@@ -1,7 +1,7 @@
 {
     "workbench": {
         "font": {
-            "family": "Candara",
+            "family": "Consolas",
             "size": 14,
             "bold": false,
             "italic": false
@@ -9,7 +9,7 @@
     },
     "editor": {
         "font": {
-            "family": "Cascadia Code Light",
+            "family": "Consolas",
             "size": 17,
             "bold": false,
             "italic": false
@@ -20,7 +20,7 @@
         "tab-width": 4
     },
     "theme": {
-        "path": "scr/data/themes/one-dark.json",
-        "name": "One Dark"
+        "path": "scr/data/themes/github-theme.json",
+        "name": "GitHub Theme"
     }
 }
