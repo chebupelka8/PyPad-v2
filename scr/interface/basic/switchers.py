@@ -10,3 +10,7 @@ class Splitter(QSplitter):
         elif __orientation == "vertical": super().__init__(Qt.Orientation.Vertical, parent)
 
         self.setStyleSheet(FileLoader.load_style("scr/styles/switchers.css"))
+
+    def addWidget(self, widget):
+        super().addWidget(widget)
+        self.setCollapsible(self.indexOf(widget), False)
