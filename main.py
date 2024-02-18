@@ -7,6 +7,7 @@ from scr import (
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
     EditorSettingsUpdater
 )
+from scr.interface.basic import Splitter
 
 import os
 import sys
