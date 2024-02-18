@@ -64,7 +64,7 @@ class PythonPatterns:
     PYTHON_SYMBOLS = r"\=|\+|\-|\>|\&|\<|\%|\/|\*|\|"
 
     DECORATOR = r'@[^\n]*'
-    COMMENT = r'#[^\n]*'
+    COMMENT = r'#[^\n]* $' # ^(?!").*$  |  ^(?!").*$  |  (?!")^#[^\n]*
 
     STRING_DOUBLE_QUOTATION = r'"[^"\\]*(\\.[^"\\]*)*"'
     STRING_APOSTROPHE = r"'[^'\\]*(\\.[^'\\]*)*'"

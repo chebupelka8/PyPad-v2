@@ -174,7 +174,7 @@ class SettingTree(QListWidget):
 
         self.update_font()
 
-        self.addItems(["Main", "Editor", "Theme"])
+        self.addItems(["General", "Editor", "Theme"])
         self.setCurrentRow(0)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
