@@ -3,7 +3,7 @@
 </p>
 
 <h1></h1>
-<p align="center">
+<p align="left">
 
   <img src="https://img.shields.io/badge/version-v0.2.2--alpha-green">
   <img src="https://img.shields.io/github/license/chebupelka8/PyPad-v2">
