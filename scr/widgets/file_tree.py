@@ -23,13 +23,15 @@ class FileTree(QTreeView):
         self.setEditTriggers(QTreeView.EditTrigger.NoEditTriggers)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
+        self.__directory = os.getcwd()
+
         # font & icon size
         self.update_font()
 
         self.model = QFileSystemModel()
-        self.model.setRootPath(os.getcwd())
+        self.model.setRootPath(self.__directory)
         self.setModel(self.model)
-        self.setRootIndex(self.model.index(os.getcwd()))
+        self.setRootIndex(self.model.index(self.__directory))
         self.setHeaderHidden(True)
         self.model.setIconProvider(IconProvider())
 

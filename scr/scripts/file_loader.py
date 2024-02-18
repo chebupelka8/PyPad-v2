@@ -15,6 +15,13 @@ class FileLoader:
 
         return result
 
+    @staticmethod
+    def __load_any_bytes_file(__path: str) -> bytes:
+        with open(os.path.normpath(__path), "rb") as file:
+            result = file.read()
+
+        return result
+
     @classmethod
     def load_text_file(cls, __path: str, *__extensions: str) -> str:
         FileChecker.verify_file_extensions(__path, *__extensions)

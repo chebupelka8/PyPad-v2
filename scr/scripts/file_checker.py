@@ -44,7 +44,7 @@ class FileChecker:
 
     @staticmethod
     def is_picture_file(__path: str) -> bool:
-        return os.path.splitext(__path)[1].lower() in (".jpg", ".jpeg", ".png")
+        return os.path.splitext(__path)[1].lower() in (".jpg", ".jpeg", ".png", ".ico", ".gif")
 
     @staticmethod
     def is_readable(__path: str) -> bool:

@@ -16,7 +16,7 @@ class IconProvider(QFileIconProvider):
                 if __info.suffix().lower() == "py":
                     return QIcon(IconPaths.FileIcons.PYTHON)
 
-                elif __info.suffix().lower() in ("png", "jpg", "jpeg"):
+                elif __info.suffix().lower() in ("png", "jpg", "jpeg", "ico"):
                     return QIcon(IconPaths.FileIcons.PICTURE)
 
                 elif __info.suffix().lower() in ("qss", "css"):
