@@ -21,7 +21,7 @@ class TabEditor(QTabWidget):
         self.setTabsClosable(True)
         self.setMovable(True)
         self.setMouseTracking(True)
-        self.setIconSize(QSize(20, 20))
+        self.setIconSize(QSize(16, 16))
         self.tabCloseRequested.connect(self.removeTab)
 
     def check_tab_paths_exist(self):

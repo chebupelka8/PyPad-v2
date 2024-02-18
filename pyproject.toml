@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
-pyside6 = "6.6.1"
+pyside6 = "6.6.0"
 pillow = "^10.2.0"
 
 

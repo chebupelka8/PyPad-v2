@@ -1,10 +1,11 @@
-from PySide6.QtGui import QIcon, QAbstractFileIconProvider
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import QFileInfo
+from PySide6.QtWidgets import QFileIconProvider
 
 from scr.config import IconPaths
 
 
-class IconProvider(QAbstractFileIconProvider):
+class IconProvider(QFileIconProvider):
     def icon(self, __info: QFileInfo):
         try:
 
@@ -38,9 +39,6 @@ class IconProvider(QAbstractFileIconProvider):
 
                 elif __info.suffix().lower() == "md":
                     return QIcon(IconPaths.FileIcons.README)
-
-                else:
-                    return QIcon(IconPaths.FileIcons.DEFAULT)
 
         except AttributeError:
             pass
