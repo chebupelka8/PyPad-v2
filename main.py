@@ -61,6 +61,8 @@ class MainWidget(QWidget):
 
         self.settingActionMenu.connect_by_title("Themes...", self.show_theme_changer)
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
+        QShortcut("Ctrl+T", self).activated.connect(self.show_theme_changer)
+        QShortcut("Ctrl+,", self).activated.connect(self.settingsMenu.show)
 
         QShortcut("Ctrl+O", self).activated.connect(
             lambda: self.fileTree.open_directory(FileDialog.get_open_directory())

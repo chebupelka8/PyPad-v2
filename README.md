@@ -22,6 +22,8 @@ PyPad supports some languages like a Python, Json, Html and CSS. So far, PyPad i
 
 Ctrl+O - Open directory
 Ctrl+P - Open file
+Ctrl+, - Open settings
+Ctrl+T - Open theme picker
 ```
 
 <p align="center">

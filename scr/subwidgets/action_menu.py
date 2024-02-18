@@ -1,8 +1,10 @@
 from PySide6.QtWidgets import QMenu
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QIcon, QShortcut
 from PySide6.QtCore import Qt
 
 from scr.scripts import FileLoader
+
+from typing import Any
 
 
 class _ActionMenu(QMenu):
@@ -13,9 +15,10 @@ class _ActionMenu(QMenu):
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.NoDropShadowWindowHint)
         self.setStyleSheet(FileLoader.load_style("scr/styles/action_menu.css"))
 
-    def add_action(self, __title: str, __path_to_icon: str | None = None):
+    def add_action(self, __title: str, path_to_icon: str | None = None, shortcut: Any | None = None):
         action = QAction(__title, self)
-        # if __path_to_icon is not None: action.setIcon(QIcon(__path_to_icon))
+        if shortcut is not None: action.setShortcut(shortcut)
+        if path_to_icon is not None: action.setIcon(QIcon(path_to_icon))
 
         self.addAction(action)
 
@@ -36,6 +39,6 @@ class SettingsActionMenu(_ActionMenu):
     def __init__(self, parent = None) -> None:
         super().__init__(parent, width=200)
 
-        self.add_action("Interpreter Settings...", "assets/icons/system_icons/interpreter.png")
-        self.add_action("Open Settings...", "assets/icons/system_icons/settings.png")
-        self.add_action("Themes...", "assets/icons/system_icons/themes.png")
+        self.add_action("Interpreter Settings...")
+        self.add_action("Open Settings...", shortcut="ctrl+,")
+        self.add_action("Themes...", shortcut="ctrl+t")
