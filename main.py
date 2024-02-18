@@ -30,10 +30,6 @@ class MainWidget(QWidget):
         self.mainLayout = QVBoxLayout()
         self.workbenchLayout = QHBoxLayout()
 
-        self.init_ui()
-        self.setup_ui()
-
-    def init_ui(self) -> None:
         # init
         self.fileTree = FileTree()
         self.tabEditor = TabEditor()
@@ -43,6 +39,10 @@ class MainWidget(QWidget):
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
 
+        self.init_ui()
+        self.setup_ui()
+
+    def init_ui(self) -> None:
         # layouts
         self.workbenchLayout.addWidget(self.sideBar, stretch=1)
         self.workbenchLayout.addWidget(self.fileTree, stretch=2)
