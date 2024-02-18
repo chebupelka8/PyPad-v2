@@ -1,5 +1,4 @@
 from scr.scripts import FileLoader, IconProvider, Font, WorkbenchFontManager
-from scr.exceptions import NotDirectoryError
 
 import os
 
@@ -55,13 +54,6 @@ class FileTree(QTreeView):
 
     def get_file_icon(self, __index):
         return self.model.fileIcon(__index)
-
-    def set_project_dir(self, __path: str):
-        if not os.path.isdir(__path):
-            raise NotDirectoryError("This must be a directory not file")
-
-        self.model.setRootPath(__path)
-        self.setRootIndex(self.model.index(__path))
 
     def open_file(self, __path: str):
         """returns the index of this path to open it in the editor"""

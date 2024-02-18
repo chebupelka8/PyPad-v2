@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMenu
-from PySide6.QtGui import QAction, QIcon, QShortcut
+from PySide6.QtGui import QAction, QIcon
 from PySide6.QtCore import Qt
 
 from scr.scripts import FileLoader
@@ -8,7 +8,7 @@ from typing import Any
 
 
 class _ActionMenu(QMenu):
-    def __init__(self, parent = None, width: int = 150) -> None:
+    def __init__(self, parent=None, width: int = 150) -> None:
         super().__init__(parent)
 
         self.setFixedWidth(width)
@@ -36,7 +36,7 @@ class _ActionMenu(QMenu):
 
 
 class SettingsActionMenu(_ActionMenu):
-    def __init__(self, parent = None) -> None:
+    def __init__(self, parent=None) -> None:
         super().__init__(parent, width=200)
 
         self.add_action("Interpreter Settings...")
