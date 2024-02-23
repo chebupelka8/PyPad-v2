@@ -104,6 +104,7 @@ QListWidget {
     border: none;
     background-color: #252525;
     border-right: 1px solid #3c3c3c;
+    border-radius: 0;
     padding: 2px;
 }
 
