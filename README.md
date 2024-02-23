@@ -27,11 +27,10 @@ Ctrl+T - Open theme picker
 ```
 
 <p align="center">
+  <img src="screenshots/screen1.png">
   <img src="screenshots/screen5.png">
   <img src="screenshots/screen6.png">
   <img src="screenshots/screen3.png">
-  <img src="screenshots/screen1.png">
-  <img src="screenshots/screen13.png">
   <img src="screenshots/screen0.png">
   <img src="screenshots/screen2.png">
   <img src="screenshots/screen4.png">
@@ -39,7 +38,6 @@ Ctrl+T - Open theme picker
   <img src="screenshots/screen8.png">
   <img src="screenshots/screen10.png">
   <img src="screenshots/screen9.png">
-  <img src="screenshots/screen12.png">
   <img src="screenshots/screen11.png">
   
 </p>
