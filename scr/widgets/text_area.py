@@ -139,7 +139,7 @@ class TextEditorArea(QPlainTextEdit):
 
     def __update_line_number_area_width(self):
         margins = self.viewportMargins()
-        self.setViewportMargins(self.get_number_area_width(), margins.top(), 150, margins.bottom())
+        self.setViewportMargins(self.get_number_area_width(), margins.top(), 160, margins.bottom())
 
     def get_number_area_width(self) -> int:
         block_count = self.document().blockCount()
