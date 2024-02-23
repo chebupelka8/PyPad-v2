@@ -5,7 +5,7 @@ from scr import (
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
     ImageViewer, TextEditorArea, WINDOW_SIZE, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater
+    EditorSettingsUpdater, FileRunner
 )
 from scr.interface.basic import Splitter
 
@@ -74,6 +74,9 @@ class MainWidget(QWidget):
         )
         QShortcut("Ctrl+P", self).activated.connect(
             lambda: self.__click_file_tree(self.fileTree.open_file(FileDialog.get_open_file_name()))
+        )
+        QShortcut("Ctrl+F5", self).activated.connect(
+            lambda: FileRunner.run_python_file(self.tabEditor.get_current_path(), self.fileTree.get_current_directory())
         )
 
         EditorFontManager.add_font_updater(self.tabEditor.update_all_tabs_font)

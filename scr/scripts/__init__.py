@@ -9,3 +9,4 @@ from .font_manager import *
 from .theme_manager import *
 from .settings_updater import *
 from .font import *
+from .run import *

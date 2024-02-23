@@ -62,7 +62,7 @@ class TabEditor(QTabWidget):
         if hasattr(self.currentWidget(), "get_full_path"):
             return self.currentWidget().get_full_path()
         else:
-            return ""  # it's need for remove exception
+            return ""  # it's need to remove exception
 
     def removeTab(self, __index: int):
         super().removeTab(__index)

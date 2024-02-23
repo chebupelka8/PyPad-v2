@@ -66,8 +66,12 @@ class FileTree(QTreeView):
         return self.get_index_by_path(__path)
 
     def open_directory(self, __path: str) -> None:
+        self.__directory = __path
         self.model.setRootPath(__path)
         self.setRootIndex(self.model.index(__path))
+
+    def get_current_directory(self) -> str:
+        return self.__directory
 
     def show_hide_file_tree(self) -> None:
         if self.isVisible():
