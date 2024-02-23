@@ -2,6 +2,7 @@ from scr.scripts import (
     FileLoader, PythonCodeHighlighter, CodeAnalyzer,
     JsonCodeHighLighter, StyleCodeHighLighter, HtmlCodeHighlighter
 )
+from .code_map import CodeGlanceMap
 from .text_area import TextEditorArea
 
 from PySide6.QtCore import Qt
@@ -11,6 +12,19 @@ class _CodeEditorArea(TextEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__()
 
+        if __path is not None:
+            text = FileLoader.load_text(__path)
+            text = CodeAnalyzer.refactor_spaces_to_tabs(
+                text, CodeAnalyzer.get_tab_width_by_text(text)
+            )
+            self.insertPlainText(text)
+
+            # glance setup
+            self.codeMap = CodeGlanceMap(text, self.font())
+            self.textChanged.connect(lambda: self.codeMap.setPlainText(self.toPlainText()))
+            self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
+
+        # setup style sheet
         self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/editor_area.css"))
         self.setObjectName("code-area")
 
@@ -99,13 +113,8 @@ class PythonCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__(__path)
 
-        if __path is not None:
-            text = FileLoader.load_python_file(__path)
-            self.insertPlainText(
-                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
-            )
-
         PythonCodeHighlighter(self)  # set highlighter
+        PythonCodeHighlighter(self.codeMap)
 
         # self.set_default_text_color(PythonTheme.DEFAULT)
 
@@ -154,13 +163,8 @@ class JsonCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__(__path)
 
-        if __path is not None:
-            text = FileLoader.load_json_text(__path)
-            self.insertPlainText(
-                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
-            )
-
         JsonCodeHighLighter(self)
+        JsonCodeHighLighter(self.codeMap)
         # self.set_default_text_color(JsonTheme.DEFAULT)
 
     def keyPressEvent(self, event):
@@ -171,13 +175,8 @@ class StyleCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str):
         super().__init__(__path)
 
-        if __path is not None:
-            text = FileLoader.load_style(__path)
-            self.insertPlainText(
-                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
-            )
-
         StyleCodeHighLighter(self)
+        StyleCodeHighLighter(self.codeMap)
         # self.set_default_text_color(StyleTheme.DEFAULT)
 
     def keyPressEvent(self, event):
@@ -188,13 +187,8 @@ class HtmlCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__(__path)
 
-        if __path is not None:
-            text = FileLoader.load_html(__path)
-            self.insertPlainText(
-                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
-            )
-
         HtmlCodeHighlighter(self)
+        HtmlCodeHighlighter(self.codeMap)
         # self.set_default_text_color(HtmlTheme.DEFAULT)
 
     def keyPressEvent(self, event):

@@ -1,7 +1,8 @@
 from scr.scripts import FileLoader, FileChecker, EditorFontManager, Font, EditorSettingsUpdater, CodeAnalyzer
 from scr.config import TextEditorTheme
+from .code_map import CodeGlanceMap
 
-from PySide6.QtWidgets import QPlainTextEdit, QTextEdit, QWidget
+from PySide6.QtWidgets import QPlainTextEdit, QTextEdit, QWidget, QHBoxLayout
 from PySide6.QtGui import QColor, QTextFormat, QPainter, QPalette, QFontMetrics
 from PySide6.QtCore import Qt, QRect, QSize, QPoint
 
@@ -10,14 +11,9 @@ class TextEditorArea(QPlainTextEdit):
     def __init__(self, __path: str | None = None):
         super().__init__()
 
+        # setup style sheet
         self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/editor_area.css"))
         self.setObjectName("text-area")
-
-        self.__path = __path
-
-        if __path is not None and FileChecker.is_readable(__path):
-            text = FileLoader.load_text(__path)
-            self.insertPlainText(CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text)))
 
         # self setup
         self.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
@@ -26,6 +22,22 @@ class TextEditorArea(QPlainTextEdit):
         self.__main_font = Font.get_system_font(*EditorFontManager.get_current_font().values())
         self.setFont(self.__main_font)
 
+        # layout for code glancing
+        self.mainLayout = QHBoxLayout()
+        self.setLayout(self.mainLayout)
+
+        self.__path = __path
+
+        if __path is not None and FileChecker.is_readable(__path):
+            text = FileLoader.load_text(__path)
+            text = CodeAnalyzer.refactor_spaces_to_tabs(
+                text, CodeAnalyzer.get_tab_width_by_text(text)
+            )
+            self.insertPlainText(text)
+            self.codeMap = CodeGlanceMap(text, self.__main_font)
+            self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
+
+        # vars
         self.__cursor_style = EditorSettingsUpdater.get_cursor_style()
         self.__tab_width = EditorSettingsUpdater.get_tab_width()
 
@@ -126,7 +138,8 @@ class TextEditorArea(QPlainTextEdit):
         return self.toPlainText()[:self.textCursor().position()]
 
     def __update_line_number_area_width(self):
-        self.setViewportMargins(self.get_number_area_width(), 0, 0, 0)
+        margins = self.viewportMargins()
+        self.setViewportMargins(self.get_number_area_width(), margins.top(), 150, margins.bottom())
 
     def get_number_area_width(self) -> int:
         block_count = self.document().blockCount()
