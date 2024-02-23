@@ -11,7 +11,7 @@ class ImageViewer(QGraphicsView):
 
         self.__path = __path
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/image_viewer.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/image_viewer.css"))
         self.setObjectName("image-viewer")
 
         self.setScene(QGraphicsScene(self))

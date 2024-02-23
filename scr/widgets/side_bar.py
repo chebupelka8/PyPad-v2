@@ -20,7 +20,7 @@ class SideBar(QFrame):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/side_bar.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/side_bar.css"))
         self.setObjectName("side-bar")
 
         self.setMaximumWidth(50)

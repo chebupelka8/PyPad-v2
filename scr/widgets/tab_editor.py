@@ -13,7 +13,7 @@ class TabEditor(QTabWidget):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/tab_editor.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/tab_editor.css"))
         self.setObjectName("tab-editor")
         self.setMinimumSize(1040, 480)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)

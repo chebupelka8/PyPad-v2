@@ -13,7 +13,7 @@ class _ActionMenu(QMenu):
 
         self.setFixedWidth(width)
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.NoDropShadowWindowHint)
-        self.setStyleSheet(FileLoader.load_style("scr/styles/action_menu.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/subwidgets/styles/action_menu.css"))
 
     def add_action(self, __title: str, path_to_icon: str | None = None, shortcut: Any | None = None):
         action = QAction(__title, self)

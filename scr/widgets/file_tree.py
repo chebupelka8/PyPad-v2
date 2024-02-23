@@ -10,7 +10,7 @@ class FileTree(QTreeView):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/file_tree.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/file_tree.css"))
         self.setObjectName("file-tree")
         self.setMinimumWidth(300)
 

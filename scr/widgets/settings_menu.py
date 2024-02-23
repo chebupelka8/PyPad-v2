@@ -210,7 +210,7 @@ class SettingsMenuWidget(AbstractWindow):
 
         self.setWindowTitle("Settings")
         self.setMinimumSize(1000, 700)
-        self.setStyleSheet(FileLoader.load_style("scr/styles/settings_menu.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/settings_menu.css"))
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
         self.settingsArea = QScrollArea()
@@ -220,7 +220,7 @@ class SettingsMenuWidget(AbstractWindow):
 
         self.settingTree = SettingTree()
         self.settingTree.connect_by_title(
-            "Main", lambda: self.settingsArea.setWidget(MainSettingsWidget())
+            "General", lambda: self.settingsArea.setWidget(MainSettingsWidget())
         )
         self.settingTree.connect_by_title(
             "Editor", lambda: self.settingsArea.setWidget(EditorSettingsWidget())

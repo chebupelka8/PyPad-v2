@@ -10,7 +10,7 @@ class TextEditorArea(QPlainTextEdit):
     def __init__(self, __path: str | None = None):
         super().__init__()
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/editor_area.css"))
         self.setObjectName("text-area")
 
         self.__path = __path

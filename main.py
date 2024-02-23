@@ -39,19 +39,18 @@ class MainWidget(QWidget):
         self.restarter = Restarter(self)
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
-
         self.splitter = Splitter("horizontal")
-        self.splitter.addWidget(self.fileTree)
-        self.splitter.addWidget(self.tabEditor)
 
         self.init_ui()
         self.setup_ui()
 
     def init_ui(self) -> None:
+        # to splitter
+        self.splitter.addWidget(self.fileTree)
+        self.splitter.addWidget(self.tabEditor)
+
         # layouts
         self.workbenchLayout.addWidget(self.sideBar, stretch=1)
-        # self.workbenchLayout.addWidget(self.fileTree, stretch=2)
-        # self.workbenchLayout.addWidget(self.tabEditor, stretch=7)
         self.workbenchLayout.addWidget(self.splitter)
 
         self.mainLayout.addLayout(self.workbenchLayout)
@@ -142,7 +141,7 @@ class Window(QMainWindow):
         self.setWindowTitle("PyPad")
         self.setWindowIcon(QIcon(":/system_icons/icon.ico"))
         self.setStyleSheet(
-            FileLoader.load_style("scr/styles/main.css") + FileLoader.load_style("scr/styles/action_menu.css")
+            FileLoader.load_style("scr/style/main.css") + FileLoader.load_style("scr/subwidgets/styles/action_menu.css")
         )
         self.setObjectName("window")
 

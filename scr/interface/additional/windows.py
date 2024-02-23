@@ -14,7 +14,7 @@ class DialogWindow(QDialog):
         if frameless: super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
         else: super().__init__(__parent)
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/ui.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/interface/additional/styles/gui.css"))
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
 
@@ -147,5 +147,5 @@ class AbstractWindow(QFrame):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/ui.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/interface/additional/styles/gui.css"))
         self.setObjectName("abstract-window")

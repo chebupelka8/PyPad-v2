@@ -11,6 +11,9 @@ class _CodeEditorArea(TextEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__()
 
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/editor_area.css"))
+        self.setObjectName("code-area")
+
         self.__path = __path
 
     def get_full_path(self):
@@ -96,12 +99,11 @@ class PythonCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__(__path)
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
-        self.setObjectName("code-area")
-
         if __path is not None:
             text = FileLoader.load_python_file(__path)
-            self.insertPlainText(CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text)))
+            self.insertPlainText(
+                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
+            )
 
         PythonCodeHighlighter(self)  # set highlighter
 
@@ -152,12 +154,11 @@ class JsonCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__(__path)
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
-        self.setObjectName("code-area")
-
         if __path is not None:
             text = FileLoader.load_json_text(__path)
-            self.insertPlainText(CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text)))
+            self.insertPlainText(
+                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
+            )
 
         JsonCodeHighLighter(self)
         # self.set_default_text_color(JsonTheme.DEFAULT)
@@ -170,12 +171,11 @@ class StyleCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str):
         super().__init__(__path)
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
-        self.setObjectName("code-area")
-
         if __path is not None:
             text = FileLoader.load_style(__path)
-            self.insertPlainText(CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text)))
+            self.insertPlainText(
+                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
+            )
 
         StyleCodeHighLighter(self)
         # self.set_default_text_color(StyleTheme.DEFAULT)
@@ -188,12 +188,11 @@ class HtmlCodeEditorArea(_CodeEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__(__path)
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/editor_area.css"))
-        self.setObjectName("code-area")
-
         if __path is not None:
             text = FileLoader.load_html(__path)
-            self.insertPlainText(CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text)))
+            self.insertPlainText(
+                CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
+            )
 
         HtmlCodeHighlighter(self)
         # self.set_default_text_color(HtmlTheme.DEFAULT)

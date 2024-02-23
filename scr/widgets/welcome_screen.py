@@ -10,7 +10,7 @@ class WelcomeScreen(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setStyleSheet(FileLoader.load_style("scr/styles/welcome_screen.css"))
+        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/welcome_screen.css"))
         self.setObjectName("welcome-screen")
 
         self.mainLayout = QVBoxLayout()
