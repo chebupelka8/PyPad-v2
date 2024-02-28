@@ -126,8 +126,11 @@ class ListChanger(TransparentDialogWindow):
         else:
             super().keyPressEvent(event)
 
-    def add_items(self, *__labels: str) -> None:
+    def set_items(self, *__values: str) -> None:
         self.listWidget.clear()
+        self.listWidget.addItems([*__values])
+
+    def add_items(self, *__labels: str) -> None:
         self.listWidget.addItems([*__labels])
 
     def get_item_by_text(self, __label: str):

@@ -25,36 +25,36 @@ class TabEditor(QTabWidget):
         self.tabCloseRequested.connect(self.removeTab)
 
     def check_tab_paths_exist(self):
-        for i in range(self.count()):
-            if hasattr(self.widget(i), "get_full_path"):
-                if not FileChecker.check_exist(self.widget(i).get_full_path()):
+        for i, widget in enumerate(self.get_all_tabs()):
+            if hasattr(widget, "get_full_path"):
+                if not FileChecker.check_exist(widget.get_full_path()):
                     self.removeTab(i)
 
     def update_all_tabs_font(self) -> None:
-        for i in range(self.count()):
-            if hasattr(self.widget(i), "update_font"):
-                self.widget(i).update_font()
+        for widget in self.get_all_tabs():
+            if hasattr(widget, "update_font"):
+                widget.update_font()
 
     def update_all_tabs_settings(self) -> None:
-        for i in range(self.count()):
-            if hasattr(self.widget(i), "update_settings"):
-                self.widget(i).update_settings()
+        for widget in self.get_all_tabs():
+            if hasattr(widget, "update_settings"):
+                widget.update_settings()
 
     def find_by_path(self, __path: str):
-        for i in range(self.count()):
-            if hasattr(self.widget(i), "get_full_path"):
-                if self.widget(i).get_full_path() == __path:
-                    return self.widget(i)
+        for widget in self.get_all_tabs():
+            if hasattr(widget, "get_full_path"):
+                if widget.get_full_path() == __path:
+                    return widget
 
-    def get_all_tabs(self) -> list:
+    def get_all_tabs(self) -> list[Any]:
         return [self.widget(i) for i in range(self.count())]
 
     def get_all_paths(self):
         res = []
 
-        for i in range(self.count()):
-            if hasattr(self.widget(i), "get_full_path"):
-                res.append(self.widget(i).get_full_path())
+        for widget in self.get_all_tabs():
+            if hasattr(widget, "get_full_path"):
+                res.append(widget.get_full_path())
 
         return res
 

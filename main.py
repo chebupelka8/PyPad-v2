@@ -5,7 +5,7 @@ from scr import (
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
     ImageViewer, TextEditorArea, WINDOW_SIZE, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater, FileRunner
+    EditorSettingsUpdater, FileRunner, TabsSwitcher
 )
 from scr.interface.basic import Splitter
 
@@ -39,6 +39,9 @@ class MainWidget(QWidget):
         self.restarter = Restarter(self)
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
+        self.tabsSwitcher = TabsSwitcher(self)
+        self.tabsSwitcher.show()
+        self.tabsSwitcher.open_connect(lambda t: print(t))
         self.splitter = Splitter("horizontal")
 
         self.init_ui()
@@ -93,7 +96,6 @@ class MainWidget(QWidget):
             self.__open_file_for_edit(path, self.fileTree.get_file_icon(__index))
 
     def __open_file_for_edit(self, __path: str, __icon) -> None:
-
         if FileChecker.is_python_file(__path):
             self.tabEditor.addTab(
                 PythonCodeEditorArea(__path), os.path.basename(__path), __icon
@@ -132,7 +134,7 @@ class MainWidget(QWidget):
     def show_theme_changer(self):
         themes = [FileLoader.load_json(f"scr/data/themes/{i}")["name"] for i in os.listdir("scr/data/themes")]
 
-        self.themeChanger.add_items(*themes)
+        self.themeChanger.set_items(*themes)
         self.themeChanger.show()
 
 
