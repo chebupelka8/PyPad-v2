@@ -24,7 +24,12 @@ class TabEditor(QTabWidget):
         self.setIconSize(QSize(16, 16))
         self.tabCloseRequested.connect(self.removeTab)
 
-    def get_all_info_tabs(self, only_files: bool = False, key: Optional[str] = None) -> Union[dict, list]:
+    def get_all_info_tabs(
+            self,
+            only_files: bool = False,
+            key: Optional[str] = None,
+            should_dict: bool = False
+    ) -> Union[dict, list]:
         """
         for files:
             title,
@@ -45,6 +50,7 @@ class TabEditor(QTabWidget):
                     "title": self.tabText(i),
                     "widget": self.widget(i),
                     "icon": self.tabIcon(i),
+                    "index": i,
                     "path": widget.get_full_path()
                 }
 
@@ -52,12 +58,13 @@ class TabEditor(QTabWidget):
                 result[str(i)] = {
                     "title": self.tabText(i),
                     "widget": self.widget(i),
-                    "icon": self.tabIcon(i)
+                    "icon": self.tabIcon(i),
+                    "index": i
                 }
 
         match key:
             case key if key is None:
-                return result
+                return result if should_dict else [list(result[i].values()) for i in result.keys()]
 
             case key if isinstance(key, str):
                 return [result[item][key] for item in result.keys()]
@@ -94,7 +101,7 @@ class TabEditor(QTabWidget):
                 widget.update_settings()
 
     def find_by_path(self, __path: str):
-        for widget in self.get_all_info_tabs(True, "widget"):
+        for widget in self.get_all_info_tabs(True, key="widget"):
             if widget.get_full_path() == __path:
                 return widget
 
