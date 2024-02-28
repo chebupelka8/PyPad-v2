@@ -40,7 +40,6 @@ class MainWidget(QWidget):
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
         self.tabsSwitcher = TabsSwitcher(self)
-        self.tabsSwitcher.show()
         self.tabsSwitcher.open_connect(lambda t: print(t))
         self.splitter = Splitter("horizontal")
 
@@ -58,6 +57,11 @@ class MainWidget(QWidget):
 
         self.mainLayout.addLayout(self.workbenchLayout)
 
+    def test(self):
+        # print(self.tabEditor.get_all_info_tabs(True, ["path", "widget"]))
+        self.tabsSwitcher.set_items(*self.tabEditor.get_all_paths())
+        self.tabsSwitcher.show()
+
     def setup_ui(self) -> None:
         self.tabEditor.addTab(WelcomeScreen(), "Welcome!", IconPaths.SystemIcons.WELCOME)
 
@@ -71,6 +75,7 @@ class MainWidget(QWidget):
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
         QShortcut("Ctrl+T", self).activated.connect(self.show_theme_changer)
         QShortcut("Ctrl+,", self).activated.connect(self.settingsMenu.show)
+        QShortcut("Ctrl+Tab", self).activated.connect(self.test)
 
         QShortcut("Ctrl+O", self).activated.connect(
             lambda: self.fileTree.open_directory(FileDialog.get_open_directory())
