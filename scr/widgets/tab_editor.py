@@ -24,7 +24,7 @@ class Tab:
             self.icon = QIcon(self.icon)
 
     def __repr__(self) -> str:
-        return f"Tab(title: {self.title}, widget: {self.widget}, icon: {self.icon}, index: {self.index}, path: {self.path})"
+        return f"Tab(title={self.title}, widget={self.widget}, icon={self.icon}, path={self.path}, index={self.index})"
 
 
 class TabEditor(QTabWidget):
@@ -37,70 +37,42 @@ class TabEditor(QTabWidget):
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.setTabsClosable(True)
-        self.setMovable(True)
+        # self.setMovable(True)
         self.setMouseTracking(True)
         self.setIconSize(QSize(16, 16))
         self.tabCloseRequested.connect(self.removeTab)
 
         self.__tabs = []
 
-    def get_all_info_tabs(
-            self,
-            only_files: bool = False,
-            key: Optional[str] = None,
-            should_dict: bool = False
-    ) -> Union[dict, list]:
-        """
-        for files:
-            title,
-            widget,
-            icon,
-            path
+    def get_tabs(self) -> list:
+        return self.__tabs
 
-        for other:
-            title,
-            widget,
-            icon
-        """
-        result = {}
+    def __get_json_info(self) -> dict:
+        res = {}
 
-        for i, widget in enumerate(self.get_all_tabs()):
-            if hasattr(widget, "get_full_path"):
-                result[str(i)] = {
-                    "title": self.tabText(i),
-                    "widget": self.widget(i),
-                    "icon": self.tabIcon(i),
-                    "index": i,
-                    "path": widget.get_full_path()
-                }
+        for i, tab in enumerate(self.__tabs):
+            res[str(i)] = {
+                "title": tab.title,
+                "widget": tab.widget,
+                "icon": tab.icon,
+                "path": tab.path,
+                "index": tab.index
+            }
 
-            elif not hasattr(widget, "get_full_path") and not only_files:
-                result[str(i)] = {
-                    "title": self.tabText(i),
-                    "widget": self.widget(i),
-                    "icon": self.tabIcon(i),
-                    "index": i
-                }
+        return res
 
-        match key:
-            case key if key is None:
-                return result if should_dict else [list(result[i].values()) for i in result.keys()]
+    def get_info_tabs(self, key: str, only_files: bool = False) -> list:
+        res = []
+        jsn = self.__get_json_info()
 
-            case key if isinstance(key, str):
-                return [result[item][key] for item in result.keys()]
+        for tab in jsn.keys():
+            if not only_files:
+                res.append(jsn[tab][key])
 
-            # case keys if isinstance(key, list):
-            #     res = []
-            #
-            #     for j in result.keys():
-            #         for subkey in result[j].keys():
-            #             if exclusion_keys is not None:
-            #                 if subkey in keys and subkey not in exclusion_keys:
-            #                     res.append(result[j][subkey])
-            #
-            #             else:
-            #                 if subkey in keys:
-            #                     res.append(result[j][subkey])
+            elif only_files and jsn[tab]["path"] is not None:
+                res.append(jsn[tab][key])
+
+        return res
 
     def check_tab_paths_exist(self) -> None:
         # return self.get_all_info_tabs(True, key="path")
@@ -108,6 +80,7 @@ class TabEditor(QTabWidget):
         for i, widget in enumerate(self.get_all_tabs()):
             if hasattr(widget, "get_full_path"):
                 if not FileChecker.check_exist(widget.get_full_path()):
+                    del self.__tabs[i]
                     self.removeTab(i)
 
     def update_all_tabs_font(self) -> None:
@@ -121,7 +94,7 @@ class TabEditor(QTabWidget):
                 widget.update_settings()
 
     def find_by_path(self, __path: str):
-        for widget in self.get_all_info_tabs(True, key="widget"):
+        for widget in self.get_info_tabs(key="widget", only_files=True):
             if widget.get_full_path() == __path:
                 return widget
 
@@ -129,7 +102,7 @@ class TabEditor(QTabWidget):
         return [self.widget(i) for i in range(self.count())]
 
     def get_all_paths(self):
-        return self.get_all_info_tabs(True, key="path")
+        return self.get_info_tabs(key="path", only_files=True)
 
     def get_current_path(self) -> str:
         if hasattr(self.currentWidget(), "get_full_path"):
@@ -139,6 +112,7 @@ class TabEditor(QTabWidget):
 
     def removeTab(self, __index: int):
         super().removeTab(__index)
+        del self.__tabs[__index]
 
         if self.count() == 0:
             self.add_tab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
@@ -149,7 +123,6 @@ class TabEditor(QTabWidget):
             tab.path = tab.widget.get_full_path()
 
         tab.index = len(self.__tabs)
-        self.__tabs.append(tab)
 
         if tab.path not in self.get_all_paths():
             super().addTab(tab.widget, tab.title)
@@ -158,3 +131,5 @@ class TabEditor(QTabWidget):
 
         if tab.icon is not None:
             self.setTabIcon(self.indexOf(tab.widget), tab.icon)
+
+        self.__tabs.append(tab)
