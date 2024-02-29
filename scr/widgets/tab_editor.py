@@ -19,6 +19,9 @@ class Tab:
     path: Optional[str] = None
     index: Optional[int] = None
 
+    def is_file(self) -> bool:
+        return self.path is not None
+
     def __post_init__(self) -> None:
         if isinstance(self.icon, str):
             self.icon = QIcon(self.icon)
