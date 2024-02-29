@@ -31,6 +31,7 @@ Ctrl+Tab - Switch current file
   <img src="screenshots/screen1.png">
   <img src="screenshots/screen5.png">
   <img src="screenshots/screen6.png">
+  <img src="screenshots/screen12.png">
   <img src="screenshots/screen3.png">
   <img src="screenshots/screen0.png">
   <img src="screenshots/screen2.png">
