@@ -16,15 +16,15 @@ class Tab:
     title: str
     widget: Any
     icon: Union[QIcon, str, None] = None
-    index: Optional[int] = None
     path: Optional[str] = None
+    index: Optional[int] = None
 
     def __post_init__(self) -> None:
         if isinstance(self.icon, str):
             self.icon = QIcon(self.icon)
 
     def __repr__(self) -> str:
-        return f"title: {self.title},\nwidget: {self.widget},\nicon: {self.icon},\nindex: {self.index},\npath: {self.path}"
+        return f"Tab(title: {self.title}, widget: {self.widget}, icon: {self.icon}, index: {self.index}, path: {self.path})"
 
 
 class TabEditor(QTabWidget):
@@ -141,28 +141,15 @@ class TabEditor(QTabWidget):
         super().removeTab(__index)
 
         if self.count() == 0:
-            self.addTab(WelcomeScreen(), "Welcome!", IconPaths.SystemIcons.WELCOME)
+            self.addTab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
 
-    def addTab(self, widget: Any, arg__2, icon=None):
-        if hasattr(widget, "get_full_path"):
-            path = widget.get_full_path()
+    def add_tab(self, tab: Tab):
 
-            if path not in self.get_all_paths():
-                super().addTab(widget, arg__2)
-            else:
-                self.setCurrentWidget(self.find_by_path(path))
-        else:
-            super().addTab(widget, arg__2)
+        if tab.path is None and hasattr(tab.widget, "get_full_path"):
+            tab.path = tab.widget.get_full_path()
 
-        if icon is not None:
-            self.setTabIcon(self.indexOf(widget), QIcon(icon))
-
-    def add_tab(self, tab: Tab) -> None:
-
-        # path = tab.widget.get_full_path()
         tab.index = len(self.__tabs)
         self.__tabs.append(tab)
-        print(self.__tabs)
 
         if tab.path not in self.get_all_paths():
             super().addTab(tab.widget, tab.title)

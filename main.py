@@ -105,34 +105,34 @@ class MainWidget(QWidget):
 
     def __open_file_for_edit(self, __path: str, __icon) -> None:
         if FileChecker.is_python_file(__path):
-            self.tabEditor.addTab(
-                PythonCodeEditorArea(__path), os.path.basename(__path), __icon
+            self.tabEditor.add_tab(
+                Tab(os.path.basename(__path), PythonCodeEditorArea(__path), __icon, __path)
             )
 
         elif FileChecker.is_style_file(__path):
-            self.tabEditor.addTab(
-                StyleCodeEditorArea(__path), os.path.basename(__path), __icon
+            self.tabEditor.add_tab(
+                Tab(os.path.basename(__path), StyleCodeEditorArea(__path), __icon, __path)
             )
 
         elif FileChecker.is_json_file(__path):
-            self.tabEditor.addTab(
-                JsonCodeEditorArea(__path), os.path.basename(__path), __icon
+            self.tabEditor.add_tab(
+                Tab(os.path.basename(__path), JsonCodeEditorArea(__path), __icon, __path)
             )
 
         elif FileChecker.is_picture_file(__path):
-            self.tabEditor.addTab(
-                ImageViewer(__path), os.path.basename(__path), __icon
+            self.tabEditor.add_tab(
+                Tab(os.path.basename(__path), ImageViewer(__path), __icon, __path)
             )
 
         elif FileChecker.is_html_file(__path):
-            self.tabEditor.addTab(
-                HtmlCodeEditorArea(__path), os.path.basename(__path), __icon
+            self.tabEditor.add_tab(
+                Tab(os.path.basename(__path), HtmlCodeEditorArea(__path), __icon, __path)
             )
 
         elif FileChecker.is_readable(__path):
             try:
-                self.tabEditor.addTab(
-                    TextEditorArea(__path), os.path.basename(__path), __icon
+                self.tabEditor.add_tab(
+                    Tab(os.path.basename(__path), TextEditorArea(__path), __icon, __path)
                 )
             except UnicodeDecodeError:
                 pass
