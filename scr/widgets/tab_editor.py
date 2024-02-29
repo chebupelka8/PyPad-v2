@@ -31,18 +31,19 @@ class TabEditor(QTabWidget):
     def __init__(self) -> None:
         super().__init__()
 
+        self.__tabs: list[Tab] = []
+
         self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/tab_editor.css"))
         self.setObjectName("tab-editor")
         self.setMinimumSize(1040, 480)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.setTabsClosable(True)
-        # self.setMovable(True)
+        self.setMovable(True)
         self.setMouseTracking(True)
         self.setIconSize(QSize(16, 16))
         self.tabCloseRequested.connect(self.removeTab)
-
-        self.__tabs = []
+        self.currentChanged.connect(self.__update_indexes)
 
     def get_tabs(self) -> list:
         return self.__tabs
@@ -109,6 +110,12 @@ class TabEditor(QTabWidget):
             return self.currentWidget().get_full_path()
         else:
             return ""  # it's need to remove exception
+
+    def __update_indexes(self) -> None:
+        for tab in self.__tabs:
+            tab.index = self.indexOf(tab.widget)
+
+        self.__tabs.sort(key=lambda tab: tab.index)
 
     def removeTab(self, __index: int):
         super().removeTab(__index)
