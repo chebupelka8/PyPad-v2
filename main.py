@@ -40,7 +40,6 @@ class MainWidget(QWidget):
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
         self.tabsSwitcher = TabsSwitcher(self)
-        self.tabsSwitcher.open_connect(lambda t: print(t))
         self.splitter = Splitter("horizontal")
 
         self.init_ui()
@@ -60,6 +59,7 @@ class MainWidget(QWidget):
     def test(self):
         # print(self.tabEditor.get_all_info_tabs(True, ["path", "widget"]))
         self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
+        self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
         self.tabsSwitcher.show()
 
     def setup_ui(self) -> None:

@@ -1,5 +1,3 @@
-from PySide6.QtGui import QColor
-
 from scr.interface.additional import ListChanger
 
 
@@ -33,4 +31,9 @@ class TabsSwitcher(ListChanger):
             self.listWidget.item(item.index).setIcon(item.icon)
 
     def open_connect(self, __command) -> None:
-        self.listWidget.itemClicked.connect(lambda item: __command(item.text()))
+        self.accept = lambda: self.__accept(__command)
+        self.listWidget.itemClicked.connect(self.accept)
+
+    def __accept(self, __command) -> None:
+        __command(self.__items[self.listWidget.currentRow()].index)
+        super().accept()
