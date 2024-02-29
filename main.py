@@ -5,7 +5,7 @@ from scr import (
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
     ImageViewer, TextEditorArea, WINDOW_SIZE, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater, FileRunner, TabsSwitcher
+    EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab
 )
 from scr.interface.basic import Splitter
 
@@ -63,7 +63,10 @@ class MainWidget(QWidget):
         self.tabsSwitcher.show()
 
     def setup_ui(self) -> None:
-        self.tabEditor.addTab(WelcomeScreen(), "Welcome!", IconPaths.SystemIcons.WELCOME)
+        # self.tabEditor.addTab(WelcomeScreen(), "Welcome!", IconPaths.SystemIcons.WELCOME)
+        self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
+        self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
+        self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
 
         # connections
         self.fileTree.clicked.connect(self.__click_file_tree)

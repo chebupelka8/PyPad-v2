@@ -8,6 +8,24 @@ from PySide6.QtCore import QSize, Qt
 
 from typing import Any, Optional, Union
 
+from dataclasses import dataclass
+
+
+@dataclass
+class Tab:
+    title: str
+    widget: Any
+    icon: Union[QIcon, str, None] = None
+    index: Optional[int] = None
+    path: Optional[str] = None
+
+    def __post_init__(self) -> None:
+        if isinstance(self.icon, str):
+            self.icon = QIcon(self.icon)
+
+    def __repr__(self) -> str:
+        return f"title: {self.title},\nwidget: {self.widget},\nicon: {self.icon},\nindex: {self.index},\npath: {self.path}"
+
 
 class TabEditor(QTabWidget):
     def __init__(self) -> None:
@@ -23,6 +41,8 @@ class TabEditor(QTabWidget):
         self.setMouseTracking(True)
         self.setIconSize(QSize(16, 16))
         self.tabCloseRequested.connect(self.removeTab)
+
+        self.__tabs = []
 
     def get_all_info_tabs(
             self,
@@ -136,3 +156,18 @@ class TabEditor(QTabWidget):
 
         if icon is not None:
             self.setTabIcon(self.indexOf(widget), QIcon(icon))
+
+    def add_tab(self, tab: Tab) -> None:
+
+        # path = tab.widget.get_full_path()
+        tab.index = len(self.__tabs)
+        self.__tabs.append(tab)
+        print(self.__tabs)
+
+        if tab.path not in self.get_all_paths():
+            super().addTab(tab.widget, tab.title)
+        else:
+            self.setCurrentWidget(self.find_by_path(tab.path))
+
+        if tab.icon is not None:
+            self.setTabIcon(self.indexOf(tab.widget), tab.icon)
