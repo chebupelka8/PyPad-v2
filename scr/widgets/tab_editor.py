@@ -141,7 +141,7 @@ class TabEditor(QTabWidget):
         super().removeTab(__index)
 
         if self.count() == 0:
-            self.addTab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
+            self.add_tab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
 
     def add_tab(self, tab: Tab):
 

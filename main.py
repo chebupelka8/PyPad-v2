@@ -63,9 +63,6 @@ class MainWidget(QWidget):
         self.tabsSwitcher.show()
 
     def setup_ui(self) -> None:
-        # self.tabEditor.addTab(WelcomeScreen(), "Welcome!", IconPaths.SystemIcons.WELCOME)
-        self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
-        self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
         self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
 
         # connections
