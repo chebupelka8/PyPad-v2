@@ -22,8 +22,8 @@ class TabsSwitcher(ListChanger):
         self.listWidget.clear()
 
         for i, item in enumerate(items):
-            self.listWidget.addItem(item[0])
-            self.listWidget.item(i).setIcon(item[2])
+            self.listWidget.addItem(item.title)
+            self.listWidget.item(item.index).setIcon(item.icon)
 
     def open_connect(self, __command) -> None:
         self.listWidget.itemClicked.connect(lambda item: __command(item.text()))

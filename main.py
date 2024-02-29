@@ -59,7 +59,7 @@ class MainWidget(QWidget):
 
     def test(self):
         # print(self.tabEditor.get_all_info_tabs(True, ["path", "widget"]))
-        # self.tabsSwitcher.set_items(self.tabEditor.get_info_tabs())
+        self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
         print(self.tabEditor.get_info_tabs("path"))
         self.tabsSwitcher.show()
 

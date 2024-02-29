@@ -45,7 +45,7 @@ class TabEditor(QTabWidget):
         self.tabCloseRequested.connect(self.removeTab)
         self.currentChanged.connect(self.__update_indexes)
 
-    def get_tabs(self) -> list:
+    def get_tabs(self) -> list[Tab]:
         return self.__tabs
 
     def __get_json_info(self) -> dict:
@@ -78,19 +78,19 @@ class TabEditor(QTabWidget):
     def check_tab_paths_exist(self) -> None:
         # return self.get_all_info_tabs(True, key="path")
 
-        for i, widget in enumerate(self.get_all_tabs()):
+        for i, widget in enumerate(self.get_all_widgets()):
             if hasattr(widget, "get_full_path"):
                 if not FileChecker.check_exist(widget.get_full_path()):
                     del self.__tabs[i]
                     self.removeTab(i)
 
     def update_all_tabs_font(self) -> None:
-        for widget in self.get_all_tabs():
+        for widget in self.get_all_widgets():
             if hasattr(widget, "update_font"):
                 widget.update_font()
 
     def update_all_tabs_settings(self) -> None:
-        for widget in self.get_all_tabs():
+        for widget in self.get_all_widgets():
             if hasattr(widget, "update_settings"):
                 widget.update_settings()
 
@@ -99,7 +99,7 @@ class TabEditor(QTabWidget):
             if widget.get_full_path() == __path:
                 return widget
 
-    def get_all_tabs(self) -> list[Any]:
+    def get_all_widgets(self) -> list[Any]:
         return [self.widget(i) for i in range(self.count())]
 
     def get_all_paths(self):
