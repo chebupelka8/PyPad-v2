@@ -136,10 +136,9 @@ class TabEditor(QTabWidget):
 
         if tab.path not in self.get_all_paths():
             super().addTab(tab.widget, tab.title)
+            self.__tabs.append(tab)
         else:
             self.setCurrentWidget(self.find_by_path(tab.path))
 
         if tab.icon is not None:
             self.setTabIcon(self.indexOf(tab.widget), tab.icon)
-
-        self.__tabs.append(tab)

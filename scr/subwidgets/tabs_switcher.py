@@ -12,6 +12,8 @@ class TabsSwitcher(ListChanger):
 
     def __changed(self, __index: int) -> None:
         current_item = self.listWidget.currentItem()
+        if current_item is None: return
+
         if self.__items[__index].is_file():
             current_item.setText(f'{current_item.text()}    {self.__items[__index].path}')
 
@@ -23,7 +25,6 @@ class TabsSwitcher(ListChanger):
                 self.listWidget.item(tab.index).setText(tab.title)
 
     def set_items(self, items: list) -> None:
-
         self.__items = items
         self.listWidget.clear()
 
