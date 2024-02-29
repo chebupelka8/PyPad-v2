@@ -56,12 +56,6 @@ class MainWidget(QWidget):
 
         self.mainLayout.addLayout(self.workbenchLayout)
 
-    def test(self):
-        # print(self.tabEditor.get_all_info_tabs(True, ["path", "widget"]))
-        self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
-        self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
-        self.tabsSwitcher.show()
-
     def setup_ui(self) -> None:
         self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
 
@@ -71,11 +65,11 @@ class MainWidget(QWidget):
         self.sideBar.settings_opener_connect(self.settingActionMenu.show)
         self.sideBar.file_tree_opener_connect(self.fileTree.show_hide_file_tree)
 
-        self.settingActionMenu.connect_by_title("Themes...", self.show_theme_changer)
+        self.settingActionMenu.connect_by_title("Themes...", self.__show_theme_changer)
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
-        QShortcut("Ctrl+T", self).activated.connect(self.show_theme_changer)
+        QShortcut("Ctrl+T", self).activated.connect(self.__show_theme_changer)
         QShortcut("Ctrl+,", self).activated.connect(self.settingsMenu.show)
-        QShortcut("Ctrl+Tab", self).activated.connect(self.test)
+        QShortcut("Ctrl+Tab", self).activated.connect(self.__open_tab_switcher)
 
         QShortcut("Ctrl+O", self).activated.connect(
             lambda: self.fileTree.open_directory(FileDialog.get_open_directory())
@@ -136,7 +130,12 @@ class MainWidget(QWidget):
 
         self.tabEditor.setCurrentWidget(self.tabEditor.find_by_path(__path))
 
-    def show_theme_changer(self):
+    def __open_tab_switcher(self):
+        self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
+        self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
+        self.tabsSwitcher.show()
+
+    def __show_theme_changer(self):
         themes = [FileLoader.load_json(f"scr/data/themes/{i}")["name"] for i in os.listdir("scr/data/themes")]
 
         self.themeChanger.set_items(*themes)
