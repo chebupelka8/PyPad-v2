@@ -32,6 +32,7 @@ class IconPaths:
         RUN = ":/system_icons/play.png"
         SETTINGS = ":/system_icons/settings.png"
         LOGO = ":/system_icons/Logo PyPad.png"
+        ICON = ":/system_icons/icon.ico"
 
     class FolderIcons:
         DEFAULT = ":/folder_icons/Yellow-folder.ico"

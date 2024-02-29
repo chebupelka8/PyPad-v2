@@ -105,6 +105,7 @@ class MainSettingsWidget(_SettingsWidget):
         self.mainLayout.addWidget(UiTitles.title("Font Settings"))
         self.mainLayout.addWidget(self.font_family_changer)
         self.mainLayout.addWidget(self.font_size_changer)
+        self.mainLayout.addWidget(UiTitles.title("Icons"))
 
     def update_values(self):
         self.font_family_combo.setCurrentText(WorkbenchFontManager.get_current_family())
