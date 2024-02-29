@@ -1,5 +1,7 @@
 from scr.interface.additional import ListChanger
 
+import os
+
 
 class TabsSwitcher(ListChanger):
     def __init__(self, parent) -> None:
@@ -8,12 +10,22 @@ class TabsSwitcher(ListChanger):
         self.__items = []
         self.listWidget.currentRowChanged.connect(self.__changed)
 
+    @staticmethod
+    def __to_shorter_path(__path: str) -> str:
+        __path = os.path.normpath(__path)
+        arr = __path.split("\\")
+
+        if len(arr) <= 3:
+            return "\\".join(["...", *arr])
+        else:
+            return "\\".join(["...", *arr[-3:]])
+
     def __changed(self, __index: int) -> None:
         current_item = self.listWidget.currentItem()
         if current_item is None: return
 
         if self.__items[__index].is_file():
-            current_item.setText(f'{current_item.text()}    {self.__items[__index].path}')
+            current_item.setText(f'{current_item.text()}    {self.__to_shorter_path(self.__items[__index].path)}')
 
         self.__reset_titles()
 
