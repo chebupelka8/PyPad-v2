@@ -132,6 +132,7 @@ class MainWidget(QWidget):
 
     def __open_tab_switcher(self):
         self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
+        self.tabsSwitcher.set_current_index(self.tabEditor.currentIndex())
         self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
         self.tabsSwitcher.show()
 

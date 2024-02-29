@@ -42,6 +42,9 @@ class TabsSwitcher(ListChanger):
             self.listWidget.addItem(item.title)
             self.listWidget.item(item.index).setIcon(item.icon)
 
+    def set_current_index(self, __index: int) -> None:
+        self.listWidget.setCurrentRow(__index)
+
     def open_connect(self, __command) -> None:
         self.accept = lambda: self.__accept(__command)
         self.listWidget.itemClicked.connect(self.accept)
