@@ -115,7 +115,7 @@ class TabEditor(QTabWidget):
         for tab in self.__tabs:
             tab.index = self.indexOf(tab.widget)
 
-        self.__tabs.sort(key=lambda tab: tab.index)
+        self.__tabs.sort(key=lambda t: t.index)
 
     def removeTab(self, __index: int):
         super().removeTab(__index)
