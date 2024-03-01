@@ -23,6 +23,9 @@ class CodeGlanceMap(QPlainTextEdit):
         self.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByKeyboard)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
+        self.set_font(__font)
+
+    def set_font(self, __font) -> None:
         font = copy.copy(__font)
         font.setPointSize(3)
         self.setTabStopDistance(QFontMetrics(font).horizontalAdvanceChar(" ") * 1.5)

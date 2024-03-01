@@ -82,6 +82,7 @@ class TextEditorArea(QPlainTextEdit):
     def update_font(self):
         self.__main_font = Font.get_system_font(*EditorFontManager.get_current_font().values())
         self.setFont(self.__main_font)
+        self.codeMap.set_font(self.__main_font)
 
         self.__update_line_number_area_width()
 
