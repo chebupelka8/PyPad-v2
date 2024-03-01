@@ -59,10 +59,14 @@ class TextEditorArea(QPlainTextEdit):
         self.cursorPositionChanged.connect(self.__update_cursor_width)
         self.textChanged.connect(self.__highlight_current_line)
         self.textChanged.connect(self.__update_cursor_width)
-        self.verticalScrollBar().valueChanged.connect(self.lineNumberArea.update)
+        self.verticalScrollBar().valueChanged.connect(self.__scroll_updating)
 
         # variables
         self.__current_line = 0
+
+    def __scroll_updating(self) -> None:
+        self.lineNumberArea.update()
+        self.codeMap.verticalScrollBar().setValue(self.verticalScrollBar().value())
 
     def __update_cursor_width(self):
         if self.__cursor_style == "block":
