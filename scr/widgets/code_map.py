@@ -30,3 +30,6 @@ class CodeGlanceMap(QPlainTextEdit):
         font.setPointSize(3)
         self.setTabStopDistance(QFontMetrics(font).horizontalAdvanceChar(" ") * 1.5)
         self.setFont(font)
+
+    def get_pixel_size(self) -> int:
+        return self.fontMetrics().height()
