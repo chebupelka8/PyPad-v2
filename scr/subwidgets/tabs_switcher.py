@@ -35,12 +35,20 @@ class TabsSwitcher(ListChanger):
                 self.listWidget.item(tab.index).setText(tab.title)
 
     def set_items(self, items: list) -> None:
+        # There is unknown error and I don't know why this error appears
+
         self.__items = items
         self.listWidget.clear()
 
         for i, item in enumerate(items):
             self.listWidget.addItem(item.title)
-            self.listWidget.item(item.index).setIcon(item.icon)
+
+            try:
+                self.listWidget.item(item.index).setIcon(item.icon)
+
+            except AttributeError:
+                print(f"index: {i}, item: {item}")
+                continue
 
     def set_current_index(self, __index: int) -> None:
         self.listWidget.setCurrentRow(__index)
