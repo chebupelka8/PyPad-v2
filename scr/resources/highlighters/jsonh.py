@@ -1,6 +1,6 @@
 from .highlighter import CodeHighlighter
 from ...configs.patterns import JsonPatterns
-from ...configs.themes import JsonTheme
+from ..themes import JsonTheme
 
 
 class JsonCodeHighLighter(CodeHighlighter):

@@ -3,7 +3,7 @@ from scr.scripts.tools.code import CodeAnalyzer
 from scr.scripts.font import Font, EditorFontManager
 from scr.scripts.tools.settings import EditorSettingsUpdater
 
-from scr.configs.themes import TextEditorTheme
+from scr.resources.themes import TextEditorTheme
 from .code_map import CodeGlanceMap
 
 from PySide6.QtWidgets import QPlainTextEdit, QTextEdit, QWidget, QHBoxLayout
