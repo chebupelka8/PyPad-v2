@@ -25,30 +25,28 @@ class TabsSwitcher(ListChanger):
         if current_item is None: return
 
         if self.__items[__index].is_file():
-            current_item.setText(f'{current_item.text()}    {self.__to_shorter_path(self.__items[__index].path)}')
+            current_item.setText(f'{current_item.text()}{" " * 25}{self.__to_shorter_path(self.__items[__index].path)}')
 
         self.__reset_titles()
 
     def __reset_titles(self) -> None:
-        for tab in self.__items:
-            if tab.index != self.listWidget.currentRow():
-                self.listWidget.item(tab.index).setText(tab.title)
-
-    def set_items(self, items: list) -> None:
         # There is unknown error and I don't know why this error appears
 
+        for tab in self.__items:
+            if tab.index != self.listWidget.currentRow():
+                try:
+                    self.listWidget.item(tab.index).setText(tab.title)
+
+                except AttributeError:
+                    print(f"tab: {tab}")
+
+    def set_items(self, items: list) -> None:
         self.__items = items
         self.listWidget.clear()
 
         for i, item in enumerate(items):
             self.listWidget.addItem(item.title)
-
-            try:
-                self.listWidget.item(item.index).setIcon(item.icon)
-
-            except AttributeError:
-                print(f"index: {i}, item: {item}")
-                continue
+            self.listWidget.item(item.index).setIcon(item.icon)
 
     def set_current_index(self, __index: int) -> None:
         self.listWidget.setCurrentRow(__index)
