@@ -36,7 +36,6 @@ class TextEditorArea(QPlainTextEdit):
             )
             self.insertPlainText(text)
             self.codeMap = CodeGlanceMap(text, self.__main_font)
-            print(self.codeMap.width())
             self.textChanged.connect(self.__test)
             self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
 
