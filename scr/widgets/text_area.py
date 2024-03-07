@@ -36,7 +36,7 @@ class TextEditorArea(QPlainTextEdit):
             )
             self.insertPlainText(text)
             self.codeMap = CodeGlanceMap(text, self.__main_font)
-            self.textChanged.connect(lambda: self.__test())
+            self.textChanged.connect(self.__test)
             self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
 
         # vars
@@ -67,15 +67,15 @@ class TextEditorArea(QPlainTextEdit):
         self.__current_line = 0
 
     def __test(self) -> None:
+        # just testing function
+        # there is bug with code map scrolling, when you type text
         self.codeMap.setPlainText(self.toPlainText())
         self.codeMap.verticalScrollBar().setValue(self.verticalScrollBar().value())
 
     def __scroll_updating(self) -> None:
-        # print("s")
         self.lineNumberArea.update()
-        # print(self.codeMap.setCenterOnScroll(), self.verticalScrollBar().heightMM())
+
         division = self.codeMap.get_pixel_size()
-        print(division)
         self.codeMap.verticalScrollBar().setValue(self.verticalScrollBar().value() / division)
 
     def __update_cursor_width(self):
@@ -114,7 +114,6 @@ class TextEditorArea(QPlainTextEdit):
         return self.__path
 
     def get_line_count(self) -> int:
-        print(self.toPlainText().count("\n"))
         return self.toPlainText().count("\n")
 
     def set_default_text_color(self, __color: str) -> None:
