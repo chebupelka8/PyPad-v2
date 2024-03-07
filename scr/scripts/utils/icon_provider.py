@@ -2,7 +2,7 @@ from PySide6.QtGui import QIcon
 from PySide6.QtCore import QFileInfo
 from PySide6.QtWidgets import QFileIconProvider
 
-from scr.config import IconPaths
+from scr.configs.pics import IconPaths
 
 
 class IconProvider(QFileIconProvider):

@@ -1,4 +1,4 @@
-from scr.scripts import FileLoader
+from ..tools.file import FileLoader
 
 import json
 

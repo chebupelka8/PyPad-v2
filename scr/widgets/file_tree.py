@@ -1,4 +1,6 @@
-from scr.scripts import FileLoader, IconProvider, Font, WorkbenchFontManager
+from scr.scripts.tools.file import FileLoader
+from scr.scripts.font import Font, WorkbenchFontManager
+from scr.scripts.utils import IconProvider
 
 import os
 

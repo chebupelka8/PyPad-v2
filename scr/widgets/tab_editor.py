@@ -1,5 +1,5 @@
-from scr.scripts import FileLoader, FileChecker
-from scr.config import IconPaths
+from scr.scripts.tools.file import FileLoader, FileChecker
+from scr.configs.pics import IconPaths
 from .welcome_screen import WelcomeScreen
 
 from PySide6.QtWidgets import QTabWidget

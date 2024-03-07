@@ -1,4 +1,7 @@
-from scr.scripts import EditorFontManager, FileLoader, Font, WorkbenchFontManager, EditorSettingsUpdater
+from scr.scripts.tools.file import FileLoader
+from scr.scripts.tools.settings import EditorSettingsUpdater
+from scr.scripts.font import EditorFontManager, Font, WorkbenchFontManager
+
 from scr.subwidgets import ThemeChanger
 from scr.interface.basic import UiTitles
 from scr.interface.additional import TransparentDialogWindow, AbstractWindow

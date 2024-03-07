@@ -1,4 +1,4 @@
-from .util import from_multiple
+from ...utils import from_multiple
 
 
 class CodeAnalyzer:

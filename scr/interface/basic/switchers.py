@@ -1,7 +1,7 @@
-from PySide6.QtWidgets import QPushButton, QSpinBox, QSplitter
+from PySide6.QtWidgets import QSplitter
 from PySide6.QtCore import Qt
 
-from scr.scripts import FileLoader
+from scr.scripts.tools.file import FileLoader
 
 
 class Splitter(QSplitter):

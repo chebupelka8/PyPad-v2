@@ -3,7 +3,7 @@ from scr import (
     SettingsActionMenu, IconPaths, WelcomeScreen,
     FileChecker, FileLoader, PythonCodeEditorArea,
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
-    ImageViewer, TextEditorArea, WINDOW_SIZE, Restarter,
+    ImageViewer, TextEditorArea, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
     EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab
 )
@@ -147,7 +147,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.resize(*WINDOW_SIZE)
+        # self.resize(*WINDOW_SIZE)
         self.setWindowTitle("PyPad")
         self.setWindowIcon(QIcon(IconPaths.SystemIcons.ICON))
         self.setStyleSheet(

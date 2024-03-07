@@ -1,7 +1,7 @@
 import os
 import threading
 
-from .file_checker import FileChecker
+from ..tools.file import FileChecker
 
 
 class FileRunner:

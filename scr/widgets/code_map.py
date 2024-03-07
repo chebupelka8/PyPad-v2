@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QPlainTextEdit
 from PySide6.QtGui import QFont, QFontMetrics
 from PySide6.QtCore import Qt
 
-from scr.scripts import FileLoader
+from scr.scripts.tools.file import FileLoader
 
 import copy
 

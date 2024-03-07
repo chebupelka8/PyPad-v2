@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import (
     QLabel,
 )
-from scr.scripts import Font
+from scr.scripts.font import Font
 
 
 class UiTitles:

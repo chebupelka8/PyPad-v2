@@ -1,7 +1,11 @@
-from scr.scripts import (
-    FileLoader, PythonCodeHighlighter, CodeAnalyzer,
-    JsonCodeHighLighter, StyleCodeHighLighter, HtmlCodeHighlighter
+from scr.scripts.tools.file import FileLoader
+from scr.scripts.tools.code import CodeAnalyzer
+
+from scr.resources.highlighters import (
+    JsonCodeHighLighter, PythonCodeHighlighter,
+    StyleCodeHighLighter, HtmlCodeHighlighter
 )
+
 from .code_map import CodeGlanceMap
 from .text_area import TextEditorArea
 

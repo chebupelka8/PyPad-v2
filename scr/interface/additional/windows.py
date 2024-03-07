@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 
-from scr.scripts import FileLoader
+from scr.scripts.tools.file import FileLoader
 
 from typing import Any
 

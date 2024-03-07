@@ -1,4 +1,4 @@
-from .file_loader import FileLoader
+from ...tools.file import FileLoader
 
 import json
 

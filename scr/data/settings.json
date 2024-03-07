@@ -2,15 +2,15 @@
     "workbench": {
         "font": {
             "family": "Comic Sans MS",
-            "size": 13,
+            "size": 14,
             "bold": false,
             "italic": false
         }
     },
     "editor": {
         "font": {
-            "family": "Comic Sans MS",
-            "size": 16,
+            "family": "Cascadia Mono",
+            "size": 13,
             "bold": false,
             "italic": false
         },

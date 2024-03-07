@@ -1,4 +1,4 @@
-from scr.scripts import FileLoader
+from scr.scripts.tools.file import FileLoader
 
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsView
 from PySide6.QtCore import Qt

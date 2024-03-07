@@ -1,6 +1,6 @@
 import json
 
-from .file_loader import FileLoader
+from ..file.file_loader import FileLoader
 
 import os
 
