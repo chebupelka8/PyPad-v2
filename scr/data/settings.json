@@ -1,7 +1,7 @@
 {
     "workbench": {
         "font": {
-            "family": "CascadiaMono.ttf",
+            "family": "Comic Sans MS",
             "size": 13,
             "bold": false,
             "italic": false
@@ -9,7 +9,7 @@
     },
     "editor": {
         "font": {
-            "family": "Cambria",
+            "family": "Comic Sans MS",
             "size": 16,
             "bold": false,
             "italic": false

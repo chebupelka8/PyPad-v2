@@ -36,6 +36,7 @@ class TextEditorArea(QPlainTextEdit):
             )
             self.insertPlainText(text)
             self.codeMap = CodeGlanceMap(text, self.__main_font)
+            print(self.codeMap.width())
             self.textChanged.connect(self.__test)
             self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
 
@@ -157,7 +158,7 @@ class TextEditorArea(QPlainTextEdit):
 
     def __update_line_number_area_width(self):
         margins = self.viewportMargins()
-        self.setViewportMargins(self.get_number_area_width(), margins.top(), 160, margins.bottom())
+        self.setViewportMargins(self.get_number_area_width(), margins.top(), 150, margins.bottom())
 
     def get_number_area_width(self) -> int:
         block_count = self.document().blockCount()
