@@ -5,8 +5,6 @@ from scr.scripts.font import Font, WorkbenchFontManager
 from scr.scripts.utils import Path
 from scr.project import ProjectConfig, VersionConfig
 
-from scr.interface.gui import GuiText
-
 
 class StatusBar(QFrame):
     def __init__(self) -> None:
