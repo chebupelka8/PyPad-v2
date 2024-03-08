@@ -203,7 +203,7 @@ class InfoWidget(_SettingsWidget):
         version_info_frame = _SettingFrame(
             "Info",
             f"""
-            <br>{VersionConfig.name} by. {VersionConfig.author}.
+            <br>{VersionConfig.name}   by <a href={VersionConfig.author_social_link}>{VersionConfig.author}</a>
             <br>Version: {VersionConfig.version}
             <br>Build: {VersionConfig.build}
             <br>License: {VersionConfig.license}
