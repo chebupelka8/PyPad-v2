@@ -22,6 +22,9 @@ class Tab:
     def is_file(self) -> bool:
         return self.path is not None
 
+    def is_readable(self) -> bool:
+        return FileChecker.is_readable(self.path)
+
     def __post_init__(self) -> None:
         if isinstance(self.icon, str):
             self.icon = QIcon(self.icon)

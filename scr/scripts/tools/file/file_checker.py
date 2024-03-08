@@ -48,8 +48,10 @@ class FileChecker:
 
     @staticmethod
     def is_readable(__path: str) -> bool:
+        if __path is None: return False
+
         with open(__path, "r") as file:
-            return file.readable()
+            return file.readable() and os.path.splitext(__path)[1] not in (".jpg", ".jpeg", ".png", ".ico", ".gif")
 
     @classmethod
     def verify_python_file(cls, __path: str):
@@ -73,7 +75,7 @@ class FileChecker:
 
     @classmethod
     def verify_picture_file(cls, __path: str):
-        cls.verify_file_extensions(__path, ".png", ".jpg", ".jpeg")
+        cls.verify_file_extensions(__path, ".jpg", ".jpeg", ".png", ".ico", ".gif")
 
     @classmethod
     def verify_file(cls, __path: str):

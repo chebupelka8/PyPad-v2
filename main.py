@@ -5,8 +5,7 @@ from scr import (
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
     ImageViewer, TextEditorArea, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab, StatusBar,
-    ProjectConfig
+    EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab, StatusBar
 )
 from scr.interface.basic import Splitter
 
@@ -61,7 +60,7 @@ class MainWidget(QWidget):
 
     def setup_ui(self) -> None:
         self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
-        self.__change_file_status()
+        self.__changed_tab()
 
         # connections
         self.fileTree.clicked.connect(self.__click_file_tree)
@@ -69,7 +68,7 @@ class MainWidget(QWidget):
         self.sideBar.settings_opener_connect(self.settingActionMenu.show)
         self.sideBar.file_tree_opener_connect(self.fileTree.show_hide_file_tree)
 
-        self.tabEditor.currentChanged.connect(self.__change_file_status)
+        self.tabEditor.currentChanged.connect(self.__changed_tab)
 
         self.settingActionMenu.connect_by_title("Themes...", self.__show_theme_changer)
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
@@ -99,16 +98,6 @@ class MainWidget(QWidget):
 
         if os.path.isfile(path):
             self.__open_file_for_edit(path, self.fileTree.get_file_icon(__index))
-
-    def __change_file_status(self) -> None:
-        tab = self.tabEditor.get_current_tab()
-        if tab is None: return
-
-        if tab.path is not None:
-            self.statusBar.set_current_file_status(tab.path)
-
-        else:
-            self.statusBar.set_current_file_status(tab.title)
 
     def __open_file_for_edit(self, __path: str, __icon) -> None:
         if FileChecker.is_python_file(__path):
@@ -157,6 +146,18 @@ class MainWidget(QWidget):
 
         self.themeChanger.set_items(*themes)
         self.themeChanger.show()
+
+    def __changed_tab(self) -> None:
+        tab = self.tabEditor.get_current_tab()
+
+        self.statusBar.update_status_bar(tab)
+        if tab.is_readable():
+            self.statusBar.change_file_status(tab)
+            self.statusBar.set_current_position(*tab.widget.get_position())
+            tab.widget.cursorPositionChanged.connect(
+                lambda: self.statusBar.set_current_position(*tab.widget.get_position())
+            )
+
 
 
 class Window(QMainWindow):

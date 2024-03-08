@@ -120,6 +120,9 @@ class TextEditorArea(QPlainTextEdit):
     def get_line_count(self) -> int:
         return self.toPlainText().count("\n")
 
+    def get_position(self) -> tuple[int, int]:
+        return self.get_current_line(), self.textCursor().positionInBlock()
+
     def set_default_text_color(self, __color: str) -> None:
         palette = QPalette()
         palette.setColor(QPalette.ColorRole.Text, QColor(__color))
