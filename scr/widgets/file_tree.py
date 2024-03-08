@@ -77,6 +77,9 @@ class FileTree(QTreeView):
     def open_directory(self, __path: str) -> None:
         ProjectConfig.set_directory(__path)
 
+        if self.__changed_directory_event is not None:
+            self.__changed_directory_event()
+
         self.__directory = __path
         self.model.setRootPath(__path)
         self.setRootIndex(self.model.index(__path))

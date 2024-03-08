@@ -69,6 +69,7 @@ class MainWidget(QWidget):
         self.sideBar.file_tree_opener_connect(self.fileTree.show_hide_file_tree)
 
         self.tabEditor.currentChanged.connect(self.__changed_tab)
+        self.fileTree.directory_changed_connect(self.__changed_tab)
 
         self.settingActionMenu.connect_by_title("Themes...", self.__show_theme_changer)
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
