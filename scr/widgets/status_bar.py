@@ -22,6 +22,7 @@ class StatusBar(QFrame):
         self.mainLayout.addWidget(self.current_file_status)
         self.mainLayout.addItem(QSpacerItem(0, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Ignored))
         self.mainLayout.addWidget(self.current_position)
+        self.mainLayout.addWidget(QLabel("Version: Pre-release v0.2.2"))
         # self.mainLayout.addWidget(self.current_encoding)
 
         self.setLayout(self.mainLayout)

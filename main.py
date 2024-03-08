@@ -152,8 +152,9 @@ class MainWidget(QWidget):
         tab = self.tabEditor.get_current_tab()
 
         self.statusBar.update_status_bar(tab)
-        if tab.is_readable():
-            self.statusBar.change_file_status(tab)
+        self.statusBar.change_file_status(tab)
+
+        if tab.is_readable():  # if this file is text
             self.statusBar.set_current_position(*tab.widget.get_position())
             tab.widget.cursorPositionChanged.connect(
                 lambda: self.statusBar.set_current_position(*tab.widget.get_position())
