@@ -118,14 +118,18 @@ class TabEditor(QTabWidget):
         for tab in self.__tabs:
             tab.index = self.indexOf(tab.widget)
 
+            if tab.index == -1: self.__tabs.remove(tab)
+
         self.__tabs.sort(key=lambda t: t.index)
 
     def removeTab(self, __index: int):
-        super().removeTab(__index)
         del self.__tabs[__index]
+        super().removeTab(__index)
 
         if self.count() == 0:
             self.add_tab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
+
+        self.__update_indexes()
 
     def add_tab(self, tab: Tab):
 

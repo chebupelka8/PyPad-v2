@@ -31,14 +31,11 @@ class TabsSwitcher(ListChanger):
 
     def __reset_titles(self) -> None:
         # There is unknown error and I don't know why this error appears
+        # Probably this bug have been fixed
 
         for tab in self.__items:
             if tab.index != self.listWidget.currentRow():
-                try:
-                    self.listWidget.item(tab.index).setText(tab.title)
-
-                except AttributeError:
-                    print(f"tab: {tab}")
+                self.listWidget.item(tab.index).setText(tab.title)
 
     def set_items(self, items: list) -> None:
         self.__items = items
