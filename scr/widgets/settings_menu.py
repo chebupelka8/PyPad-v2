@@ -203,12 +203,12 @@ class InfoWidget(_SettingsWidget):
         version_info_frame = _SettingFrame(
             "Info",
             f"""
-{VersionConfig.name} by. {VersionConfig.author}.
-Version: {VersionConfig.version}
-Build: {VersionConfig.build}
-License: {VersionConfig.license}
-Page: {VersionConfig.project_page}
-"""
+            <br>{VersionConfig.name} by. {VersionConfig.author}.
+            <br>Version: {VersionConfig.version}
+            <br>Build: {VersionConfig.build}
+            <br>License: {VersionConfig.license}
+            <br>Page: <a href={VersionConfig.project_page}>GitHub</a>
+            """
         )
 
         # self.mainLayout.addWidget(UiTitles.title("PyPad"))

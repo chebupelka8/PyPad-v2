@@ -22,7 +22,7 @@ class StatusBar(QFrame):
 
         self.current_file_status = QLabel()
         self.current_position = QLabel()
-        self.version_info = QLabel(f"Build: {VersionConfig.build}. Version: {VersionConfig.version}")
+        self.version_info = QLabel(f"Build: {VersionConfig.build} Version: {VersionConfig.version}")
         # self.current_encoding = QLabel("utf-8")
 
         self.update_font()

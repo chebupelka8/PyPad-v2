@@ -1,8 +1,8 @@
 {
     "name": "PyPad",
     "version": "v0.2.2",
-    "build": "Dev",
-    "author": "@chebupelka8 <stpzamyatin@gmail.com>",
+    "build": "Dev.",
+    "author": "@chebupelka8 (stpzamyatin@gmail.com)",
     "project-page": "https://github.com/chebupelka8/PyPad-v2",
     "license": "MIT"
 }
