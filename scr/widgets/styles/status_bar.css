@@ -1,0 +1,9 @@
+QFrame#status-bar {
+    border: 1px solid #2c2c2c;
+    border-radius: 4px;
+    background-color: #232323;
+}
+
+QLabel {
+    color: #ffffff;
+}

@@ -5,7 +5,8 @@ from scr import (
     HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
     ImageViewer, TextEditorArea, Restarter,
     ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab
+    EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab, StatusBar,
+    ProjectConfig
 )
 from scr.interface.basic import Splitter
 
@@ -35,6 +36,7 @@ class MainWidget(QWidget):
         self.fileTree = FileTree()
         self.tabEditor = TabEditor()
         self.sideBar = SideBar()
+        self.statusBar = StatusBar()
         self.settingActionMenu = SettingsActionMenu()
         self.restarter = Restarter(self)
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
@@ -55,15 +57,19 @@ class MainWidget(QWidget):
         self.workbenchLayout.addWidget(self.splitter)
 
         self.mainLayout.addLayout(self.workbenchLayout)
+        self.mainLayout.addWidget(self.statusBar)
 
     def setup_ui(self) -> None:
         self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
+        self.__change_file_status()
 
         # connections
         self.fileTree.clicked.connect(self.__click_file_tree)
 
         self.sideBar.settings_opener_connect(self.settingActionMenu.show)
         self.sideBar.file_tree_opener_connect(self.fileTree.show_hide_file_tree)
+
+        self.tabEditor.currentChanged.connect(self.__change_file_status)
 
         self.settingActionMenu.connect_by_title("Themes...", self.__show_theme_changer)
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
@@ -93,6 +99,16 @@ class MainWidget(QWidget):
 
         if os.path.isfile(path):
             self.__open_file_for_edit(path, self.fileTree.get_file_icon(__index))
+
+    def __change_file_status(self) -> None:
+        tab = self.tabEditor.get_current_tab()
+        if tab is None: return
+
+        if tab.path is not None:
+            self.statusBar.set_current_file_status(tab.path)
+
+        else:
+            self.statusBar.set_current_file_status(tab.title)
 
     def __open_file_for_edit(self, __path: str, __icon) -> None:
         if FileChecker.is_python_file(__path):

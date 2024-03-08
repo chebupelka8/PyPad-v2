@@ -2,6 +2,8 @@ from scr.scripts.tools.file import FileLoader
 from scr.scripts.font import Font, WorkbenchFontManager
 from scr.scripts.utils import IconProvider
 
+from scr.project import ProjectConfig
+
 import os
 
 from PySide6.QtWidgets import QTreeView, QFileSystemModel, QAbstractItemView
@@ -24,7 +26,7 @@ class FileTree(QTreeView):
         self.setEditTriggers(QTreeView.EditTrigger.NoEditTriggers)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
-        self.__directory = os.getcwd()
+        self.__directory = ProjectConfig.get_directory()
 
         # font & icon size
         self.update_font()
@@ -38,6 +40,8 @@ class FileTree(QTreeView):
 
         for i in range(1, 4):
             self.header().setSectionHidden(i, True)
+
+        self.__changed_directory_event = None
 
     def update_font(self):
         self.__main_font = Font.get_system_font(
@@ -67,7 +71,12 @@ class FileTree(QTreeView):
 
         return self.get_index_by_path(__path)
 
+    def directory_changed_connect(self, __command) -> None:
+        self.__changed_directory_event = __command
+
     def open_directory(self, __path: str) -> None:
+        ProjectConfig.set_directory(__path)
+
         self.__directory = __path
         self.model.setRootPath(__path)
         self.setRootIndex(self.model.index(__path))

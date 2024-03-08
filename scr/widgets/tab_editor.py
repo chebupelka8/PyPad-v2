@@ -51,6 +51,13 @@ class TabEditor(QTabWidget):
     def get_tabs(self) -> list[Tab]:
         return self.__tabs
 
+    def get_current_tab(self) -> Optional[Tab]:
+        try:
+            return self.__tabs[self.currentIndex()]
+
+        except IndexError:
+            return None
+
     def __get_json_info(self) -> dict:
         res = {}
 
@@ -79,8 +86,6 @@ class TabEditor(QTabWidget):
         return res
 
     def check_tab_paths_exist(self) -> None:
-        # return self.get_all_info_tabs(True, key="path")
-
         for i, widget in enumerate(self.get_all_widgets()):
             if hasattr(widget, "get_full_path"):
                 if not FileChecker.check_exist(widget.get_full_path()):
@@ -126,13 +131,12 @@ class TabEditor(QTabWidget):
         del self.__tabs[__index]
         super().removeTab(__index)
 
-        if self.count() == 0:
+        if self.count() == 0:  # add welcome screen tab if tab bar is clear
             self.add_tab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
 
         self.__update_indexes()
 
     def add_tab(self, tab: Tab):
-
         if tab.path is None and hasattr(tab.widget, "get_full_path"):
             tab.path = tab.widget.get_full_path()
 

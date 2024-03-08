@@ -1,8 +1,8 @@
 {
     "workbench": {
         "font": {
-            "family": "Corbel",
-            "size": 14,
+            "family": "Cascadia Mono",
+            "size": 19,
             "bold": false,
             "italic": false
         }
@@ -10,7 +10,7 @@
     "editor": {
         "font": {
             "family": "Cascadia Mono",
-            "size": 13,
+            "size": 21,
             "bold": false,
             "italic": false
         },
