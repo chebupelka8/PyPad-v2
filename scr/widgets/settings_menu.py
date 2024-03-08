@@ -6,18 +6,25 @@ from scr.subwidgets import ThemeChanger
 from scr.interface.basic import UiTitles
 from scr.interface.additional import TransparentDialogWindow, AbstractWindow
 
+from scr.configs.pics import IconPaths
+
+from scr.project import VersionConfig
+
 from PySide6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QComboBox, QLabel,
     QSpinBox, QFrame, QListWidget, QPushButton,
     QScrollArea, QWidget
 )
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap
 
 import os
 
+from typing import Optional
+
 
 class _SettingFrame(QFrame):
-    def __init__(self, __title: str, __description: str) -> None:
+    def __init__(self, __title: Optional[str], __description: Optional[str]) -> None:
         super().__init__()
 
         self.setObjectName("setting-frame")
@@ -25,8 +32,8 @@ class _SettingFrame(QFrame):
         self.setMinimumHeight(100)
         self.setContentsMargins(10, 0, 0, 0)
 
-        self.add_subtitle(__title)
-        self.add_description(__description)
+        if __title is not None: self.add_subtitle(__title)
+        if __description is not None: self.add_description(__description)
 
         self.setLayout(self.mainLayout)
 
@@ -172,13 +179,52 @@ class ThemeSettingsWidget(_SettingsWidget):
         self.themeChanger.show()
 
 
+class InfoWidget(_SettingsWidget):
+    def __init__(self):
+        super().__init__()
+
+        label = QLabel()
+        label.setPixmap(QPixmap(IconPaths.SystemIcons.LOGO))
+
+        info_frame = _SettingFrame(
+            "Description",
+            """<b></b>PyPad - 
+            is a code editor for different programming languages. 
+            PyPad supports some languages like a Python, Json, Html and CSS. 
+            So far, PyPad is in development and it is not suitable for use, but you can watch the demo 
+            version of the project and  
+            <a href="https://github.com/chebupelka8/PyPad-v2/releases/tag/v0.2.2">test it</a>.
+            """
+        )
+        hot_key_frame = _SettingFrame(
+            "Hot Keys",
+            """Ctrl+O - Open directory\nCtrl+P - Open file\nCtrl+, - Open settings\nCtrl+T - Open theme picker\nCtrl+Tab - Switch current file"""
+        )
+        version_info_frame = _SettingFrame(
+            "Info",
+            f"""
+{VersionConfig.name} by. {VersionConfig.author}.
+Version: {VersionConfig.version}
+Build: {VersionConfig.build}
+License: {VersionConfig.license}
+Page: {VersionConfig.project_page}
+"""
+        )
+
+        # self.mainLayout.addWidget(UiTitles.title("PyPad"))
+        self.mainLayout.addWidget(label, alignment=Qt.AlignmentFlag.AlignHCenter)
+        self.mainLayout.addWidget(info_frame)
+        self.mainLayout.addWidget(hot_key_frame)
+        self.mainLayout.addWidget(version_info_frame)
+
+
 class SettingTree(QListWidget):
     def __init__(self):
         super().__init__()
 
         self.update_font()
 
-        self.addItems(["General", "Editor", "Theme"])
+        self.addItems(["General", "Editor", "Theme", "About"])
         self.setCurrentRow(0)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
@@ -229,9 +275,11 @@ class SettingsMenuWidget(AbstractWindow):
         self.settingTree.connect_by_title(
             "Editor", lambda: self.settingsArea.setWidget(EditorSettingsWidget())
         )
-
         self.settingTree.connect_by_title(
             "Theme", lambda: self.settingsArea.setWidget(ThemeSettingsWidget(self.restarter))
+        )
+        self.settingTree.connect_by_title(
+            "About", lambda: self.settingsArea.setWidget(InfoWidget())
         )
 
         self.mainLayout = QHBoxLayout()

@@ -7,3 +7,6 @@ class VersionConfig:
     name = __config["name"]
     version = __config["version"]
     build = __config["build"]
+    author = __config["author"]
+    project_page = __config["project-page"]
+    license = __config["license"]

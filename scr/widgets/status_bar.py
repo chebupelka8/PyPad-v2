@@ -45,7 +45,7 @@ class StatusBar(QFrame):
         self.version_info.setFont(self.__main_font)
 
     def set_current_file_status(self, __path: str) -> None:
-        text = Path.to_relative_path(ProjectConfig.get_directory(), __path).replace("\\", "  >  ")
+        text = Path.to_relative_path(ProjectConfig.get_directory(), __path).replace("\\", " > ")
         self.current_file_status.setText(text)
 
     def set_current_position(self, line: int, char: int) -> None:
