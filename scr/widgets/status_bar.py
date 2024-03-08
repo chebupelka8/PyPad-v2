@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QLabel, QFrame, QHBoxLayout, QSpacerItem, QSizePol
 
 from scr.scripts.tools.file import FileLoader
 from scr.scripts.utils import Path
-from scr.project import ProjectConfig
+from scr.project import ProjectConfig, VersionConfig
 
 
 class StatusBar(QFrame):
@@ -22,7 +22,8 @@ class StatusBar(QFrame):
         self.mainLayout.addWidget(self.current_file_status)
         self.mainLayout.addItem(QSpacerItem(0, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Ignored))
         self.mainLayout.addWidget(self.current_position)
-        self.mainLayout.addWidget(QLabel("Version: Pre-release v0.2.2"))
+        self.mainLayout.addItem(QSpacerItem(30, 0, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Ignored))
+        self.mainLayout.addWidget(QLabel(f"Build: {VersionConfig.build}. Version: {VersionConfig.version}"))
         # self.mainLayout.addWidget(self.current_encoding)
 
         self.setLayout(self.mainLayout)
