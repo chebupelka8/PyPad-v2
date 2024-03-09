@@ -15,8 +15,10 @@ class AbstractTextEditorArea(QPlainTextEdit):
     def __init__(self) -> None:
         super().__init__()
 
-        # ...
-        # ...
+        # TODO: Rewrite TextEditorArea class two this abstract class and other text editor with personal functional
+        # make code shorter
+        # maybe in some files
+        # not urgent
 
 
 class TextEditorArea(QPlainTextEdit):

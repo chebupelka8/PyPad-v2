@@ -7,7 +7,7 @@ from scr.scripts.tools.file import FileLoader
 from typing import Any
 
 
-class _ActionMenu(QMenu):
+class AbstractActionMenu(QMenu):
     def __init__(self, parent=None, width: int = 150) -> None:
         super().__init__(parent)
 
@@ -33,12 +33,3 @@ class _ActionMenu(QMenu):
     def show(self):
         self.popup(self.cursor().pos())
         super().show()
-
-
-class SettingsActionMenu(_ActionMenu):
-    def __init__(self, parent=None) -> None:
-        super().__init__(parent, width=200)
-
-        self.add_action("Interpreter Settings...")
-        self.add_action("Open Settings...", shortcut="ctrl+,")
-        self.add_action("Themes...", shortcut="ctrl+t")
