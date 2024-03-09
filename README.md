@@ -5,7 +5,7 @@
 <h1></h1>
 <p align="center">
 
-  <img src="https://img.shields.io/badge/version-v0.2.2--alpha-green">
+  <img src="https://img.shields.io/badge/version-v0.2.3-green">
   <img src="https://img.shields.io/github/license/chebupelka8/PyPad-v2">
   <img src="https://img.shields.io/github/commit-activity/t/chebupelka8/PyPad-v2"> 
   <img src="https://img.shields.io/github/stars/chebupelka8/PyPad-v2">
