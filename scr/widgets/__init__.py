@@ -5,6 +5,5 @@ from .file_tree import *
 from .tab_editor import *
 from .welcome_screen import *
 from .side_bar import *
-from .settings_menu import *
 from .code_map import *
 from .status_bar import *

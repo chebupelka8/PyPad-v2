@@ -5,6 +5,7 @@ but you can watch the demo version of the project and test it."""
 
 from .scripts.tools.file import FileDialog
 from .scripts.run import FileRunner
+from .widgets.settings import *
 from .widgets import *
 from .exceptions import *
 from .configs import *

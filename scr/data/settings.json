@@ -1,8 +1,8 @@
 {
     "workbench": {
         "font": {
-            "family": "Cascadia Mono",
-            "size": 13,
+            "family": "Cascadia Code Light",
+            "size": 16,
             "bold": false,
             "italic": false
         }
