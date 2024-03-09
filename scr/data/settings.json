@@ -1,8 +1,8 @@
 {
     "workbench": {
         "font": {
-            "family": "Cascadia Mono",
-            "size": 15,
+            "family": "Consolas",
+            "size": 14,
             "bold": false,
             "italic": false
         }

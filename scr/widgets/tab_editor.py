@@ -2,6 +2,8 @@ from scr.scripts.tools.file import FileLoader, FileChecker
 from scr.configs.pics import IconPaths
 from .welcome_screen import WelcomeScreen
 
+from scr.scripts.font import WorkbenchFontManager, Font
+
 from PySide6.QtWidgets import QTabWidget
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import QSize, Qt
@@ -44,12 +46,21 @@ class TabEditor(QTabWidget):
         self.setMinimumSize(1040, 480)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
+        self.__main_font = WorkbenchFontManager.get_current_font_as_font()
+        self.update_font()
+
         self.setTabsClosable(True)
         self.setMovable(True)
         self.setMouseTracking(True)
-        self.setIconSize(QSize(16, 16))
         self.tabCloseRequested.connect(self.removeTab)
         self.currentChanged.connect(self.__update_indexes)
+
+    def update_font(self) -> None:
+        self.__main_font = WorkbenchFontManager.get_current_font_as_font()
+        self.setIconSize(QSize(self.__main_font.pointSize() * 1.5, self.__main_font.pointSize() * 1.5))
+        self.__main_font.setPointSize(self.__main_font.pointSize())
+        self.setFont(self.__main_font)
+
 
     def get_tabs(self) -> list[Tab]:
         return self.__tabs

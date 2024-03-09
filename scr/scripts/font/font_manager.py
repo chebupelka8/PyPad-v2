@@ -1,4 +1,7 @@
 from ..tools.file import FileLoader
+from .font import Font
+
+from PySide6.QtGui import QFont
 
 import json
 
@@ -10,6 +13,20 @@ class _FontManager:
     @classmethod
     def get_current_font(cls) -> dict:
         return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"]
+
+    @classmethod
+    def get_current_font_as_font(cls) -> QFont:
+        current_font = cls.get_current_font()
+
+        if current_font["family"] not in Font.get_all_font_families():
+            try:
+                return Font.get_font_by_path(*current_font.values())
+
+            except IndexError:
+                return Font.get_system_font(*current_font.values())
+
+        else:
+            return Font.get_system_font(*current_font.values())
 
     @classmethod
     def get_current_family(cls) -> str:

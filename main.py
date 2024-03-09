@@ -91,6 +91,7 @@ class MainWidget(QWidget):
         EditorSettingsUpdater.add_updater(self.tabEditor.update_all_tabs_settings)
         WorkbenchFontManager.add_font_updater(self.fileTree.update_font)
         WorkbenchFontManager.add_font_updater(self.statusBar.update_font)
+        WorkbenchFontManager.add_font_updater(self.tabEditor.update_font)
 
         # set layout (draw)
         self.setLayout(self.mainLayout)
