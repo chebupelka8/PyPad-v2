@@ -3,29 +3,36 @@ from .abstract_text_area import TextEditorArea
 from scr.scripts.tools.file import FileLoader
 from scr.scripts.tools.code import CodeAnalyzer
 
-from scr.resources.themes import TextEditorTheme
-
 from scr.widgets import CodeGlanceMap
 
 from PySide6.QtCore import Qt
 
 
 class AbstractCodeEditorArea(TextEditorArea):
-    def __init__(self, __path: str | None = None):
+    def __init__(self, __path: str, highlighter=None, theme=None):
         super().__init__()
 
-        if __path is not None:
-            text = FileLoader.load_text(__path)
-            text = CodeAnalyzer.refactor_spaces_to_tabs(
-                text, CodeAnalyzer.get_tab_width_by_text(text)
-            )
-            self.insertPlainText(text)
+        # insert text
+        text = FileLoader.load_text(__path)
+        text = CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
+        self.insertPlainText(text)
 
-            # glance setup
-            self.codeMap = CodeGlanceMap(text, self.font())
-            self.codeMap.set_default_text_color(TextEditorTheme.DEFAULT)
-            self.textChanged.connect(lambda: self.codeMap.setPlainText(self.toPlainText()))
-            self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
+        # glance setup
+        self.codeMap = CodeGlanceMap(text, self.font())
+
+        # theme
+        if theme is not None:
+            self.set_default_text_color(theme.DEFAULT)
+            self.codeMap.set_default_text_color(theme.DEFAULT)
+
+        # highlighter
+        if highlighter is not None:
+            highlighter(self)
+            highlighter(self.codeMap)
+
+        # connections
+        self.textChanged.connect(lambda: self.codeMap.setPlainText(self.toPlainText()))
+        self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
 
         # setup style sheet
         self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/editor_area.css"))

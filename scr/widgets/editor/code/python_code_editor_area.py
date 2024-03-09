@@ -3,15 +3,13 @@ from ..abstract.abstract_code_area import AbstractCodeEditorArea
 from PySide6.QtCore import Qt
 
 from scr.resources.highlighters import PythonCodeHighlighter
+from scr.resources.themes import PythonTheme
 from scr.scripts.tools.code import CodeAnalyzer
 
 
 class PythonCodeEditorArea(AbstractCodeEditorArea):
-    def __init__(self, __path: str | None = None):
-        super().__init__(__path)
-
-        PythonCodeHighlighter(self)  # set highlighter
-        PythonCodeHighlighter(self.codeMap)
+    def __init__(self, __path: str):
+        super().__init__(__path, PythonCodeHighlighter, PythonTheme)
 
         # self.set_default_text_color(PythonTheme.DEFAULT)
 

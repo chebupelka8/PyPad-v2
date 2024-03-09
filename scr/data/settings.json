@@ -20,7 +20,7 @@
         "tab-width": 4
     },
     "theme": {
-        "path": "scr/data/themes/gruvbox-theme.json",
-        "name": "GruvBox Theme"
+        "path": "scr/data/themes/github-theme.json",
+        "name": "GitHub Theme"
     }
 }
