@@ -1,18 +1,14 @@
+from .abstract_text_area import TextEditorArea
+
 from scr.scripts.tools.file import FileLoader
 from scr.scripts.tools.code import CodeAnalyzer
 
-from scr.resources.highlighters import (
-    JsonCodeHighLighter, PythonCodeHighlighter,
-    StyleCodeHighLighter, HtmlCodeHighlighter
-)
-
-from .code_map import CodeGlanceMap
-from .text_area import TextEditorArea
+from scr.widgets import CodeGlanceMap
 
 from PySide6.QtCore import Qt
 
 
-class _CodeEditorArea(TextEditorArea):
+class AbstractCodeEditorArea(TextEditorArea):
     def __init__(self, __path: str | None = None):
         super().__init__()
 
@@ -111,91 +107,3 @@ class _CodeEditorArea(TextEditorArea):
 
         else:
             super().keyPressEvent(__event)
-
-
-class PythonCodeEditorArea(_CodeEditorArea):
-    def __init__(self, __path: str | None = None):
-        super().__init__(__path)
-
-        PythonCodeHighlighter(self)  # set highlighter
-        PythonCodeHighlighter(self.codeMap)
-
-        # self.set_default_text_color(PythonTheme.DEFAULT)
-
-    def keyPressEvent(self, event):
-        key_func = lambda: (
-            self.key_press_filter(event, True, True, True, True, True)
-        )
-
-        self.lineNumberArea.update()
-
-        if event.key() == Qt.Key.Key_Return:
-            cursor = self.textCursor()
-            previous = self.get_current_line_text()
-
-            if previous == "":
-                prev = "//"  # it's need for remove exception - list has no index -1
-
-            elif not previous.isspace() and previous.strip(" ") != "":
-                try:
-                    prev = previous[:cursor.positionInBlock()].rstrip()
-                    prev[-1]  # checks if there is a character at the end of the line
-
-                except IndexError:
-                    prev = "//"
-            else:
-                prev = previous
-
-            if prev[-1] == ":" or self.get_current_line_text()[:1] == "\t" or self.get_current_line_text()[:4] == "    ":
-                tab_count = (
-                    CodeAnalyzer.find_tabs_in_string(previous, cursor.positionInBlock()) +
-                    CodeAnalyzer.check_last_character_is_colon(prev) +
-                    CodeAnalyzer.find_tabs_in_string_by_spaces(
-                        previous, cursor.positionInBlock(), self.get_current_tab_width()
-                    )
-                )
-                cursor.insertText("\n" + ("\t" * tab_count))
-
-            else:
-                key_func()
-
-        else:
-            key_func()
-
-
-class JsonCodeEditorArea(_CodeEditorArea):
-    def __init__(self, __path: str | None = None):
-        super().__init__(__path)
-
-        JsonCodeHighLighter(self)
-        JsonCodeHighLighter(self.codeMap)
-        # self.set_default_text_color(JsonTheme.DEFAULT)
-
-    def keyPressEvent(self, event):
-        self.key_press_filter(event, False, True, True, True, False)
-
-
-class StyleCodeEditorArea(_CodeEditorArea):
-    def __init__(self, __path: str):
-        super().__init__(__path)
-
-        StyleCodeHighLighter(self)
-        StyleCodeHighLighter(self.codeMap)
-        # self.set_default_text_color(StyleTheme.DEFAULT)
-
-    def keyPressEvent(self, event):
-        self.key_press_filter(event, True, False, True, True, True)
-
-
-class HtmlCodeEditorArea(_CodeEditorArea):
-    def __init__(self, __path: str | None = None):
-        super().__init__(__path)
-
-        HtmlCodeHighlighter(self)
-        HtmlCodeHighlighter(self.codeMap)
-        # self.set_default_text_color(HtmlTheme.DEFAULT)
-
-    def keyPressEvent(self, event):
-        self.key_press_filter(
-            event, False, False, False, True, True, True
-        )

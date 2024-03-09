@@ -4,11 +4,19 @@ from scr.scripts.font import Font, EditorFontManager
 from scr.scripts.settings import EditorSettingsUpdater
 
 from scr.resources.themes import TextEditorTheme
-from .code_map import CodeGlanceMap
+from scr.widgets import CodeGlanceMap
 
 from PySide6.QtWidgets import QPlainTextEdit, QTextEdit, QWidget, QHBoxLayout
 from PySide6.QtGui import QColor, QTextFormat, QPainter, QPalette, QFontMetrics
 from PySide6.QtCore import Qt, QRect, QSize, QPoint
+
+
+class AbstractTextEditorArea(QPlainTextEdit):
+    def __init__(self) -> None:
+        super().__init__()
+
+        # ...
+        # ...
 
 
 class TextEditorArea(QPlainTextEdit):
