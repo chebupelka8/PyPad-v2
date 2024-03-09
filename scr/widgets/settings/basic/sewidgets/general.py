@@ -1,6 +1,5 @@
-from ...abstract import AbstractSettingsWidget, AbstractSettingFrame
+from ...abstract import AbstractSettingsWidget, AbstractSettingFrame, FrameTitles
 
-from scr.interface.basic import UiTitles
 from scr.scripts.font import Font, WorkbenchFontManager
 
 
@@ -18,7 +17,7 @@ class MainSettingsWidget(AbstractSettingsWidget):
 
         self.update_values()
 
-        self.mainLayout.addWidget(UiTitles.title("Font Settings"))
+        self.mainLayout.addWidget(FrameTitles.title("Font Settings"))
         self.mainLayout.addWidget(self.font_family_changer)
         self.mainLayout.addWidget(self.font_size_changer)
         # self.mainLayout.addWidget(UiTitles.title("Icons"))

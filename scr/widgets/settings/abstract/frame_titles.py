@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
 from scr.scripts.font import Font
 
 
-class UiTitles:
+class FrameTitles:
 
     @staticmethod
     def title(__text: str) -> QLabel:

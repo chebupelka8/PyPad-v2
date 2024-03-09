@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QFrame, QVBoxLayout, QComboBox, QSpinBox, QLabel, QPushButton
 from PySide6.QtCore import Qt
 
-from scr.interface.basic import UiTitles
+from .frame_titles import FrameTitles
 
 from typing import Optional
 
@@ -21,10 +21,10 @@ class AbstractSettingFrame(QFrame):
         self.setLayout(self.mainLayout)
 
     def add_subtitle(self, __text: str) -> None:
-        self.mainLayout.addWidget(UiTitles.subtitle(__text))
+        self.mainLayout.addWidget(FrameTitles.subtitle(__text))
 
     def add_description(self, __text: str) -> None:
-        self.mainLayout.addWidget(UiTitles.description(__text))
+        self.mainLayout.addWidget(FrameTitles.description(__text))
 
     def add_combobox(self, __values: list, __width: int = 200, *, should_return: bool = True) -> QComboBox | None:
         combobox = QComboBox()

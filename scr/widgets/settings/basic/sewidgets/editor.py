@@ -1,6 +1,5 @@
-from ...abstract import AbstractSettingsWidget, AbstractSettingFrame
+from ...abstract import AbstractSettingsWidget, AbstractSettingFrame, FrameTitles
 
-from scr.interface.basic import UiTitles
 from scr.scripts.font import Font, EditorFontManager
 from scr.scripts.settings import EditorSettingsUpdater
 
@@ -27,12 +26,12 @@ class EditorSettingsWidget(AbstractSettingsWidget):
 
         self.update_values()
 
-        self.mainLayout.addWidget(UiTitles.title("Font Settings"))
+        self.mainLayout.addWidget(FrameTitles.title("Font Settings"))
         self.mainLayout.addWidget(self.font_family_changer)
         self.mainLayout.addWidget(self.font_size_changer)
-        self.mainLayout.addWidget(UiTitles.title("Cursor Settings"))
+        self.mainLayout.addWidget(FrameTitles.title("Cursor Settings"))
         self.mainLayout.addWidget(self.cursor_style_changer)
-        self.mainLayout.addWidget(UiTitles.title("Tab Settings"))
+        self.mainLayout.addWidget(FrameTitles.title("Tab Settings"))
         self.mainLayout.addWidget(self.tab_width_changer)
 
     def update_values(self):
