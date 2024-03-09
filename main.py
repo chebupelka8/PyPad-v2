@@ -1,12 +1,4 @@
-from scr import (
-    FileDialog, FileTree, TabEditor, SideBar,
-    SettingsActionMenu, IconPaths, WelcomeScreen,
-    FileChecker, FileLoader, PythonCodeEditorArea,
-    HtmlCodeEditorArea, StyleCodeEditorArea, JsonCodeEditorArea,
-    ImageViewer, TextEditorArea, Restarter,
-    ThemeChanger, EditorFontManager, SettingsMenu, WorkbenchFontManager,
-    EditorSettingsUpdater, FileRunner, TabsSwitcher, Tab, StatusBar
-)
+from scr import *
 from scr.interface.basic import Splitter
 
 import os
