@@ -7,17 +7,17 @@ from .scripts.tools.file import FileDialog
 from .scripts.run import FileRunner
 from .scripts.settings import *
 from .scripts.theme import *
+
+from .interface.additional import *
+
 from .widgets.settings import *
 from .widgets import *
+
 from .exceptions import *
+
 from .configs import *
+
 from .subwidgets import *
 
 
-INFO = """
-version: v0.2.2-alpha
-current build: pre-release
-git-hub: https://github.com/chebupelka8/PyPad-v.2
-"""
-
-print("Welcome to PyPad!")
+VersionConfig.welcome()

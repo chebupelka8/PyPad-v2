@@ -1,6 +1,6 @@
 from ...abstract import AbstractSettingsWidget, AbstractSettingFrame, FrameTitles
 
-from scr.subwidgets import ThemeChanger
+from scr.interface.additional import ThemeChanger
 
 from scr.scripts.tools.file import FileLoader
 
