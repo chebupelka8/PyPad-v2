@@ -20,7 +20,7 @@
         "tab-width": 4
     },
     "theme": {
-        "path": "scr/data/themes/one-dark.json",
-        "name": "One Dark"
+        "path": "scr/data/themes/gruvbox-theme.json",
+        "name": "GruvBox Theme"
     }
 }

@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QPlainTextEdit
-from PySide6.QtGui import QFont, QFontMetrics
+from PySide6.QtGui import QFont, QFontMetrics, QPalette, QColor
 from PySide6.QtCore import Qt
 
 from scr.scripts.tools.file import FileLoader
@@ -24,6 +24,11 @@ class CodeGlanceMap(QPlainTextEdit):
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.set_font(__font)
+
+    def set_default_text_color(self, __color: str) -> None:
+        palette = QPalette()
+        palette.setColor(QPalette.ColorRole.Text, QColor(__color))
+        self.setPalette(palette)
 
     def set_font(self, __font) -> None:
         font = copy.copy(__font)

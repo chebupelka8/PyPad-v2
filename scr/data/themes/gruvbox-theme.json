@@ -1,0 +1,163 @@
+{
+    "name": "GruvBox Theme",
+
+    "text-editor-theme": {
+        "default": "#ebdbb2"
+    },
+
+    "python-theme": {
+        "default": "#ebdbb2",
+        "keywords": {
+            "color": "#fb4934",
+            "italic": false,
+            "bold": false
+        },
+        "string": {
+            "color": "#b8bb26",
+            "italic": false,
+            "bold": false
+        },
+        "comment": {
+            "color": "#928374",
+            "italic": false,
+            "bold": false
+        },
+        "decorator": {
+            "color": "#fabd2f",
+            "italic": false,
+            "bold": false
+        },
+        "class-names": {
+            "color": "#fabd2f",
+            "italic": false,
+            "bold": false
+        },
+        "func-names": {
+            "color": "#8ec07c",
+            "italic": false,
+            "bold": false
+        },
+        "symbols": {
+            "color": "#a89984",
+            "italic": false,
+            "bold": false
+        },
+        "boolean": {
+            "color": "#d3869b",
+            "italic": false,
+            "bold": false
+        },
+        "none-type": {
+            "color": "#d3869b",
+            "italic": false,
+            "bold": false
+        },
+        "data-types": {
+            "color": "#fabd2f",
+            "italic": false,
+            "bold": false
+        },
+        "functions": {
+            "color": "#fe8019",
+            "italic": false,
+            "bold": false
+        },
+        "digits": {
+            "color": "#59aeff",
+            "italic": false,
+            "bold": false
+        },
+        "brackets": {
+            "color": "#b16286",
+            "italic": false,
+            "bold": false
+        },
+        "special": {
+            "color": "#83a598",
+            "italic": false,
+            "bold": false
+        }
+    },
+
+    "json-theme": {
+        "default": "#ebdbb2",
+        "string": {
+            "color": "#96d0ff",
+            "italic": false,
+            "bold": false
+        },
+        "boolean": {
+            "color": "#da7067",
+            "italic": false,
+            "bold": false
+        },
+        "symbols": {
+            "color": "#adbac7",
+            "italic": false,
+            "bold": false
+        },
+        "brackets": {
+            "color": "#59aeff",
+            "italic": false,
+            "bold": false
+        },
+        "digits": {
+            "color": "#59aeff",
+            "italic": false,
+            "bold": false
+        },
+        "null-type": {
+            "color": "#da7067",
+            "italic": false,
+            "bold": false
+        }
+    },
+
+    "style-theme": {
+        "default": "#ebdbb2",
+        "symbols": {
+            "color": "#adbac7",
+            "italic": false,
+            "bold": false
+        },
+        "digits": {
+            "color": "#59aeff",
+            "italic": false,
+            "bold": false
+        },
+        "brackets": {
+            "color": "#59aeff",
+            "italic": false,
+            "bold": false
+        },
+        "comment": {
+            "color": "#768389",
+            "italic": false,
+            "bold": false
+        }
+    },
+
+    "html-theme": {
+        "default": "#ebdbb2",
+        "tags": {
+            "color": "#8ddb8c",
+            "italic": false,
+            "bold": false
+        },
+        "string": {
+            "color": "#96d0ff",
+            "italic": false,
+            "bold": false
+        },
+        "symbols": {
+            "color": "#adbac7",
+            "italic": false,
+            "bold": false
+        },
+        "comment": {
+            "color": "#768389",
+            "italic": false,
+            "bold": false
+        }
+    }
+}

@@ -3,6 +3,8 @@ from .abstract_text_area import TextEditorArea
 from scr.scripts.tools.file import FileLoader
 from scr.scripts.tools.code import CodeAnalyzer
 
+from scr.resources.themes import TextEditorTheme
+
 from scr.widgets import CodeGlanceMap
 
 from PySide6.QtCore import Qt
@@ -21,6 +23,7 @@ class AbstractCodeEditorArea(TextEditorArea):
 
             # glance setup
             self.codeMap = CodeGlanceMap(text, self.font())
+            self.codeMap.set_default_text_color(TextEditorTheme.DEFAULT)
             self.textChanged.connect(lambda: self.codeMap.setPlainText(self.toPlainText()))
             self.mainLayout.addWidget(self.codeMap, alignment=Qt.AlignmentFlag.AlignRight)
 
