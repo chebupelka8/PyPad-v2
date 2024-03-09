@@ -20,4 +20,4 @@ from .configs import *
 from .subwidgets import *
 
 
-VersionConfig.welcome()
+print(VersionConfig.__repr__())

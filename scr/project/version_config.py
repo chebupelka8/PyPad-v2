@@ -13,10 +13,5 @@ class VersionConfig:
     license = __config["license"]
 
     @classmethod
-    def welcome(cls) -> None:
-        print("Welcome to PyPad!")
-        print(cls.__repr__())
-
-    @classmethod
     def __repr__(cls) -> str:
-        return f"""\tVersion: {cls.version}\n\tBuild: {cls.build}\n\tAuthor: {cls.author}\n\tLicense: {cls.license}"""
+        return f"""PyPad(\n\tVersion: {cls.version}\n\tBuild: {cls.build}\n\tAuthor: {cls.author}\n\tLicense: {cls.license}\n)"""
