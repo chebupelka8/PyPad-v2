@@ -188,12 +188,12 @@ class InfoWidget(_SettingsWidget):
 
         info_frame = _SettingFrame(
             "Description",
-            """<b></b>PyPad - 
+            """
+            <b>PyPad</b> - 
             is a code editor for different programming languages. 
             PyPad supports some languages like a Python, Json, Html and CSS. 
             So far, PyPad is in development and it is not suitable for use, but you can watch the demo 
-            version of the project and  
-            <a href="https://github.com/chebupelka8/PyPad-v2/releases/tag/v0.2.2">test it</a>.
+            version of the project and test it.
             """
         )
         hot_key_frame = _SettingFrame(
