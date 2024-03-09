@@ -2,7 +2,7 @@ from ...abstract import AbstractSettingsWidget, AbstractSettingFrame
 
 from scr.interface.basic import UiTitles
 from scr.scripts.font import Font, EditorFontManager
-from scr.scripts.tools.settings import EditorSettingsUpdater
+from scr.scripts.settings import EditorSettingsUpdater
 
 
 class EditorSettingsWidget(AbstractSettingsWidget):

@@ -1,7 +1,7 @@
 from scr.scripts.tools.file import FileLoader, FileChecker
 from scr.scripts.tools.code import CodeAnalyzer
 from scr.scripts.font import Font, EditorFontManager
-from scr.scripts.tools.settings import EditorSettingsUpdater
+from scr.scripts.settings import EditorSettingsUpdater
 
 from scr.resources.themes import TextEditorTheme
 from .code_map import CodeGlanceMap
