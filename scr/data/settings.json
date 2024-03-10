@@ -9,8 +9,8 @@
     },
     "editor": {
         "font": {
-            "family": "Cascadia Mono",
-            "size": 17,
+            "family": "Cascadia Code SemiLight",
+            "size": 16,
             "bold": false,
             "italic": false
         },
@@ -20,7 +20,7 @@
         "tab-width": 4
     },
     "theme": {
-        "path": "scr/data/themes/github-theme.json",
-        "name": "GitHub Theme"
+        "path": "scr/data/themes/one-dark.json",
+        "name": "One Dark"
     }
 }
