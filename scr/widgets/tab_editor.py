@@ -15,6 +15,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Tab:
+    # todo: add 'pinned tabs'
+    # todo: add var 'is_pinned' and it must be at the beginning of the tab editor
+
     title: str
     widget: Any
     icon: Union[QIcon, str, None] = None
