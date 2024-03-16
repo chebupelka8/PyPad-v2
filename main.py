@@ -65,6 +65,9 @@ class MainWidget(QWidget):
 
         self.settingActionMenu.connect_by_title("Themes...", self.__show_theme_changer)
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
+
+        # shortcuts
+        QShortcut("Ctrl+B", self).activated.connect(self.fileTree.show_hide_file_tree)
         QShortcut("Ctrl+T", self).activated.connect(self.__show_theme_changer)
         QShortcut("Ctrl+,", self).activated.connect(self.settingsMenu.show)
         QShortcut("Ctrl+Tab", self).activated.connect(self.__open_tab_switcher)
@@ -79,6 +82,7 @@ class MainWidget(QWidget):
             lambda: FileRunner.run_python_file(self.tabEditor.get_current_path(), self.fileTree.get_current_directory())
         )
 
+        # updaters
         EditorFontManager.add_font_updater(self.tabEditor.update_all_tabs_font)
         EditorSettingsUpdater.add_updater(self.tabEditor.update_all_tabs_settings)
         WorkbenchFontManager.add_font_updater(self.fileTree.update_font)

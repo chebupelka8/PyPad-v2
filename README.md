@@ -24,6 +24,7 @@ Ctrl+O - Open directory
 Ctrl+P - Open file
 Ctrl+, - Open settings
 Ctrl+T - Open theme picker
+Ctrl+B - Open/Show File tree
 Ctrl+Tab - Switch current file
 ```
 
