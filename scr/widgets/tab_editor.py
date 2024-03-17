@@ -23,6 +23,7 @@ class Tab:
     icon: Union[QIcon, str, None] = None
     path: Optional[str] = None
     index: Optional[int] = None
+    is_pinned: bool = False
 
     def is_file(self) -> bool:
         return self.path is not None
@@ -57,6 +58,14 @@ class TabEditor(QTabWidget):
         self.setMouseTracking(True)
         self.tabCloseRequested.connect(self.removeTab)
         self.currentChanged.connect(self.__update_indexes)
+        self.tabBarClicked.connect(self.__tab_clicked)
+
+    def __tab_clicked(self, index: int) -> None:
+        if self.__tabs[index].is_pinned:
+            self.setMovable(False)
+
+        else:
+            self.setMovable(True)
 
     def update_font(self) -> None:
         self.__main_font = WorkbenchFontManager.get_current_font_as_font()
@@ -136,8 +145,16 @@ class TabEditor(QTabWidget):
             return ""  # it's need to remove exception
 
     def __update_indexes(self) -> None:
+        pin = 0
+
         for tab in self.__tabs:
-            tab.index = self.indexOf(tab.widget)
+            index = self.indexOf(tab.widget)
+
+            if tab.is_pinned:
+                self.tabBar().moveTab(index, pin)
+                pin += 1
+
+            tab.index = index
 
             if tab.index == -1: self.__tabs.remove(tab)
 
