@@ -1,5 +1,5 @@
 {
     "directory": "C:/Users/\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f/Desktop/Work/Other/pySocket",
-    "pyprojects": {},
-    "interpreter_path": null
+    "pyprojects": ["C:/Users/Дети повелителя/Desktop/Work"],
+    "python_interpreter_path": "C:\\Users\\%username%\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
 }

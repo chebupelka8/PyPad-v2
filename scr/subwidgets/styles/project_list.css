@@ -1,0 +1,35 @@
+QFrame#project-list {
+    background-color: #252525;
+    border: 1px solid #3c3c3c;
+    border-radius: 6px;
+}
+
+QFrame#data-frame {
+    background-color: #252525;
+}
+
+QListWidget {
+    /*background-color: #272727;*/
+    border: none;
+    border-radius: 0px;
+    border-left: 1px solid #3c3c3c;
+}
+
+QListWidget::item {
+    padding: 2px 15px;
+    border-radius: 8px;
+    color: white;
+    min-height: 40px;
+}
+
+QPushButton {
+    background-color: #303030;
+    border: 1px solid #2c2c2c;
+    border-radius: 4px;
+    min-height: 30px;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #343434;
+}

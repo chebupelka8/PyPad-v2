@@ -33,6 +33,7 @@ class MainWidget(QWidget):
         self.themeChanger = ThemeChanger(self, restarter=self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
         self.tabsSwitcher = TabsSwitcher(self)
+        self.projectList = ProjectChanger(self)
         self.splitter = Splitter("horizontal")
 
         self.init_ui()
@@ -67,6 +68,7 @@ class MainWidget(QWidget):
         self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
 
         # shortcuts
+        QShortcut("Ctrl+W", self).activated.connect(self.projectList.show)
         QShortcut("Ctrl+B", self).activated.connect(self.fileTree.show_hide_file_tree)
         QShortcut("Ctrl+T", self).activated.connect(self.__show_theme_changer)
         QShortcut("Ctrl+,", self).activated.connect(self.settingsMenu.show)
