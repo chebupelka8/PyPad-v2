@@ -1,0 +1,25 @@
+QPushButton {
+    min-width: 80px;
+    border-radius: 4px;
+    color: white;
+}
+
+QPushButton#accept-btn {
+    border: 2px solid #1f6d2d;
+    background-color: #2ea043;
+    padding: 2px 2px;
+}
+
+QPushButton#accept-btn:hover {
+    background-color: #1f6d2d;
+}
+
+QPushButton#reject-btn {
+    border: 1px solid #2c2c2c;
+    background-color: #303030;
+    padding: 3px 2px;
+}
+
+QPushButton#reject-btn:hover {
+    background-color: #404040;
+}
