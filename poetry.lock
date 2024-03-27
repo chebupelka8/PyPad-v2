@@ -116,6 +116,19 @@ files = [
 pycparser = "*"
 
 [[package]]
+name = "cpalette"
+version = "1.0.5"
+description = "Color palette is a python library for working with"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "cpalette-1.0.5.tar.gz", hash = "sha256:0a2559b1ab79e48028feb63ef37ebcdb0ab6473e37d3b87da187495c007caabc"},
+]
+
+[package.dependencies]
+pillow = "*"
+
+[[package]]
 name = "eel"
 version = "0.16.0"
 description = "For little HTML GUI applications, with easy Python/JS interop"
@@ -665,4 +678,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "e94a70db762aa25abc86b7c4c1d3ce546ef8abb16a81914ab41059611f237ad3"
+content-hash = "2f6752449588d5914e54b40ff56040af95d5d6ad3052ef518e7199568e2f0215"
