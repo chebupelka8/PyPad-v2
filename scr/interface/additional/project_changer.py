@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QHBoxLayout, QListWidget, QFrame, QPushButton, QVBoxLayout, QSpacerItem, QSizePolicy
 from PySide6.QtCore import Qt
 
-from scr.interface.additional import ListChanger
+from scr.interface.additional.windows import ListChanger
 from scr.scripts.tools.file import FileLoader
 
 from scr.project.pyproject import PyProjectConfig

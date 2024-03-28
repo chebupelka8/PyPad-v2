@@ -1,5 +1,6 @@
 from scr import *
 from scr.interface.basic import Splitter
+from scr.interface.additional.widgets import ThemeChangerWindow
 
 import os
 import sys
@@ -30,9 +31,9 @@ class MainWidget(QWidget):
         self.statusBar = StatusBar()
         self.settingActionMenu = SettingsActionMenu()
         self.restarter = Restarter(self)
-        self.themeChanger = ThemeChanger(self, restarter=self.restarter)
+        self.themeChanger = ThemeChangerWindow(self, self.restarter)
         self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
-        self.tabsSwitcher = TabsSwitcher(self)
+        self.tabsSwitcher = TabsSwitcherWindow(self)
         self.projectList = ProjectChanger(self)
         self.splitter = Splitter("horizontal")
 
@@ -137,15 +138,23 @@ class MainWidget(QWidget):
         self.tabEditor.setCurrentWidget(self.tabEditor.find_by_path(__path))
 
     def __open_tab_switcher(self):
-        self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
-        self.tabsSwitcher.set_current_index(self.tabEditor.currentIndex())
-        self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
-        self.tabsSwitcher.show()
+        # self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
+        # self.tabsSwitcher.set_current_index(self.tabEditor.currentIndex())
+        # self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
+        if self.tabsSwitcher.isVisible():
+            self.tabsSwitcher.close()
+
+        else:
+            self.tabsSwitcher.show_window(
+                self.tabEditor.get_tabs(),
+                self.tabEditor.currentIndex(),
+                lambda index: self.tabEditor.setCurrentIndex(index)
+            )
 
     def __show_theme_changer(self):
         themes = [FileLoader.load_json(f"scr/data/themes/{i}")["name"] for i in os.listdir("scr/data/themes")]
 
-        self.themeChanger.set_items(*themes)
+        self.themeChanger.themeChanger.set_items(*themes)
         self.themeChanger.show()
 
     def __changed_tab(self) -> None:

@@ -1,14 +1,14 @@
-from scr.interface.additional import ListChanger
+from scr.interface.abstract import ListChanger, TransparentDialogWindow, ShellFrame
 
 import os
 
 
 class TabsSwitcher(ListChanger):
-    def __init__(self, parent) -> None:
-        super().__init__(parent, width=500, height=700)
+    def __init__(self, __parent) -> None:
+        super().__init__(__parent)
 
         self.__items = []
-        self.listWidget.currentRowChanged.connect(self.__changed)
+        self.currentRowChanged.connect(self.__changed)
 
     @staticmethod
     def __to_shorter_path(__path: str) -> str:
@@ -21,7 +21,7 @@ class TabsSwitcher(ListChanger):
             return "\\".join(["...", *arr[-3:]])
 
     def __changed(self, __index: int) -> None:
-        current_item = self.listWidget.currentItem()
+        current_item = self.currentItem()
         if current_item is None: return
 
         if self.__items[__index].is_file():
@@ -34,24 +34,39 @@ class TabsSwitcher(ListChanger):
         # Probably this bug have been fixed
 
         for tab in self.__items:
-            if tab.index != self.listWidget.currentRow():
-                self.listWidget.item(tab.index).setText(tab.title)
+            if tab.index != self.currentRow():
+                self.item(tab.index).setText(tab.title)
 
     def set_items(self, items: list) -> None:
         self.__items = items
-        self.listWidget.clear()
+        self.clear()
 
         for i, item in enumerate(items):
-            self.listWidget.addItem(item.title)
-            self.listWidget.item(item.index).setIcon(item.icon)
+            self.addItem(item.title)
+            self.item(item.index).setIcon(item.icon)
 
     def set_current_index(self, __index: int) -> None:
-        self.listWidget.setCurrentRow(__index)
+        self.setCurrentRow(__index)
 
     def open_connect(self, __command) -> None:
         self.accept = lambda: self.__accept(__command)
-        self.listWidget.itemClicked.connect(self.accept)
+        self.itemClicked.connect(self.accept)
 
     def __accept(self, __command) -> None:
-        __command(self.__items[self.listWidget.currentRow()].index)
+        __command(self.__items[self.currentRow()].index)
+        self.parent().destroy(True, True)
         super().accept()
+
+
+class TabsSwitcherWindow(TransparentDialogWindow):
+    def __init__(self, __parent) -> None:
+        super().__init__(__parent)
+
+        self.tabSwitcher = TabsSwitcher(self)
+        self.add_widget(self.tabSwitcher)
+
+    def show_window(self, __items: list, current: int, __command) -> None:
+        self.tabSwitcher.set_items(__items)
+        self.tabSwitcher.set_current_index(current)
+        self.tabSwitcher.open_connect(__command)
+        self.show()

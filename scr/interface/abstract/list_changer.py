@@ -5,12 +5,11 @@ from scr.scripts.tools.file import FileLoader
 
 
 class ListChanger(QListWidget):
-    def __init__(self, __parent = None, *__values) -> None:
-        super().__init__(__parent)
+    def __init__(self, *__values) -> None:
+        super().__init__()
 
         self.setStyleSheet(self.styleSheet() + FileLoader.load_style("scr/interface/abstract/styles/list_changer.css"))
 
-        self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.addItems([*__values])
 
     def accept(self) -> None:

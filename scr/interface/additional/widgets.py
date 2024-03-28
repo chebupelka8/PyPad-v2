@@ -1,8 +1,11 @@
 from scr.scripts.utils import restart_application
 from scr.scripts.theme import ThemeManager
 
-from scr.interface.additional import ListChanger  # need replace
-from scr.interface.abstract import Dialog
+from PySide6.QtWidgets import QLabel
+
+# from scr.interface.additional import ListChanger  # need replace
+
+from scr.interface.abstract import Dialog, ListChanger, ShellFrame, TransparentDialogWindow
 
 
 class Restarter(Dialog):
@@ -25,23 +28,37 @@ class Restarter(Dialog):
 
 
 class ThemeChanger(ListChanger):
-    def __init__(self, __parent, restarter: Restarter) -> None:
-        super().__init__(__parent)
+    def __init__(self, restarter: Restarter) -> None:
+        super().__init__()
 
         self.restarter = restarter
-        self.listWidget.itemClicked.connect(self.accept)
+        self.itemClicked.connect(self.accept)
 
     def change_theme(self, __name: str) -> None:
-        self.close()
+        # self.close()
 
         ThemeManager.set_current_theme_by_name(__name)
 
         self.restarter.set_command_after_restart(ThemeManager.save)
         self.restarter.show()
 
-    def show(self):
-        super().show()
-        self.listWidget.setCurrentItem(self.get_item_by_text(ThemeManager.get_current_theme_name()))
+    def open(self):
+        self.setCurrentItem(self.get_item_by_text(ThemeManager.get_current_theme_name()))
 
     def accept(self):
         self.change_theme(self.get_current_item().text())
+
+
+class ThemeChangerWindow(TransparentDialogWindow):
+    def __init__(self, __parent, __restarter: Restarter) -> None:
+        super().__init__(__parent)
+
+        # self.themeChangerShell = ShellFrame()
+        self.themeChanger = ThemeChanger(__restarter)
+        self.add_widget(QLabel("Themes..."))
+        # self.themeChangerShell.add_widget(self.themeChanger)
+        self.add_widget(self.themeChanger)
+
+    def show(self):
+        super().show()
+        self.themeChanger.open()
