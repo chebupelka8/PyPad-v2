@@ -32,7 +32,7 @@ class ThemeChanger(ListChanger):
         super().__init__()
 
         self.restarter = restarter
-        self.itemClicked.connect(self.accept)
+        self.itemClicked.connect(self.use)
 
     def change_theme(self, __name: str) -> None:
         # self.close()
@@ -45,7 +45,7 @@ class ThemeChanger(ListChanger):
     def open(self):
         self.setCurrentItem(self.get_item_by_text(ThemeManager.get_current_theme_name()))
 
-    def accept(self):
+    def use(self):
         self.change_theme(self.get_current_item().text())
 
 
@@ -53,11 +53,12 @@ class ThemeChangerWindow(TransparentDialogWindow):
     def __init__(self, __parent, __restarter: Restarter) -> None:
         super().__init__(__parent)
 
-        # self.themeChangerShell = ShellFrame()
         self.themeChanger = ThemeChanger(__restarter)
         self.add_widget(QLabel("Themes..."))
-        # self.themeChangerShell.add_widget(self.themeChanger)
         self.add_widget(self.themeChanger)
+
+    def accept(self):
+        self.themeChanger.use()
 
     def show(self):
         super().show()

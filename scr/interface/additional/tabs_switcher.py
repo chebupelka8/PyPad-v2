@@ -7,6 +7,8 @@ class TabsSwitcher(ListChanger):
     def __init__(self, __parent) -> None:
         super().__init__(__parent)
 
+        self.__parent = __parent
+
         self.__items = []
         self.currentRowChanged.connect(self.__changed)
 
@@ -49,13 +51,12 @@ class TabsSwitcher(ListChanger):
         self.setCurrentRow(__index)
 
     def open_connect(self, __command) -> None:
-        self.accept = lambda: self.__accept(__command)
-        self.itemClicked.connect(self.accept)
+        self.use = lambda: self.__accept(__command)
+        self.itemClicked.connect(self.use)
 
     def __accept(self, __command) -> None:
+        self.__parent.accept()
         __command(self.__items[self.currentRow()].index)
-        self.parent().destroy(True, True)
-        super().accept()
 
 
 class TabsSwitcherWindow(TransparentDialogWindow):

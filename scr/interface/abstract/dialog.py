@@ -36,10 +36,3 @@ class Dialog(DialogWindow):
         self.buttonLayout.addWidget(self.rejectBtn, alignment=Qt.AlignmentFlag.AlignLeft)
 
         self.setLayout(self.mainLayout)
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key.Key_Return:
-            self.accept()
-
-        else:
-            super().keyPressEvent(event)

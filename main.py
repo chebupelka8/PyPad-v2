@@ -32,7 +32,7 @@ class MainWidget(QWidget):
         self.settingActionMenu = SettingsActionMenu()
         self.restarter = Restarter(self)
         self.themeChanger = ThemeChangerWindow(self, self.restarter)
-        self.settingsMenu = SettingsMenu(self, restarter=self.restarter)
+        self.settingsMenu = SettingsMenu(self, self.restarter)
         self.tabsSwitcher = TabsSwitcherWindow(self)
         self.projectList = ProjectChanger(self)
         self.splitter = Splitter("horizontal")

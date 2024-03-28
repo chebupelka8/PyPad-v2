@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QListWidget, QVBoxLayout
+from PySide6.QtWidgets import QListWidget
 from PySide6.QtCore import Qt
 
 from scr.scripts.tools.file import FileLoader
@@ -12,7 +12,7 @@ class ListChanger(QListWidget):
 
         self.addItems([*__values])
 
-    def accept(self) -> None:
+    def use(self) -> None:
         # Override this method
 
         ...
@@ -25,7 +25,7 @@ class ListChanger(QListWidget):
             self.setCurrentRow(self.currentRow() - 1)
 
         elif event.key() == Qt.Key.Key_Return:
-            self.accept()
+            self.use()
 
         else:
             super().keyPressEvent(event)

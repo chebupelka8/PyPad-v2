@@ -48,10 +48,33 @@ class SettingsMenuWidget(ShellFrame):
 
 class SettingsMenu(TransparentDialogWindow):
     def __init__(self, __parent, restarter) -> None:
-        super().__init__(__parent)
+        super().__init__(__parent, "horizontal")
 
-        self.mainLayout = QHBoxLayout()
-        self.menuWidget = SettingsMenuWidget(restarter)
-        self.mainLayout.addWidget(self.menuWidget)
+        self.restarter = restarter
 
-        self.setLayout(self.mainLayout)
+        self.setWindowTitle("Settings")
+        self.setMinimumSize(1000, 700)
+        self.setStyleSheet(self.styleSheet() + FileLoader.load_style("scr/widgets/styles/settings_menu.css"))
+        self.setWindowModality(Qt.WindowModality.ApplicationModal)
+
+        self.settingsArea = QScrollArea()
+        self.settingsArea.setMinimumWidth(800)
+        self.settingsArea.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.settingsArea.setWidget(MainSettingsWidget())
+
+        self.settingTree = SettingTree()
+        self.settingTree.connect_by_title(
+            "General", lambda: self.settingsArea.setWidget(MainSettingsWidget())
+        )
+        self.settingTree.connect_by_title(
+            "Editor", lambda: self.settingsArea.setWidget(EditorSettingsWidget())
+        )
+        self.settingTree.connect_by_title(
+            "Theme", lambda: self.settingsArea.setWidget(ThemeSettingsWidget(self.restarter))
+        )
+        self.settingTree.connect_by_title(
+            "About", lambda: self.settingsArea.setWidget(InfoWidget())
+        )
+
+        self.add_widget(self.settingTree, stretch=1)
+        self.add_widget(self.settingsArea, stretch=3)
