@@ -1,7 +1,8 @@
 from scr.scripts.utils import restart_application
 from scr.scripts.theme import ThemeManager
 
-from scr.interface.additional import Dialog, ListChanger
+from scr.interface.additional import ListChanger  # need replace
+from scr.interface.abstract import Dialog
 
 
 class Restarter(Dialog):

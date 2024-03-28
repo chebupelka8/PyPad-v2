@@ -1,4 +1,5 @@
-from scr.interface.additional import AbstractWindow, TransparentDialogWindow
+from scr.interface.additional import TransparentDialogWindow
+from scr.interface.abstract import ShellFrame
 
 from scr.scripts.tools.file import FileLoader
 
@@ -8,7 +9,7 @@ from PySide6.QtCore import Qt
 from .basic import SettingTree, MainSettingsWidget, EditorSettingsWidget, ThemeSettingsWidget, InfoWidget
 
 
-class SettingsMenuWidget(AbstractWindow):
+class SettingsMenuWidget(ShellFrame):
     def __init__(self, restarter) -> None:
         super().__init__()
 
@@ -16,7 +17,7 @@ class SettingsMenuWidget(AbstractWindow):
 
         self.setWindowTitle("Settings")
         self.setMinimumSize(1000, 700)
-        self.setStyleSheet(FileLoader.load_style("scr/widgets/styles/settings_menu.css"))
+        self.setStyleSheet(self.styleSheet() + FileLoader.load_style("scr/widgets/styles/settings_menu.css"))
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
         self.settingsArea = QScrollArea()

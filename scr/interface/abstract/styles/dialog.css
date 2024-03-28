@@ -1,3 +1,7 @@
+QLabel {
+    color: #ffffff;
+}
+
 QDialog {
     background-color: #252525;
     border: 1px solid #3c3c3c;

@@ -1,105 +1,18 @@
 from PySide6.QtWidgets import (
-    QDialog, QHBoxLayout, QVBoxLayout, QLabel,
-    QPushButton, QLineEdit, QListWidget, QFrame
+    QVBoxLayout, QListWidget
 )
 from PySide6.QtCore import Qt
 
+from ..abstract import TransparentDialogWindow
+
 from scr.scripts.tools.file import FileLoader
-
-from typing import Any
-
-
-class DialogWindow(QDialog):
-    def __init__(self, __parent: Any = None, *, frameless: bool = True) -> None:
-        if frameless: super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
-        else: super().__init__(__parent)
-
-        self.setStyleSheet(FileLoader.load_style("scr/interface/additional/styles/gui.css"))
-        self.setWindowModality(Qt.WindowModality.ApplicationModal)
-
-
-class TransparentDialogWindow(DialogWindow):
-    def __init__(self, __parent: Any = None, *, frameless: bool = True) -> None:
-        super().__init__(__parent, frameless=frameless)
-
-        self.setAttribute(Qt.WA_TranslucentBackground)
-
-
-class Dialog(DialogWindow):
-    def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel") -> None:
-        super().__init__(__parent)
-
-        self.mainLayout = QVBoxLayout()
-        self.buttonLayout = QHBoxLayout()
-
-        self.mainLayout.addWidget(
-            QLabel(__message), alignment=Qt.AlignmentFlag.AlignCenter
-        )
-        self.mainLayout.addLayout(self.buttonLayout)
-
-        self.acceptBtn = QPushButton(accept_title)
-        self.acceptBtn.setObjectName("accept-btn")
-        self.rejectBtn = QPushButton(reject_title)
-        self.rejectBtn.setObjectName("reject-btn")
-
-        self.acceptBtn.clicked.connect(self.accept)
-        self.rejectBtn.clicked.connect(self.reject)
-
-        self.buttonLayout.addWidget(self.acceptBtn, alignment=Qt.AlignmentFlag.AlignRight)
-        self.buttonLayout.addWidget(self.rejectBtn, alignment=Qt.AlignmentFlag.AlignLeft)
-
-        self.setLayout(self.mainLayout)
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key.Key_Return:
-            self.accept()
-
-        else:
-            super().keyPressEvent(event)
-
-
-class InputDialog(DialogWindow):
-    def __init__(
-            self, __parent,
-            __message: str,
-            pasted_text: str = "", place_holder_text: str = "",
-            accept_title: str = "Ok", reject_title: str = "Cancel"
-    ) -> None:
-        super().__init__(__parent)
-
-        self.mainLayout = QVBoxLayout()
-        self.buttonLayout = QHBoxLayout()
-
-        self.mainLayout.addWidget(
-            QLabel(__message), alignment=Qt.AlignmentFlag.AlignCenter
-        )
-
-        # input line
-        self.inputLine = QLineEdit()
-        self.inputLine.setText(pasted_text)
-        self.inputLine.setPlaceholderText(place_holder_text)
-        self.mainLayout.addWidget(self.inputLine)
-
-        # buttons
-        self.mainLayout.addLayout(self.buttonLayout)
-
-        self.acceptBtn = QPushButton(accept_title)
-        self.acceptBtn.setObjectName("accept-btn")
-        self.rejectBtn = QPushButton(reject_title)
-        self.rejectBtn.setObjectName("reject-btn")
-
-        self.acceptBtn.clicked.connect(self.accept)
-        self.rejectBtn.clicked.connect(self.reject)
-
-        self.buttonLayout.addWidget(self.acceptBtn, alignment=Qt.AlignmentFlag.AlignRight)
-        self.buttonLayout.addWidget(self.rejectBtn, alignment=Qt.AlignmentFlag.AlignLeft)
-
-        self.setLayout(self.mainLayout)
 
 
 class ListChanger(TransparentDialogWindow):
     def __init__(self, __parent, *__values, width: int = 200, height: int = 400) -> None:
         super().__init__(__parent)
+
+        self.setStyleSheet(self.styleSheet() + FileLoader.load_style("scr/interface/additional/styles/gui.css"))
 
         self.setMinimumSize(width, height)
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
@@ -144,11 +57,3 @@ class ListChanger(TransparentDialogWindow):
 
     def get_current_item(self):
         return self.listWidget.currentItem()
-
-
-class AbstractWindow(QFrame):
-    def __init__(self) -> None:
-        super().__init__()
-
-        self.setStyleSheet(FileLoader.load_style("scr/interface/additional/styles/gui.css"))
-        self.setObjectName("abstract-window")
