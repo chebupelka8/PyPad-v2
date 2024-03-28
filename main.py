@@ -1,6 +1,5 @@
 from scr import *
 from scr.interface.basic import Splitter
-from scr.interface.additional.widgets import ThemeChangerWindow
 
 import os
 import sys
@@ -34,7 +33,7 @@ class MainWidget(QWidget):
         self.themeChanger = ThemeChangerWindow(self, self.restarter)
         self.settingsMenu = SettingsMenu(self, self.restarter)
         self.tabsSwitcher = TabsSwitcherWindow(self)
-        self.projectList = ProjectChanger(self)
+        self.projectList = ProjectChangerWindow(self)
         self.splitter = Splitter("horizontal")
 
         self.init_ui()
