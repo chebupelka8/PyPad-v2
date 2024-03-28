@@ -137,18 +137,11 @@ class MainWidget(QWidget):
         self.tabEditor.setCurrentWidget(self.tabEditor.find_by_path(__path))
 
     def __open_tab_switcher(self):
-        # self.tabsSwitcher.set_items(self.tabEditor.get_tabs())
-        # self.tabsSwitcher.set_current_index(self.tabEditor.currentIndex())
-        # self.tabsSwitcher.open_connect(lambda index: self.tabEditor.setCurrentIndex(index))
-        if self.tabsSwitcher.isVisible():
-            self.tabsSwitcher.close()
-
-        else:
-            self.tabsSwitcher.show_window(
-                self.tabEditor.get_tabs(),
-                self.tabEditor.currentIndex(),
-                lambda index: self.tabEditor.setCurrentIndex(index)
-            )
+        self.tabsSwitcher.show_window(
+            self.tabEditor.get_tabs(),
+            self.tabEditor.currentIndex(),
+            lambda index: self.tabEditor.setCurrentIndex(index)
+        )
 
     def __show_theme_changer(self):
         themes = [FileLoader.load_json(f"scr/data/themes/{i}")["name"] for i in os.listdir("scr/data/themes")]
