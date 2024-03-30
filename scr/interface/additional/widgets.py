@@ -3,9 +3,7 @@ from scr.scripts.theme import ThemeManager
 
 from PySide6.QtWidgets import QLabel
 
-# from scr.interface.additional import ListChanger  # need replace
-
-from scr.interface.abstract import Dialog, ListChanger, ShellFrame, TransparentDialogWindow
+from scr.interface.abstract import Dialog, ListChanger, TransparentDialogWindow
 
 
 class Restarter(Dialog):

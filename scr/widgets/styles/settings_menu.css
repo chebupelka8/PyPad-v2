@@ -14,10 +14,6 @@ QWidget#settings-widget {
     border: none;
 }
 
-QLabel {
-    color: #ffffff;
-}
-
 QComboBox {
     padding: 2px;
     padding-left: 5px;
