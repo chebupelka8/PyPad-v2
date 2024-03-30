@@ -17,7 +17,7 @@ class Splitter(QSplitter):
 
 
 class DropDownMenu(QComboBox):
-    def __init__(self, *__values: str, width: int = 200, height: int = 30) -> None:
+    def __init__(self, *__values: str, width: int = 200, height: int = 25) -> None:
         super().__init__()
 
         self.setFixedSize(QSize(width, height))
@@ -33,8 +33,11 @@ class DropDownMenu(QComboBox):
 
 
 class DigitalEntry(QSpinBox):
-    def __init__(self, __range: tuple[int, int]) -> None:
+    def __init__(self, __range: tuple[int, int], width: int = 30, height: int = 25, show_buttons: bool = False) -> None:
         super().__init__()
+
+        self.setFixedSize(QSize(width, height))
+        if not show_buttons: self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
 
         self.setRange(*__range)
         self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/digital_entry.css"))

@@ -14,67 +14,8 @@ QWidget#settings-widget {
     border: none;
 }
 
-QComboBox {
-    padding: 2px;
-    padding-left: 5px;
-    background-color: #252525;
-    color: white;
-    border: 1px solid #3c3c3c;
-    border-radius: 3px;
-}
-
-QComboBox:hover {
-    background-color: #303030;
-}
-
-QComboBox::down-arrow {
-    image: url(:/system_icons/down-arrow.png);
-    width: 10px;
-}
-
-QComboBox QAbstractItemView {
-    padding: 4px;
-    background-color: #252525;
-    color: white;
-    border: 1px solid #3c3c3c;
-    border-radius: 3px;
-}
-
-QComboBox::drop-down {
-    border: none;
-}
-
-QSpinBox {
-    background-color: #252525;
-    padding: 2px;
-    color: white;
-    border: 1px solid #3c3c3c;
-    border-radius: 3px;
-    min-width: 30px;
-}
-
-QSpinBox:hover {
-    background-color: #303030;
-}
-
-QCheckBox::indicator {
-    width: 20px;
-    height: 20px;
-}
-
-QPushButton {
-    background-color: #303030;
-    padding: 2px;
-    color: white;
-    border: 1px solid #3c3c3c;
-    border-radius: 4px;
-}
-
-QPushButton:hover {
-    background-color: #404040;
-}
-
 QPushButton#highlighted-btn {
+    color: #ffffff;
     border-radius: 4px;
     border: 2px solid #4361ee;
     background-color: #4895ef;

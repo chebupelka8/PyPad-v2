@@ -1,9 +1,11 @@
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QComboBox, QSpinBox, QLabel, QPushButton
+from PySide6.QtWidgets import QFrame, QVBoxLayout, QComboBox, QSpinBox, QPushButton
 from PySide6.QtCore import Qt
 
 from .frame_titles import FrameTitles
 
 from typing import Optional
+
+from scr.interface.basic import DropDownMenu, DigitalEntry
 
 
 class AbstractSettingFrame(QFrame):
@@ -20,44 +22,28 @@ class AbstractSettingFrame(QFrame):
 
         self.setLayout(self.mainLayout)
 
+    def __add_widget(self, __widget) -> None:
+        self.mainLayout.addWidget(__widget)
+
     def add_subtitle(self, __text: str) -> None:
-        self.mainLayout.addWidget(FrameTitles.subtitle(__text))
+        self.__add_widget(FrameTitles.subtitle(__text))
 
     def add_description(self, __text: str) -> None:
-        self.mainLayout.addWidget(FrameTitles.description(__text))
+        self.__add_widget(FrameTitles.description(__text))
 
-    def add_combobox(self, __values: list, __width: int = 200, *, should_return: bool = True) -> QComboBox | None:
-        combobox = QComboBox()
-        combobox.addItems(__values)
-        combobox.setFixedWidth(__width)
-        combobox.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+    def add_combobox(self, __values: list, __width: int = 200) -> QComboBox:
+        combobox = DropDownMenu(*__values, width=__width)
         combobox.view().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
-        self.mainLayout.addWidget(combobox)
+        self.__add_widget(combobox)
 
-        return combobox if should_return else None
+        return combobox
 
-    def add_spinbox(
-            self,
-            __range: tuple[int, int], __width: int = 30,
-            __buttons: bool = False, *, should_return: bool = True
-    ) -> None | QSpinBox:
-
-        spinbox = QSpinBox()
-        spinbox.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-        spinbox.setRange(*__range)
-        spinbox.setFixedWidth(__width)
-        spinbox.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
-
+    def add_spinbox(self, __range: tuple[int, int], __width: int = 30) -> QSpinBox:
+        spinbox = DigitalEntry(__range, __width)
         self.mainLayout.addWidget(spinbox)
 
-        return spinbox if should_return else None
-
-    def add_link(self, __text: str):
-        label = QLabel(f'<a href="#">{__text}</a>')
-        self.mainLayout.addWidget(label)
-
-        return label
+        return spinbox
 
     def add_button(self, __text: str, __width: int = 200, is_highlighted: bool = False):
         btn = QPushButton(__text)

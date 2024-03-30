@@ -15,7 +15,7 @@ QPushButton#accept:hover {
 }
 
 QPushButton#reject {
-    border: 1px solid #2c2c2c;
+    border: 1px solid #3c3c3c;
     background-color: #303030;
     padding: 3px 2px;
 }
