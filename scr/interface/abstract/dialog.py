@@ -1,33 +1,31 @@
 from .windows import DialogWindow
 
 from PySide6.QtWidgets import (
-    QHBoxLayout, QVBoxLayout, QLabel, QPushButton
+    QHBoxLayout, QVBoxLayout
 )
 from PySide6.QtCore import Qt
 
-from scr.scripts.tools.file import FileLoader
+from scr.interface.basic import DialogButton, Text
 
 
 class Dialog(DialogWindow):
     def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel") -> None:
         super().__init__(__parent)
 
-        self.setStyleSheet(
-            self.styleSheet() + FileLoader.load_style("scr/interface/abstract/styles/dialog_buttons.css")
-        )
+        # self.setStyleSheet(
+        #     self.styleSheet()
+        # )
 
         self.mainLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
 
         self.mainLayout.addWidget(
-            QLabel(__message), alignment=Qt.AlignmentFlag.AlignCenter
+            Text.label(__message, "cascadia mono", 9), alignment=Qt.AlignmentFlag.AlignCenter
         )
         self.mainLayout.addLayout(self.buttonLayout)
 
-        self.acceptBtn = QPushButton(accept_title)
-        self.acceptBtn.setObjectName("accept-btn")
-        self.rejectBtn = QPushButton(reject_title)
-        self.rejectBtn.setObjectName("reject-btn")
+        self.acceptBtn = DialogButton(accept_title, "accept")
+        self.rejectBtn = DialogButton(reject_title, "reject")
 
         self.acceptBtn.clicked.connect(self.accept)
         self.rejectBtn.clicked.connect(self.reject)

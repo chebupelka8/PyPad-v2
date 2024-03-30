@@ -1,0 +1,13 @@
+QSpinBox {
+    background-color: #252525;
+    padding: 2px;
+    color: white;
+    border: 1px solid #3c3c3c;
+    border-radius: 3px;
+    min-width: 30px;
+    outline: none;
+}
+
+QSpinBox:hover {
+    background-color: #303030;
+}
