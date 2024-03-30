@@ -16,7 +16,7 @@ class Dialog(DialogWindow):
         self.buttonLayout = QHBoxLayout()
 
         self.mainLayout.addWidget(
-            Text.label(__message, "cascadia mono", 9), alignment=Qt.AlignmentFlag.AlignCenter
+            Text.label(__message, "CascadiaMono.ttf", 9), alignment=Qt.AlignmentFlag.AlignCenter
         )
         self.mainLayout.addLayout(self.buttonLayout)
 

@@ -25,3 +25,6 @@ class ShellFrame(QFrame):
             self.mainLayout.addWidget(__widget, stretch=stretch)
         else:
             self.mainLayout.addWidget(__widget)
+
+    def add_layout(self, __layout) -> None:
+        self.mainLayout.addLayout(__layout)

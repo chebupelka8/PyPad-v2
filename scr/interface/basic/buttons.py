@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QPushButton
+from PySide6.QtCore import Qt
 
 from scr.scripts.tools.file import FileLoader
 
@@ -7,10 +8,14 @@ class PushButton(QPushButton):
     def __init__(self, __text: str) -> None:
         super().__init__()
 
+        self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+
 
 class DialogButton(QPushButton):
     def __init__(self, __text: str, button_type: str = "accept") -> None:
         super().__init__(__text)
+
+        self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         if button_type == "accept": self.setObjectName("accept")
         elif button_type == "reject": self.setObjectName("reject")

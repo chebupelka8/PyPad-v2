@@ -47,5 +47,8 @@ class TransparentDialogWindow(DialogWindow):
     def add_widget(self, widget, stretch: Optional[int] = None) -> None:
         self.shell.add_widget(widget, stretch)
 
+    def add_layout(self, layout) -> None:
+        self.shell.add_layout(layout)
+
     def set_shell(self, __shell: ShellFrame) -> None:
         self.shell = __shell

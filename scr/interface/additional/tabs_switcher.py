@@ -1,4 +1,5 @@
-from scr.interface.abstract import ListChanger, TransparentDialogWindow, ShellFrame
+from scr.interface.abstract import ListChanger, TransparentDialogWindow
+from scr.interface.basic import Text
 
 import os
 
@@ -64,6 +65,7 @@ class TabsSwitcherWindow(TransparentDialogWindow):
         super().__init__(__parent)
 
         self.tabSwitcher = TabsSwitcher(self)
+        self.add_widget(Text.label("Switcher...", "CascadiaMono.ttf", 9))
         self.add_widget(self.tabSwitcher)
 
     def show_window(self, __items: list, current: int, __command) -> None:
