@@ -1,8 +1,7 @@
 from scr.scripts.utils import restart_application
 from scr.scripts.theme import ThemeManager
 
-from PySide6.QtWidgets import QLabel
-
+from scr.interface.basic import Text
 from scr.interface.abstract import Dialog, ListChanger, TransparentDialogWindow
 
 
@@ -52,7 +51,7 @@ class ThemeChangerWindow(TransparentDialogWindow):
         super().__init__(__parent)
 
         self.themeChanger = ThemeChanger(__restarter)
-        self.add_widget(QLabel("Themes..."))
+        self.add_widget(Text.label("Themes...", "cascadia mono", 9))
         self.add_widget(self.themeChanger)
 
     def accept(self):

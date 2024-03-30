@@ -12,10 +12,6 @@ class Dialog(DialogWindow):
     def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel") -> None:
         super().__init__(__parent)
 
-        # self.setStyleSheet(
-        #     self.styleSheet()
-        # )
-
         self.mainLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
 
