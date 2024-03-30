@@ -3,6 +3,7 @@ QListWidget {
     color: white;
     padding: 14px;
     border: none;
+    outline: none;
 }
 
 QListWidget::item {
