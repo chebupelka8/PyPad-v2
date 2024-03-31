@@ -7,6 +7,7 @@ from scr.scripts.font import Font
 from scr.scripts.tools.file import FileLoader
 
 from scr.project.pyproject import PyProjectConfig
+from scr.project import ImageGenerator
 
 
 class ProjectChanger(ListChanger):
@@ -18,6 +19,15 @@ class ProjectChanger(ListChanger):
         )
 
         self.setFont(Font.get_system_font("CascadiaMono.ttf", 12))
+        self.__set_icons()
+
+    def __set_icons(self) -> None:
+        for item in self.get_items():
+            item.setIcon(
+                ImageGenerator.to_qicon(
+                    ImageGenerator.generate((300, 300), item.text()[0])
+                )
+            )
 
 
 class ProjectChangerWindow(TransparentDialogWindow):

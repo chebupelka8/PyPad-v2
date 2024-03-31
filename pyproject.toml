@@ -12,6 +12,7 @@ pyside6 = "6.6.0"
 pillow = "^10.2.0"
 auto-py-to-exe = "^2.42.0"
 cpalette = "^1.0.5"
+numpy = "^1.26.4"
 
 
 [build-system]

@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QListWidget
+from PySide6.QtWidgets import QListWidget, QListWidgetItem
 from PySide6.QtCore import Qt
 
 from scr.scripts.tools.file import FileLoader
@@ -39,9 +39,11 @@ class ListChanger(QListWidget):
 
     def get_item_by_text(self, __label: str):
         for i in range(self.count()):
-
             if self.item(i).text() == __label:
                 return self.item(i)
+
+    def get_items(self) -> list[QListWidgetItem]:
+        return [self.item(i) for i in range(self.count())]
 
     def get_current_item(self):
         return self.currentItem()
