@@ -17,6 +17,13 @@ class PyProjectConfig:
             json.dump(__config, file, indent=4)
 
     @classmethod
+    def __update(cls) -> None:
+        config = FileLoader.load_json("scr/data/conf.json")
+
+        cls.__directory = config["directory"]
+        cls.__projects = config["pyprojects"]
+
+    @classmethod
     def get_projects(cls) -> list[dict]:
         return cls.__projects
 
@@ -49,3 +56,4 @@ class PyProjectConfig:
         }
 
         cls.__dump(config)
+        cls.__update()

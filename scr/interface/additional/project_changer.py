@@ -27,6 +27,10 @@ class ProjectChanger(ListChanger):
         for item, icon_path in zip(self.get_items(), PyProjectConfig.get_project_icons()):
             item.setIcon(QIcon(icon_path))
 
+    def show_update(self):
+        self.set_items(*PyProjectConfig.get_projects_names())
+        self.__set_icons()
+
 
 class ProjectChangerWindow(TransparentDialogWindow):
     def __init__(self, __parent):
@@ -39,6 +43,7 @@ class ProjectChangerWindow(TransparentDialogWindow):
         self.openBtn = DialogButton("Choose", "accept")
         self.newBtn = DialogButton("New", "reject")
         self.cancelBtn = DialogButton("Cancel", "reject")
+        self.cancelBtn.clicked.connect(self.reject)
 
         self.buttonsLayout = QHBoxLayout()
         self.buttonsLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
@@ -46,3 +51,7 @@ class ProjectChangerWindow(TransparentDialogWindow):
         self.buttonsLayout.addWidget(self.newBtn)
         self.buttonsLayout.addWidget(self.cancelBtn)
         self.add_layout(self.buttonsLayout)
+
+    def show(self):
+        self.projectChanger.show_update()
+        super().show()

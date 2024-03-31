@@ -4,6 +4,7 @@ import os
 import json
 
 from scr.scripts.tools.file import FileLoader
+from .pyproject_config import PyProjectConfig
 
 
 class PyProject:
@@ -39,8 +40,8 @@ if __name__ == '__main__':
 
         output_path = os.path.join(__path, __name)
 
-        os.system(f'call .\\scripts\\create_pyproject.bat "{__path}" "{__name}"')
-        os.system(f'call .\\scripts\\virtual_venv "{output_path}" "{cls.__python_interpreter_path}"')
+        os.system(f'call scr\\project\\pyproject\\scripts\\create_pyproject.bat "{__path}" "{__name}"')
+        os.system(f'call scr\\project\\pyproject\\scripts\\virtual_venv.bat "{output_path}" "{cls.__python_interpreter_path}"')
 
         data = {
             "name": __name,
@@ -56,3 +57,5 @@ if __name__ == '__main__':
                 file.write(cls.WELCOME_SCRIPT)
             else:
                 file.write("")
+
+        PyProjectConfig.add_project(output_path, os.path.basename(output_path))
