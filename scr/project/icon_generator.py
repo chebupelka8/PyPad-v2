@@ -5,6 +5,8 @@ from PySide6.QtGui import QIcon, QPixmap
 import math
 from numpy import random
 
+from typing import Optional
+
 
 class Gradients:
     __gradients = [
@@ -31,6 +33,51 @@ class Gradients:
 
         elif __type.lower() == "hex":
             return cls.__gradients[random.randint(0, len(cls.__gradients))]
+
+
+class ProjectNameGenerator:
+    @staticmethod
+    def __upper_letters(__string: str) -> Optional[str]:
+        uppers = []
+
+        for char in __string:
+            if char.isupper(): uppers.append(char)
+
+        match len(uppers):
+            case upp if upp in (1, 2):
+                return "".join(uppers)
+
+            case upp if upp > 2:
+                return "".join(uppers[:2])
+
+            case _: return None
+
+    @staticmethod
+    def __spliter(__string: str) -> Optional[str]:
+        splitter_symbols = "_-/\\|"
+        res = []
+
+        for symbol in splitter_symbols:
+            dist = __string.split(symbol)
+
+            if len(dist) >= 2:
+                res.append("".join([i[0] for i in dist[:2]]))
+
+        return res[0].upper() if len(res) > 0 else None
+
+    @staticmethod
+    def __first_letter(__string: str) -> str:
+        for char in __string:
+            if char.isalpha(): return char.upper()
+
+        return __string[0].upper()
+
+    @classmethod
+    def get_basename(cls, __name: str) -> str:
+        result = list(filter(lambda x: x != None, [cls.__upper_letters(__name), cls.__spliter(__name)]))
+
+        if len(result) != 0: return result[0]
+        else: return cls.__first_letter(__name)
 
 
 class ImageGenerator:

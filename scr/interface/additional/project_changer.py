@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QHBoxLayout, QSpacerItem, QSizePolicy
+from PySide6.QtCore import QSize
 
 from scr.interface.abstract import TransparentDialogWindow, ListChanger
 from scr.interface.basic import Text, DialogButton
@@ -7,7 +8,7 @@ from scr.scripts.font import Font
 from scr.scripts.tools.file import FileLoader
 
 from scr.project.pyproject import PyProjectConfig
-from scr.project import ImageGenerator
+from scr.project import ImageGenerator, ProjectNameGenerator
 
 
 class ProjectChanger(ListChanger):
@@ -22,12 +23,14 @@ class ProjectChanger(ListChanger):
         self.__set_icons()
 
     def __set_icons(self) -> None:
+        self.setIconSize(QSize(self.font().pointSize() * 2, self.font().pointSize() * 2))
+
         for item in self.get_items():
-            item.setIcon(
-                ImageGenerator.to_qicon(
-                    ImageGenerator.generate((300, 300), item.text()[0])
-                )
+            icon = ImageGenerator.to_qicon(
+                ImageGenerator.generate((300, 300), ProjectNameGenerator.get_basename(item.text()))
             )
+
+            item.setIcon(icon)
 
 
 class ProjectChangerWindow(TransparentDialogWindow):
