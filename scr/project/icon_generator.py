@@ -1,3 +1,5 @@
+import os.path
+
 from PIL import Image, ImageDraw, ImageFont, ImageQt
 
 from PySide6.QtGui import QIcon, QPixmap
@@ -148,6 +150,13 @@ class ImageGenerator:
         __image = cls.__add_text(__image, __text)
 
         return __image
+
+    @staticmethod
+    def save(__name: str, __image: Image.Image) -> str:
+        __path = os.path.join("assets\\project_icons", __name + ".png")
+        __image.save(__path)
+
+        return __path
 
     @classmethod
     def to_qicon(cls, __image: Image.Image) -> QIcon:

@@ -1,8 +1,14 @@
 {
     "directory": "C:/Users/\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f/Desktop/Work/Do not give up/Applications/PyPad v.2",
-    "pyprojects": [
-        "C:/Users/\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f/Desktop/Work",
-        "C:/AccountTraining/Lib/site-packages/pip"
-    ],
+    "pyprojects": {
+        "PyPad": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Do not give up\\Applications\\PyPad",
+            "icon": "assets\\project_icons\\PyPad.png"
+        },
+        "chat": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Other\\chat",
+            "icon": "assets\\project_icons\\chat.png"
+        }
+    },
     "python_interpreter_path": "C:\\Users\\%username%\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
 }

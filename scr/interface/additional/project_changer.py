@@ -1,3 +1,4 @@
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QHBoxLayout, QSpacerItem, QSizePolicy
 from PySide6.QtCore import QSize
 
@@ -8,7 +9,6 @@ from scr.scripts.font import Font
 from scr.scripts.tools.file import FileLoader
 
 from scr.project.pyproject import PyProjectConfig
-from scr.project import ImageGenerator, ProjectNameGenerator
 
 
 class ProjectChanger(ListChanger):
@@ -20,17 +20,12 @@ class ProjectChanger(ListChanger):
         )
 
         self.setFont(Font.get_system_font("CascadiaMono.ttf", 12))
+        self.setIconSize(QSize(self.font().pointSize() * 2, self.font().pointSize() * 2))
         self.__set_icons()
 
     def __set_icons(self) -> None:
-        self.setIconSize(QSize(self.font().pointSize() * 2, self.font().pointSize() * 2))
-
-        for item in self.get_items():
-            icon = ImageGenerator.to_qicon(
-                ImageGenerator.generate((300, 300), ProjectNameGenerator.get_basename(item.text()))
-            )
-
-            item.setIcon(icon)
+        for item, icon_path in zip(self.get_items(), PyProjectConfig.get_project_icons()):
+            item.setIcon(QIcon(icon_path))
 
 
 class ProjectChangerWindow(TransparentDialogWindow):
@@ -41,9 +36,13 @@ class ProjectChangerWindow(TransparentDialogWindow):
         self.add_widget(Text.label("Projects...", "CascadiaMono.ttf", 9))
         self.add_widget(self.projectChanger)
 
+        self.openBtn = DialogButton("Choose", "accept")
+        self.newBtn = DialogButton("New", "reject")
+        self.cancelBtn = DialogButton("Cancel", "reject")
+
         self.buttonsLayout = QHBoxLayout()
         self.buttonsLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
-        self.buttonsLayout.addWidget(DialogButton("Open", "accept"))
-        self.buttonsLayout.addWidget(DialogButton("New", "reject"))
-        self.buttonsLayout.addWidget(DialogButton("Cancel", "reject"))
+        self.buttonsLayout.addWidget(self.openBtn)
+        self.buttonsLayout.addWidget(self.newBtn)
+        self.buttonsLayout.addWidget(self.cancelBtn)
         self.add_layout(self.buttonsLayout)
