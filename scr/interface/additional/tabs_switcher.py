@@ -62,7 +62,7 @@ class TabsSwitcher(ListChanger):
 
 class TabsSwitcherWindow(TransparentDialogWindow):
     def __init__(self, __parent) -> None:
-        super().__init__(__parent)
+        super().__init__(__parent, height=600, width=400)
 
         self.tabSwitcher = TabsSwitcher(self)
         self.add_widget(Text.label("Switcher...", "CascadiaMono.ttf", 9))

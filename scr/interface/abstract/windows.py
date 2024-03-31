@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QSize
 
 from scr.scripts.tools.file import FileLoader
 from .shell import ShellFrame
@@ -8,9 +8,13 @@ from typing import Optional, Union
 
 
 class DialogWindow(QDialog):
-    def __init__(self, __parent, *, frameless: bool = True, keyboard_include: bool = True) -> None:
+    def __init__(self, __parent,
+                 width: int = 600, height: int = 400, *,
+                 frameless: bool = True, keyboard_include: bool = True) -> None:
         if frameless: super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
         else: super().__init__(__parent)
+
+        self.setMinimumSize(QSize(width, height))
 
         self.__keyboard_include = keyboard_include
 
@@ -33,9 +37,10 @@ class DialogWindow(QDialog):
 
 
 class TransparentDialogWindow(DialogWindow):
-    def __init__(self, __parent, shell_layout_type: str = "vertical", *,
+    def __init__(self, __parent, shell_layout_type: str = "vertical",
+                 width: int = 600, height: int = 400, *,
                  frameless: bool = True) -> None:
-        super().__init__(__parent, frameless=frameless)
+        super().__init__(__parent, width, height, frameless=frameless)
 
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.shell = ShellFrame(self, shell_layout_type)

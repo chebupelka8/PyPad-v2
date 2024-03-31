@@ -1,5 +1,4 @@
-from scr.interface.additional import TransparentDialogWindow
-from scr.interface.abstract import ShellFrame
+from scr.interface.abstract import ShellFrame, TransparentDialogWindow
 
 from scr.scripts.tools.file import FileLoader
 
