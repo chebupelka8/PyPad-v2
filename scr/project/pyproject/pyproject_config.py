@@ -43,7 +43,8 @@ class PyProjectConfig:
         config["pyprojects"][__name] = {
             "path": __path,
             "icon": ImageGenerator.save(
-                __name, ImageGenerator.generate((300, 300), ProjectNameGenerator.get_basename(__name))
+                __name,
+                ImageGenerator.generate((300, 300), ProjectNameGenerator.get_basename(__name))
             )
         }
 
