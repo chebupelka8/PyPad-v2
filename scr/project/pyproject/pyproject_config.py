@@ -45,7 +45,7 @@ class PyProjectConfig:
         return res
 
     @classmethod
-    def add_project(cls, __path, __name) -> None:
+    def add_project(cls, __path: str, __name: str) -> None:
         config = FileLoader.load_json("scr/data/conf.json")
         config["pyprojects"][__name] = {
             "path": __path,
@@ -54,6 +54,14 @@ class PyProjectConfig:
                 ImageGenerator.generate((300, 300), ProjectNameGenerator.get_basename(__name))
             )
         }
+
+        cls.__dump(config)
+        cls.__update()
+
+    @classmethod
+    def remove_project(cls, __name: str) -> None:
+        config = FileLoader.load_json("scr/data/conf")
+        del config["pyprojects"][__name]
 
         cls.__dump(config)
         cls.__update()

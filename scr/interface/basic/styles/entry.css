@@ -1,0 +1,17 @@
+QLineEdit {
+    background-color: #252525;
+    padding: 2px;
+    color: white;
+    border: 1px solid #3c3c3c;
+    border-radius: 3px;
+    min-width: 30px;
+    outline: none;
+}
+
+QLineEdit:hover {
+    background-color: #303030;
+}
+
+QLineEdit::placeholder {
+    color: #4e4e4e;
+}

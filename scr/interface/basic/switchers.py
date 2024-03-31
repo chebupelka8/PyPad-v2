@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QSplitter, QComboBox, QSpinBox
+from PySide6.QtWidgets import QSplitter, QComboBox, QSpinBox, QLineEdit
 from PySide6.QtCore import Qt, QSize
 
 from scr.scripts.tools.file import FileLoader
@@ -30,6 +30,17 @@ class DropDownMenu(QComboBox):
     def set_items(self, *__values: str) -> None:
         self.__values = [*__values]
         self.addItems(self.__values)
+
+
+class Entry(QLineEdit):
+    def __init__(self, __placed: str, placeholder: str = "", width: int = 200, height: int = 25) -> None:
+        super().__init__()
+
+        self.setFixedSize(QSize(width, height))
+        self.setText(__placed)
+        self.setPlaceholderText(placeholder)
+
+        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/entry.css"))
 
 
 class DigitalEntry(QSpinBox):

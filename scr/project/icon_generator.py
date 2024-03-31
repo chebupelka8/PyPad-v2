@@ -56,7 +56,7 @@ class ProjectNameGenerator:
 
     @staticmethod
     def __spliter(__string: str) -> Optional[str]:
-        splitter_symbols = "_-/\\|"
+        splitter_symbols = "_ -/\\|"
         res = []
 
         for symbol in splitter_symbols:

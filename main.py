@@ -74,7 +74,6 @@ class MainWidget(QWidget):
         QShortcut("Ctrl+T", self).activated.connect(self.__show_theme_changer)
         QShortcut("Ctrl+,", self).activated.connect(self.settingsMenu.show)
         QShortcut("Ctrl+Tab", self).activated.connect(self.__open_tab_switcher)
-        QShortcut("Ctrl+Q", self).activated.connect(lambda: SetupPyProject.create_new_project(os.path.normpath(FileDialog.get_open_directory()), "yes"))
 
         QShortcut("Ctrl+O", self).activated.connect(
             lambda: self.fileTree.open_directory(FileDialog.get_open_directory())

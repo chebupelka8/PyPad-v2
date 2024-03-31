@@ -1,26 +1,18 @@
 {
     "directory": "C:/Users/\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f/Desktop/Work/Do not give up/Applications/PyPad v.2",
     "pyprojects": {
-        "PyPad": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Do not give up\\Applications\\PyPad",
-            "icon": "assets\\project_icons\\PyPad.png"
+        "SetupConfig": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\SetupConfig",
+            "icon": "assets\\project_icons\\SetupConfig.png"
         },
-        "chat": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Other\\chat",
-            "icon": "assets\\project_icons\\chat.png"
+        "system": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\system",
+            "icon": "assets\\project_icons\\system.png"
         },
-        "NewProject": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\NewProject",
-            "icon": "assets\\project_icons\\NewProject.png"
-        },
-        "JustPython": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\JustPython",
-            "icon": "assets\\project_icons\\JustPython.png"
-        },
-        "yes": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\yes",
-            "icon": "assets\\project_icons\\yes.png"
+        "Test": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Test",
+            "icon": "assets\\project_icons\\Test.png"
         }
     },
-    "python_interpreter_path": "C:\\Users\\%username%\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    "python_interpreter_path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
 }

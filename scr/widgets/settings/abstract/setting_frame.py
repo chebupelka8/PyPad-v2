@@ -1,11 +1,11 @@
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QComboBox, QSpinBox, QPushButton
+from PySide6.QtWidgets import QFrame, QVBoxLayout, QComboBox, QSpinBox, QPushButton, QLineEdit
 from PySide6.QtCore import Qt
 
 from .frame_titles import FrameTitles
 
 from typing import Optional
 
-from scr.interface.basic import DropDownMenu, DigitalEntry
+from scr.interface.basic import DropDownMenu, DigitalEntry, Entry
 
 
 class AbstractSettingFrame(QFrame):
@@ -38,6 +38,12 @@ class AbstractSettingFrame(QFrame):
         self.__add_widget(combobox)
 
         return combobox
+
+    def add_lineedit(self, __placed: str, placeholder: str) -> QLineEdit:
+        lineedit = Entry(__placed, placeholder)
+        self.mainLayout.addWidget(lineedit)
+
+        return lineedit
 
     def add_spinbox(self, __range: tuple[int, int], __width: int = 30) -> QSpinBox:
         spinbox = DigitalEntry(__range, __width)

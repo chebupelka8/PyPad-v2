@@ -6,9 +6,12 @@ from scr.interface.abstract import TransparentDialogWindow, ListChanger
 from scr.interface.basic import Text, DialogButton
 
 from scr.scripts.font import Font
-from scr.scripts.tools.file import FileLoader
+from scr.scripts.tools.file import FileLoader, FileDialog
 
-from scr.project.pyproject import PyProjectConfig
+from scr.project.pyproject import PyProjectConfig, SetupPyProject
+
+import os
+import random
 
 
 class ProjectChanger(ListChanger):
@@ -27,7 +30,7 @@ class ProjectChanger(ListChanger):
         for item, icon_path in zip(self.get_items(), PyProjectConfig.get_project_icons()):
             item.setIcon(QIcon(icon_path))
 
-    def show_update(self):
+    def update_projects(self):
         self.set_items(*PyProjectConfig.get_projects_names())
         self.__set_icons()
 
@@ -40,8 +43,15 @@ class ProjectChangerWindow(TransparentDialogWindow):
         self.add_widget(Text.label("Projects...", "CascadiaMono.ttf", 9))
         self.add_widget(self.projectChanger)
 
+        test_names = ["JustProject", "just_project", "this is project", "Test", "folder", "system", "SetupConfig"]
+
         self.openBtn = DialogButton("Choose", "accept")
         self.newBtn = DialogButton("New", "reject")
+        self.newBtn.clicked.connect(lambda: SetupPyProject.create_new_project(
+            os.path.normpath(FileDialog.get_open_directory()),
+            random.choice(test_names),
+            after_command=self.projectChanger.update_projects)
+        )
         self.cancelBtn = DialogButton("Cancel", "reject")
         self.cancelBtn.clicked.connect(self.reject)
 
@@ -53,5 +63,5 @@ class ProjectChangerWindow(TransparentDialogWindow):
         self.add_layout(self.buttonsLayout)
 
     def show(self):
-        self.projectChanger.show_update()
+        self.projectChanger.update_projects()
         super().show()

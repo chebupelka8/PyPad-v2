@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     @classmethod
     def create_new_project(cls, __path: str, __name: str, __version: Optional[str] = None,
-                           make_welcome_script: bool = True) -> None:
+                           make_welcome_script: bool = True, after_command = None) -> None:
 
         output_path = os.path.join(__path, __name)
 
@@ -59,3 +59,4 @@ if __name__ == '__main__':
                 file.write("")
 
         PyProjectConfig.add_project(output_path, os.path.basename(output_path))
+        if after_command is not None: after_command()
