@@ -12,6 +12,10 @@
         "Test": {
             "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Test",
             "icon": "assets\\project_icons\\Test.png"
+        },
+        "folder": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\folder",
+            "icon": "assets\\project_icons\\folder.png"
         }
     },
     "python_interpreter_path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
