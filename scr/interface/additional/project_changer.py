@@ -43,13 +43,13 @@ class ProjectChangerWindow(TransparentDialogWindow):
         self.add_widget(Text.label("Projects...", "CascadiaMono.ttf", 9))
         self.add_widget(self.projectChanger)
 
-        test_names = ["JustProject", "just_project", "this is project", "Test", "folder", "system", "SetupConfig"]
-
         self.openBtn = DialogButton("Choose", "accept")
         self.newBtn = DialogButton("New", "reject")
         self.newBtn.clicked.connect(lambda: SetupPyProject.create_new_project(
             os.path.normpath(FileDialog.get_open_directory()),
-            random.choice(test_names),
+            "".join(
+                [chr(random.randint(93, 255)).upper() if random.randint(0, 2) else chr(random.randint(93, 255)).lower() for _ in range(random.randint(5, 16))]
+            ),
             after_command=self.projectChanger.update_projects)
         )
         self.cancelBtn = DialogButton("Cancel", "reject")

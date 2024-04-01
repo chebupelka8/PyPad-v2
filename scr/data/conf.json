@@ -1,21 +1,21 @@
 {
     "directory": "C:/Users/\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f/Desktop/Work/Do not give up/Applications/PyPad v.2",
     "pyprojects": {
-        "SetupConfig": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\SetupConfig",
-            "icon": "assets\\project_icons\\SetupConfig.png"
+        "\u00b7\u00ed\u00e8\u0095\u00d1Z\u0082": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\\u00b7\u00ed\u00e8\u0095\u00d1Z\u0082",
+            "icon": "assets\\project_icons\\\u00b7\u00ed\u00e8\u0095\u00d1Z\u0082.png"
         },
-        "system": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\system",
-            "icon": "assets\\project_icons\\system.png"
+        "\u00e3\u00adhu\u007fX\u00f8\u00f5\u00cb\u0095\u0090": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\\u00e3\u00adhu\u007fX\u00f8\u00f5\u00cb\u0095\u0090",
+            "icon": "assets\\project_icons\\\u00e3\u00adhu\u007fX\u00f8\u00f5\u00cb\u0095\u0090.png"
         },
-        "Test": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\Test",
-            "icon": "assets\\project_icons\\Test.png"
+        "i\u00c4e\u00a1\u0081\u00bd\u00e6DQ\u0099": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\i\u00c4e\u00a1\u0081\u00bd\u00e6DQ\u0099",
+            "icon": "assets\\project_icons\\i\u00c4e\u00a1\u0081\u00bd\u00e6DQ\u0099.png"
         },
-        "folder": {
-            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\folder",
-            "icon": "assets\\project_icons\\folder.png"
+        "O\u00da\u0084V\u00ce\u00b7G\u0087\u00b1\u00d9O\u009c\u0092\u009fY\u00c0": {
+            "path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\Desktop\\Work\\O\u00da\u0084V\u00ce\u00b7G\u0087\u00b1\u00d9O\u009c\u0092\u009fY\u00c0",
+            "icon": "assets\\project_icons\\O\u00da\u0084V\u00ce\u00b7G\u0087\u00b1\u00d9O\u009c\u0092\u009fY\u00c0.png"
         }
     },
     "python_interpreter_path": "C:\\Users\\\u0414\u0435\u0442\u0438 \u043f\u043e\u0432\u0435\u043b\u0438\u0442\u0435\u043b\u044f\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"

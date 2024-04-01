@@ -5,36 +5,9 @@ from PIL import Image, ImageDraw, ImageFont, ImageQt
 from PySide6.QtGui import QIcon, QPixmap
 
 import math
-from numpy import random
+from scr.resources.colors import Gradients
 
 from typing import Optional
-
-
-class Gradients:
-    __gradients = [
-        ["00ff87", "60efff"],
-        ["0061ff", "60efff"],
-        ["ff1b6b", "45caff"],
-        ["40c9ff", "e81cff"],
-        ["ff930f", "fff95b"],
-        ["696eff", "f8acff"],
-        ["1dbde6", "f1515e"],
-        ["b2ef91", "fa9372"],
-        ["b429f9", "26c5f3"],
-        ["ff5858", "ffc8c8"],
-    ]
-
-    @staticmethod
-    def __from_hex_to_rgb(__hex_color: str) -> tuple:
-        return tuple(int(__hex_color[i:i + 2], 16) for i in (0, 2, 4))
-
-    @classmethod
-    def get_random_gradient(cls, __type: str = "rgb") -> list:
-        if __type.lower() == "rgb":
-            return list(map(cls.__from_hex_to_rgb, cls.__gradients[random.randint(0, len(cls.__gradients))]))
-
-        elif __type.lower() == "hex":
-            return cls.__gradients[random.randint(0, len(cls.__gradients))]
 
 
 class ProjectNameGenerator:

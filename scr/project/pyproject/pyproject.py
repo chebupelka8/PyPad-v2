@@ -38,6 +38,9 @@ if __name__ == '__main__':
     def create_new_project(cls, __path: str, __name: str, __version: Optional[str] = None,
                            make_welcome_script: bool = True, after_command = None) -> None:
 
+        if __name in PyProjectConfig.get_projects_names():
+            return
+
         output_path = os.path.join(__path, __name)
 
         os.system(f'call scr\\project\\pyproject\\scripts\\create_pyproject.bat "{__path}" "{__name}"')
