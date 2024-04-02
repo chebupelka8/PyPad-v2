@@ -15,6 +15,23 @@ from dataclasses import dataclass
 
 @dataclass
 class Tab:
+    """
+    Represents a tab in the Tab Editor.
+
+    Attributes:
+    - title: str - The title of the tab.
+    - widget: Any - The content widget of the tab.
+    - icon: Union[QIcon, str, None] - The icon associated with the tab.
+    - path: Optional[str] - The file path associated with the tab.
+    - index: Optional[int] - The index of the tab.
+
+    Methods:
+    - is_file(): bool - Checks if the tab is associated with a file.
+    - is_readable(): bool - Checks if the file associated with the tab is readable.
+    - __post_init__(): None - Initializes the tab with an icon if it's a string.
+    - __repr__(): str - Returns a string representation of the tab.
+    """
+
     # todo: add 'pinned tabs'
     # todo: add var 'is_pinned' and it must be at the beginning of the tab editor
 
@@ -39,6 +56,28 @@ class Tab:
 
 
 class TabEditor(QTabWidget):
+    """
+    Custom Tab Widget for managing tabs.
+
+    Methods:
+    - __init__(): None - Initializes the Tab Editor.
+    - update_font(): None - Updates the font settings for the Tab Editor.
+    - get_tabs(): list[Tab] - Returns a list of all tabs.
+    - get_current_tab(): Optional[Tab] - Returns the current active tab.
+    - __get_json_info(): dict - Returns tab information in JSON format.
+    - get_info_tabs(key: str, only_files: bool = False): list - Retrieves specific information from tabs.
+    - check_tab_paths_exist(): None - Checks if tab paths exist and removes invalid tabs.
+    - update_all_tabs_font(): None - Updates font settings for all tabs.
+    - update_all_tabs_settings(): None - Updates settings for all tabs.
+    - find_by_path(__path: str): Any - Finds a widget by its associated path.
+    - get_all_widgets(): list[Any] - Returns all widgets in the Tab Editor.
+    - get_all_paths(): list - Returns paths of all file tabs.
+    - get_current_path(): str - Returns the path of the current active tab.
+    - __update_indexes(): None - Updates tab indexes.
+    - removeTab(__index: int): None - Removes a tab by index.
+    - add_tab(tab: Tab): None - Adds a new tab to the Tab Editor.
+    """
+
     def __init__(self) -> None:
         super().__init__()
 
