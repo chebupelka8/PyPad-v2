@@ -9,6 +9,17 @@ from .pyproject_config import PyProjectConfig
 
 class PyProject:
     def __init__(self, __path: str) -> None:
+        """
+        Initializes a PyProject instance.
+
+        Parameters:
+        __path (str): The path to the project.
+
+        Notes:
+        - Verifies the project path and sets it if valid.
+        - Prints "Invalid project" if verification fails.
+        """
+
         if self.__verify(__path):
             self.__path = __path
 
@@ -17,6 +28,16 @@ class PyProject:
 
     @staticmethod
     def __verify(__path: str) -> bool:
+        """
+        Verifies the existence of a PyPad project.
+
+        Parameters:
+        __path (str): The path to check for the project.
+
+        Returns:
+        bool: True if the project is valid, False otherwise.
+        """
+
         return ".pypad" in os.listdir(__path) and os.path.exists(os.path.join(__path, ".pypad\\config.json"))
 
 
@@ -37,6 +58,24 @@ if __name__ == '__main__':
     @classmethod
     def create_new_project(cls, __path: str, __name: str, __version: Optional[str] = None,
                            make_welcome_script: bool = True, after_command = None) -> None:
+        """
+        Creates a new PyPad project.
+
+        Parameters:
+        __path (str): The path where the project will be created.
+        __name (str): The name of the project.
+        __version (Optional[str]): The version of the project.
+        make_welcome_script (bool): Flag to include a welcome script.
+        after_command: Optional callback function to execute after project creation.
+
+        Notes:
+        - Checks if the project name already exists.
+        - Executes batch scripts to set up the project and virtual environment.
+        - Saves project data to a config file.
+        - Creates a welcome script if specified.
+        - Adds the project to PyProjectConfig.
+        - Executes the after_command if provided.
+        """
 
         if __name in PyProjectConfig.get_projects_names():
             return
