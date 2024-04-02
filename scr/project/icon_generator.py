@@ -13,6 +13,16 @@ from typing import Optional
 class ProjectNameGenerator:
     @staticmethod
     def __upper_letters(__string: str) -> Optional[str]:
+        """
+        Extracts uppercase letters from a string based on specific conditions.
+
+        Parameters:
+        __string (str): The input string to extract uppercase letters from.
+
+        Returns:
+        Optional[str]: Extracted uppercase letters or None.
+        """
+
         uppers = []
 
         for char in __string:
@@ -29,6 +39,16 @@ class ProjectNameGenerator:
 
     @staticmethod
     def __spliter(__string: str) -> Optional[str]:
+        """
+        Splits a string based on predefined symbols and returns a formatted result.
+
+        Parameters:
+        __string (str): The input string to split.
+
+        Returns:
+        Optional[str]: Formatted string after splitting or None.
+        """
+
         splitter_symbols = "_ -/\\|"
         res = []
 
@@ -42,6 +62,16 @@ class ProjectNameGenerator:
 
     @staticmethod
     def __first_letter(__string: str) -> str:
+        """
+        Retrieves the first alphabetic character from a string.
+
+        Parameters:
+        __string (str): The input string to extract the first letter from.
+
+        Returns:
+        str: The first uppercase letter from the input string.
+        """
+
         for char in __string:
             if char.isalpha(): return char.upper()
 
@@ -49,6 +79,16 @@ class ProjectNameGenerator:
 
     @classmethod
     def get_basename(cls, __name: str) -> str:
+        """
+        Generates a basename for a given name by combining results from other methods.
+
+        Parameters:
+        __name (str): The input name to generate a basename for.
+
+        Returns:
+        str: The generated basename for the input name.
+        """
+
         result = list(filter(lambda x: x != None, [cls.__upper_letters(__name), cls.__spliter(__name)]))
 
         if len(result) != 0: return result[0]
@@ -62,6 +102,18 @@ class ImageGenerator:
             cls, __image: Image.Image,
             __from: tuple[int, int, int], __to: tuple[int, int, int]
     ) -> Image.Image:
+        """
+        Creates a diagonal gradient on an image from one color to another.
+
+        Parameters:
+        __image (Image.Image): The input image to apply the gradient to.
+        __from (tuple[int, int, int]): RGB values for the starting color.
+        __to (tuple[int, int, int]): RGB values for the ending color.
+
+        Returns:
+        Image.Image: Image with the applied diagonal gradient.
+        """
+
         start_x, start_y = 0, 0
 
         pixel_data = __image.load()
@@ -83,6 +135,17 @@ class ImageGenerator:
 
     @classmethod
     def __round_corners(cls, __image: Image.Image, __radius: int) -> Image.Image:
+        """
+        Rounds the corners of an image with a specified radius.
+
+        Parameters:
+        __image (Image.Image): The input image to round the corners of.
+        __radius (int): The radius for rounding the corners.
+
+        Returns:
+        Image.Image: Image with rounded corners.
+        """
+
         circle = Image.new('L', (__radius * 2, __radius * 2), 0)
         draw = ImageDraw.Draw(circle)
         draw.ellipse((0, 0, __radius * 2 - 1, __radius * 2 - 1), fill=255)
@@ -101,6 +164,17 @@ class ImageGenerator:
 
     @classmethod
     def __add_text(cls, __image: Image.Image, __text: str) -> Image.Image:
+        """
+        Adds text to an image at the center with a specified font.
+
+        Parameters:
+        __image (Image.Image): The input image to add text to.
+        __text (str): The text to be added to the image.
+
+        Returns:
+        Image.Image: Image with the added text.
+        """
+
         draw = ImageDraw.Draw(__image)
 
         font = ImageFont.truetype("assets/fonts/CascadiaMono.ttf", 200)
@@ -116,6 +190,17 @@ class ImageGenerator:
 
     @classmethod
     def generate(cls, __size: tuple[int, int], __text: str) -> Image.Image:
+        """
+        Generates an image with a diagonal gradient, rounded corners, and added text.
+
+        Parameters:
+        __size (tuple[int, int]): Size of the generated image.
+        __text (str): Text to be added to the image.
+
+        Returns:
+        Image.Image: The generated image.
+        """
+
         __image = Image.new('RGB', __size)
 
         __image = cls.__diagonal_gradient(__image, *Gradients.get_random_gradient())
@@ -126,6 +211,17 @@ class ImageGenerator:
 
     @staticmethod
     def save(__name: str, __image: Image.Image) -> str:
+        """
+        Saves the generated image to a specified path.
+
+        Parameters:
+        __name (str): The name to be used for the saved image.
+        __image (Image.Image): The image to be saved.
+
+        Returns:
+        str: The path where the image is saved.
+        """
+
         __path = os.path.join("assets\\project_icons", __name + ".png")
         __image.save(__path)
 
@@ -133,6 +229,16 @@ class ImageGenerator:
 
     @classmethod
     def to_qicon(cls, __image: Image.Image) -> QIcon:
+        """
+        Converts an Image.Image to a QIcon for Qt applications.
+
+        Parameters:
+        __image (Image.Image): The image to be converted to QIcon.
+
+        Returns:
+        QIcon: The converted QIcon.
+        """
+
         qimage = ImageQt.ImageQt(__image)
 
         return QIcon(QPixmap.fromImage(qimage))
