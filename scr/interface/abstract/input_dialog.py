@@ -9,6 +9,35 @@ from scr.scripts.tools.file import FileLoader
 
 
 class InputDialog(DialogWindow):
+    """
+            Custom dialog window for input with message and buttons.
+
+            Methods:
+            - __init__(
+                __parent, __message: str,
+                pasted_text: str = "", place_holder_text: str = "",
+                accept_title: str = "Ok", reject_title: str = "Cancel"
+            ): None
+                - Initializes the input dialog with specified parameters.
+                - __parent: Parent widget for the dialog.
+                - __message: Message displayed in the dialog.
+                - pasted_text: Default text in the input line.
+                - place_holder_text: Placeholder text for the input line.
+                - accept_title: Title for the accept button (default: "Ok").
+                - reject_title: Title for the reject button (default: "Cancel").
+
+            Attributes:
+            - mainLayout: QVBoxLayout - Main layout of the dialog.
+            - buttonLayout: QHBoxLayout - Layout for buttons.
+            - inputLine: QLineEdit - Input line for user input.
+            - acceptBtn: QPushButton - Button to accept input.
+            - rejectBtn: QPushButton - Button to reject input.
+
+            Signals:
+            - accept(): Signal emitted when the accept button is clicked.
+            - reject(): Signal emitted when the reject button is clicked.
+            """
+
     def __init__(
             self, __parent,
             __message: str,

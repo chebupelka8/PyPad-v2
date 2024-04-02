@@ -5,6 +5,41 @@ from scr.scripts.tools.file import FileLoader
 
 
 class ListChanger(QListWidget):
+    """
+    Custom QListWidget for managing lists with interactive features.
+
+    Methods:
+    - __init__(*__values) -> None
+        - Initializes the ListChanger with initial values.
+
+    - use() -> None
+        - Override this method to define custom behavior when an item is used.
+
+    - keyPressEvent(event)
+        - Handles key events for navigation and item selection.
+
+    - set_items(*__values: str) -> None
+        - Clears the list and sets new items.
+
+    - add_items(*__labels: str) -> None
+        - Adds additional items to the list.
+
+    - get_item_by_text(__label: str)
+        - Returns the QListWidgetItem with the specified label.
+
+    - get_items() -> list[QListWidgetItem]
+        - Returns a list of all QListWidgetItems in the list.
+
+    - get_current_item()
+        - Returns the current selected item.
+
+    Attributes:
+    - No specific attributes documented.
+
+    Signals:
+    - No specific signals documented.
+    """
+
     def __init__(self, *__values) -> None:
         super().__init__()
 

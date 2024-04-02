@@ -9,6 +9,31 @@ from scr.interface.basic import DialogButton, Text
 
 
 class Dialog(DialogWindow):
+    """
+    Custom dialog window for displaying messages with buttons.
+
+    Methods:
+    - __init__(
+        __parent, __message: str,
+        accept_title: str = "Ok", reject_title: str = "Cancel"
+    ): None
+        - Initializes the dialog with specified parameters.
+        - __parent: Parent widget for the dialog.
+        - __message: Message displayed in the dialog.
+        - accept_title: Title for the accept button (default: "Ok").
+        - reject_title: Title for the reject button (default: "Cancel").
+
+    Attributes:
+    - mainLayout: QVBoxLayout - Main layout of the dialog.
+    - buttonLayout: QHBoxLayout - Layout for buttons.
+    - acceptBtn: DialogButton - Button to accept the dialog.
+    - rejectBtn: DialogButton - Button to reject the dialog.
+
+    Signals:
+    - accept(): Signal emitted when the accept button is clicked.
+    - reject(): Signal emitted when the reject button is clicked.
+    """
+
     def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel") -> None:
         super().__init__(__parent)
 
