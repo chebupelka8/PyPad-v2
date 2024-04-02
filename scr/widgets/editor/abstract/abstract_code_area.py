@@ -10,6 +10,19 @@ from PySide6.QtCore import Qt
 
 class AbstractCodeEditorArea(TextEditorArea):
     def __init__(self, __path: str, highlighter=None, theme=None):
+        """
+        Custom code editor area based on TextEditorArea.
+
+        Parameters:
+        __path (str): The path to the file.
+        highlighter: Function for syntax highlighting.
+        theme: Theme for the editor.
+
+        Notes:
+        - Loads text from file, sets up glance map, applies theme and highlighter.
+        - Connects text changes, sets style sheet, and initializes path.
+        """
+
         super().__init__()
 
         # insert text
@@ -41,9 +54,24 @@ class AbstractCodeEditorArea(TextEditorArea):
         self.__path = __path
 
     def get_full_path(self):
+        """
+        Retrieves the full path of the editor.
+
+        Returns:
+        str: The full path of the editor.
+        """
+
         return self.__path
 
     def insert_around_cursor(self, __symbol_1: str, __symbol_2: str) -> None:
+        """
+        Inserts symbols around the selected text at the cursor position.
+
+        Parameters:
+        __symbol_1 (str): The opening symbol.
+        __symbol_2 (str): The closing symbol.
+        """
+
         cursor = self.textCursor()
         selected_text = cursor.selectedText()
 
@@ -52,6 +80,16 @@ class AbstractCodeEditorArea(TextEditorArea):
         self.setTextCursor(cursor)
 
     def pass_duplicate_symbol(self, __target: str) -> None | str:
+        """
+        Passes over a duplicate symbol at the cursor position.
+
+        Parameters:
+        __target (str): The target symbol to pass over.
+
+        Returns:
+        None | str: None if successful, 'exception' if not.
+        """
+
         cursor = self.textCursor()
 
         if len(self.toPlainText().split("\n")[self.get_current_line()][cursor.positionInBlock():]) != 0:
@@ -78,6 +116,22 @@ class AbstractCodeEditorArea(TextEditorArea):
             apostrophe: bool = False,
             tag: bool = False
     ):
+
+        """
+        Filters key press events based on specified conditions.
+
+        Parameters:
+        __event: The key press event.
+        paren (bool): Enable parentheses handling.
+        brace (bool): Enable braces handling.
+        bracket (bool): Enable brackets handling.
+        quote_dbl (bool): Enable double quotes handling.
+        apostrophe (bool): Enable apostrophe handling.
+        tag (bool): Enable tag handling.
+
+        Notes:
+        - Handles key press events for specific key combinations.
+        """
 
         self.lineNumberArea.update()
 
