@@ -77,7 +77,7 @@ if __name__ == '__main__':
         - Executes the after_command if provided.
         """
 
-        if __name in PyProjectConfig.get_projects_names():
+        if __name in PyProjectConfig.get_projects_names():  # Checks if the project name already exists
             return
 
         output_path = os.path.join(__path, __name)

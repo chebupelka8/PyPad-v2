@@ -23,6 +23,17 @@ class AbstractTextEditorArea(QPlainTextEdit):
 
 class TextEditorArea(QPlainTextEdit):
     def __init__(self, __path: str | None = None):
+        """
+        Custom Text Editor Area based on QPlainTextEdit.
+
+        Parameters:
+        __path (str | None): Optional path to a file to load initial text.
+
+        Notes:
+        - Sets up style sheet, font, layout, and initial text if a path is provided.
+        - Manages cursor style, tab width, colors, line numbers, and connections.
+        """
+
         super().__init__()
 
         # setup style sheet
@@ -88,12 +99,26 @@ class TextEditorArea(QPlainTextEdit):
         self.codeMap.verticalScrollBar().setValue(self.verticalScrollBar().value())
 
     def __scroll_updating(self) -> None:
+        """
+        Updates the code map and scrollbar position.
+
+        Notes:
+        - Updates the line number area and adjusts the scrollbar position.
+        """
+
         self.lineNumberArea.update()
 
         division = self.codeMap.get_pixel_size()
         self.codeMap.verticalScrollBar().setValue(self.verticalScrollBar().value() / division)
 
     def __update_cursor_width(self):
+        """
+        Updates the cursor width based on the cursor style.
+
+        Notes:
+        - Adjusts the cursor width according to the cursor style.
+        """
+
         if self.__cursor_style == "block":
             cursor = self.textCursor()
 
@@ -109,6 +134,13 @@ class TextEditorArea(QPlainTextEdit):
             self.setCursorWidth(1)
 
     def update_font(self):
+        """
+        Updates the font settings for the editor.
+
+        Notes:
+        - Updates the main font and font settings for the editor and code map.
+        """
+
         self.__main_font = Font.get_system_font(*EditorFontManager.get_current_font().values())
         self.setFont(self.__main_font)
         self.codeMap.set_font(self.__main_font)
@@ -116,6 +148,13 @@ class TextEditorArea(QPlainTextEdit):
         self.__update_line_number_area_width()
 
     def update_settings(self):
+        """
+        Updates the editor settings based on the configuration.
+
+        Notes:
+        - Updates cursor style and tab width settings.
+        """
+
         self.__cursor_style = EditorSettingsUpdater.get_cursor_style()
         self.__update_cursor_width()
 
@@ -123,9 +162,23 @@ class TextEditorArea(QPlainTextEdit):
         self.setTabStopDistance(QFontMetrics(self.__main_font).horizontalAdvanceChar(" ") * self.__tab_width)
 
     def get_current_tab_width(self) -> int:
+        """
+        Retrieves the current tab width.
+
+        Returns:
+        int: The current tab width.
+        """
+
         return self.__tab_width
 
     def get_full_path(self):
+        """
+        Retrieves the full path of the editor.
+
+        Returns:
+        str: The full path of the editor.
+        """
+
         return self.__path
 
     def get_line_count(self) -> int:
@@ -135,6 +188,13 @@ class TextEditorArea(QPlainTextEdit):
         return self.get_current_line(), self.textCursor().positionInBlock()
 
     def set_default_text_color(self, __color: str) -> None:
+        """
+        Sets the default text color for the editor.
+
+        Parameters:
+        __color (str): The color to set as the default text color.
+        """
+
         palette = QPalette()
         palette.setColor(QPalette.ColorRole.Text, QColor(__color))
         self.setPalette(palette)
@@ -157,6 +217,13 @@ class TextEditorArea(QPlainTextEdit):
         super().keyPressEvent(event)
 
     def resizeEvent(self, event):
+        """
+        Handles resize events in the editor.
+
+        Parameters:
+        event: The resize event.
+        """
+
         super().resizeEvent(event)
 
         content_rect = self.contentsRect()
@@ -165,19 +232,51 @@ class TextEditorArea(QPlainTextEdit):
         )
 
     def get_current_line(self) -> int:
+        """
+        Retrieves the current line number.
+
+        Returns:
+        int: The current line number.
+        """
+
         return self.__current_line
 
     def get_current_line_text(self) -> str:
+        """
+        Retrieves the text of the current line.
+
+        Returns:
+        str: The text of the current line.
+        """
+
         return self.toPlainText().split("\n")[self.__current_line]
 
     def get_text_before_cursor(self) -> str:
+        """
+        Retrieves the text before the cursor position.
+
+        Returns:
+        str: The text before the cursor position.
+        """
+
         return self.toPlainText()[:self.textCursor().position()]
 
     def __update_line_number_area_width(self):
+        """
+        Updates the width of the line number area.
+        """
+
         margins = self.viewportMargins()
         self.setViewportMargins(self.get_number_area_width(), margins.top(), 150, margins.bottom())
 
     def get_number_area_width(self) -> int:
+        """
+        Calculates and returns the width of the line number area.
+
+        Returns:
+        int: The width of the line number area.
+        """
+
         block_count = self.document().blockCount()
         max_value = max(1, block_count)
         d_count = len(str(max_value))
@@ -186,6 +285,10 @@ class TextEditorArea(QPlainTextEdit):
         return width
 
     def __highlight_current_line(self):
+        """
+        Highlights the current line in the editor.
+        """
+
         extra_selections = []
 
         if not self.isReadOnly() and self.hasFocus():
@@ -201,10 +304,21 @@ class TextEditorArea(QPlainTextEdit):
         self.setExtraSelections(extra_selections)
 
     def __update_current_line(self):
+        """
+        Updates the current line number based on the cursor position.
+        """
+
         cursor = self.textCursor()
         self.__current_line = cursor.blockNumber()
 
     def line_number_area_paint_event(self, event):
+        """
+        Handles the painting of the line number area.
+
+        Parameters:
+        event: The paint event.
+        """
+
         cursor = self.textCursor()
         painter = QPainter(self.lineNumberArea)
 
