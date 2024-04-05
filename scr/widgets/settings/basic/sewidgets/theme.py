@@ -17,8 +17,8 @@ class ThemeSettingsWidget(AbstractSettingsWidget):
         self.change_theme = self.font_theme_changer.add_button("Change color theme...", is_highlighted=True)
         self.change_theme.clicked.connect(self.show_theme_changer)
 
-        self.mainLayout.addWidget(FrameTitles.title("Theme Settings"))
-        self.mainLayout.addWidget(self.font_theme_changer)
+        self.add_widget(FrameTitles.title("Theme Settings"))
+        self.add_widget(self.font_theme_changer)
 
     def show_theme_changer(self):
         themes = [FileLoader.load_json(f"scr/data/themes/{i}")["name"] for i in os.listdir("scr/data/themes")]

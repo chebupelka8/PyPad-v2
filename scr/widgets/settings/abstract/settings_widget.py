@@ -10,3 +10,11 @@ class AbstractSettingsWidget(QWidget):
         self.setObjectName("settings-widget")
 
         self.setLayout(self.mainLayout)
+
+    def add_widget(self, __widget) -> None:
+        self.mainLayout.addWidget(__widget)
+
+    def update_values(self) -> None:
+        """
+        Override this method
+        """
