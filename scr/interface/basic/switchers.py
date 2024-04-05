@@ -94,6 +94,7 @@ class PathEntry(QWidget):
     Methods:
     - __init__(self, __placed: str, placeholder: str = "", width: int = 400, height: int = 25): None - Initializes the path entry with default text and placeholder.
     - get_entry(self): Entry - returns the Entry widget.
+    - set_path(self, __path: str, only_existing: bool = True): None if only_existing is True and path is not exist this path won't be pasted.
 
     Notes:
     - This widget includes Entry and PushButton to specify the path to your file or directory
