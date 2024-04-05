@@ -99,7 +99,7 @@ class PathEntry(QWidget):
     - This widget includes Entry and PushButton to specify the path to your file or directory
     """
 
-    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25, should_verify_path: bool = True) -> None:
+    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25) -> None:
         super().__init__()
 
         self.setObjectName("path-entry-widget")
@@ -108,8 +108,6 @@ class PathEntry(QWidget):
         self.mainLayout = QHBoxLayout()
 
         self.pathEntry = Entry(__placed, placeholder, width, height)
-        if should_verify_path:
-            self.pathEntry.textChanged.connect(self.__verify_path)
 
         self.specifyPathBtn = DefaultButton("...", width=25)
         self.specifyPathBtn.clicked.connect(lambda: self.set_path(FileDialog.get_open_file_name()))
@@ -125,9 +123,6 @@ class PathEntry(QWidget):
             return
 
         self.pathEntry.setText(__path)
-
-    def __verify_path(self) -> None:
-        ...
 
     def get_entry(self) -> Entry:
         return self.pathEntry
