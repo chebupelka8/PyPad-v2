@@ -5,7 +5,7 @@ from .frame_titles import FrameTitles
 
 from typing import Optional
 
-from scr.interface.basic import DropDownMenu, DigitalEntry, Entry
+from scr.interface.basic import DropDownMenu, DigitalEntry, Entry, PathEntry
 
 
 class AbstractSettingFrame(QFrame):
@@ -44,6 +44,12 @@ class AbstractSettingFrame(QFrame):
         self.mainLayout.addWidget(lineedit)
 
         return lineedit
+
+    def add_path_entry(self, __placed: str):
+        path_entry = PathEntry(__placed)
+        self.mainLayout.addWidget(path_entry)
+
+        return path_entry.get_entry()
 
     def add_spinbox(self, __range: tuple[int, int], __width: int = 30) -> QSpinBox:
         spinbox = DigitalEntry(__range, __width)

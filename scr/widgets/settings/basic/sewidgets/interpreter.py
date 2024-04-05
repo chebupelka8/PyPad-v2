@@ -8,7 +8,7 @@ class InterpreterSettingsWidget(AbstractSettingsWidget):
         super().__init__()
 
         self.python_interpreter_path = AbstractSettingFrame("Python Interpreter", "Points to the path of the python global interpreter")
-        self.interpreter_line_edit = self.python_interpreter_path.add_lineedit(InterpreterManager.get_python_interpreter_path(), "")
+        self.interpreter_line_edit = self.python_interpreter_path.add_path_entry(InterpreterManager.get_python_interpreter_path())
         self.interpreter_line_edit.textChanged.connect(lambda path: InterpreterManager.set_python_interpreter_path(path))
 
         self.update_values()

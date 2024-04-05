@@ -1,7 +1,10 @@
-from PySide6.QtWidgets import QSplitter, QComboBox, QSpinBox, QLineEdit
+import os.path
+
+from PySide6.QtWidgets import QSplitter, QComboBox, QSpinBox, QLineEdit, QWidget, QHBoxLayout, QSpacerItem, QSizePolicy
 from PySide6.QtCore import Qt, QSize
 
-from scr.scripts.tools.file import FileLoader
+from scr.scripts.tools.file import FileLoader, FileDialog
+from .buttons import DefaultButton
 
 
 class Splitter(QSplitter):
@@ -56,7 +59,7 @@ class Entry(QLineEdit):
     - __init__(__placed: str, placeholder: str = "", width: int = 200, height: int = 25): None - Initializes the text entry with default text and placeholder.
     """
 
-    def __init__(self, __placed: str, placeholder: str = "", width: int = 200, height: int = 25) -> None:
+    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 200, height: int = 25) -> None:
         super().__init__()
 
         self.setFixedSize(QSize(width, height))
@@ -82,3 +85,49 @@ class DigitalEntry(QSpinBox):
 
         self.setRange(*__range)
         self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/digital_entry.css"))
+
+
+class PathEntry(QWidget):
+    """
+    Custom QLineEdit widget for entering path to file and directories.
+
+    Methods:
+    - __init__(self, __placed: str, placeholder: str = "", width: int = 400, height: int = 25): None - Initializes the path entry with default text and placeholder.
+    - get_entry(self): Entry - returns the Entry widget.
+
+    Notes:
+    - This widget includes Entry and PushButton to specify the path to your file or directory
+    """
+
+    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25, should_verify_path: bool = True) -> None:
+        super().__init__()
+
+        self.setObjectName("path-entry-widget")
+        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/path_entry.css"))
+
+        self.mainLayout = QHBoxLayout()
+
+        self.pathEntry = Entry(__placed, placeholder, width, height)
+        if should_verify_path:
+            self.pathEntry.textChanged.connect(self.__verify_path)
+
+        self.specifyPathBtn = DefaultButton("...", width=25)
+        self.specifyPathBtn.clicked.connect(lambda: self.set_path(FileDialog.get_open_file_name()))
+
+        self.mainLayout.addWidget(self.pathEntry)
+        self.mainLayout.addWidget(self.specifyPathBtn)
+        self.mainLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        self.setLayout(self.mainLayout)
+
+    def set_path(self, __path: str, only_existing: bool = True) -> None:
+        if only_existing and os.path.exists(__path):
+            self.pathEntry.setText(__path)
+            return
+
+        self.pathEntry.setText(__path)
+
+    def __verify_path(self) -> None:
+        ...
+
+    def get_entry(self) -> Entry:
+        return self.pathEntry
