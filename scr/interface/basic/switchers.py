@@ -40,6 +40,7 @@ class DropDownMenu(QComboBox):
         super().__init__()
 
         self.setFixedSize(QSize(width, height))
+        self.view().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.__values = [*__values]
         self.addItems(self.__values)

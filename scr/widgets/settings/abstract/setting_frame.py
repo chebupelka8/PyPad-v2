@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt
 
 from .frame_titles import FrameTitles
 
-from typing import Optional
+from typing import Optional, Any
 
 from scr.interface.basic import DropDownMenu, DigitalEntry, Entry, PathEntry
 
@@ -22,8 +22,12 @@ class AbstractSettingFrame(QFrame):
 
         self.setLayout(self.mainLayout)
 
-    def __add_widget(self, __widget) -> None:
+    def __add_widget(self, __widget) -> None:  # should remove in the future
         self.mainLayout.addWidget(__widget)
+
+    def add_widget(self, __widget) -> Any:
+        self.__add_widget(__widget)
+        return __widget
 
     def add_subtitle(self, __text: str) -> None:
         self.__add_widget(FrameTitles.subtitle(__text))
@@ -31,6 +35,8 @@ class AbstractSettingFrame(QFrame):
     def add_description(self, __text: str) -> None:
         self.__add_widget(FrameTitles.description(__text))
 
+
+    # should remove this: -->
     def add_combobox(self, __values: list, __width: int = 200) -> QComboBox:
         combobox = DropDownMenu(*__values, width=__width)
         combobox.view().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
