@@ -1,7 +1,7 @@
 {
     "workbench": {
         "font": {
-            "family": "Consolas",
+            "family": "Noto Sans Bengali UI Light",
             "size": 12,
             "bold": false,
             "italic": false
@@ -9,7 +9,7 @@
     },
     "editor": {
         "font": {
-            "family": "Cascadia Mono",
+            "family": "CascadiaCode.ttf",
             "size": 15,
             "bold": false,
             "italic": false

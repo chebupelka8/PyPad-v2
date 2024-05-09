@@ -1,18 +1,17 @@
 [tool.poetry]
-name = "pypad"
-version = "0.2.2-alpha"
+name = "pypad-v2"
+version = "0.2.3"
 description = ""
 authors = ["chebupelka8 <stpzamyatin@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
-pyside6 = "6.6.0"
-pillow = "^10.2.0"
-auto-py-to-exe = "^2.42.0"
-cpalette = "^1.0.5"
+python = ">=3.10,<3.13"
+pyside6 = "^6.7.0"
 numpy = "^1.26.4"
+auto-py-to-exe = "^2.43.3"
+pillow = "^10.3.0"
 
 
 [build-system]

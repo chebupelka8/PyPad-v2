@@ -49,7 +49,7 @@ class StatusBar(QFrame):
         self.current_file_status.setText(text)
 
     def set_current_position(self, line: int, char: int) -> None:
-        self.current_position.setText(f"Line: {line + 1}{" " * 3}Column: {char + 1}")
+        self.current_position.setText(f'Line: {line + 1}{" " * 3}Column: {char + 1}')
 
     def text_file(self, visible: bool) -> None:
         self.current_position.setVisible(visible)
