@@ -1,7 +1,8 @@
-from ...abstract import AbstractSettingsWidget, AbstractSettingFrame, FrameTitles
-
-from scr.scripts.tools.managers import InterpreterManager
 from scr.interface.basic import PathEntry
+from scr.scripts.tools.managers import InterpreterManager
+
+from ...abstract import (AbstractSettingFrame, AbstractSettingsWidget,
+                         FrameTitles)
 
 
 class InterpreterSettingsWidget(AbstractSettingsWidget):

@@ -1,16 +1,14 @@
-from scr import *
-from scr.interface.basic import Splitter
-from scr.project.pyproject import SetupPyProject
-
 import os
 import sys
 
-from PySide6.QtWidgets import (
-    QWidget, QApplication, QMainWindow,
-    QHBoxLayout, QVBoxLayout
-)
 from PySide6.QtCore import QModelIndex, Qt
 from PySide6.QtGui import QIcon, QShortcut
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow,
+                               QVBoxLayout, QWidget)
+
+from scr import *
+from scr.interface.basic import Splitter
+from scr.project.pyproject import SetupPyProject
 
 
 class MainWidget(QWidget):

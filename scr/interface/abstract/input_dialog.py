@@ -1,11 +1,10 @@
-from .windows import DialogWindow
-
-from PySide6.QtWidgets import (
-    QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton
-)
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import (QHBoxLayout, QLabel, QLineEdit, QPushButton,
+                               QVBoxLayout)
 
 from scr.scripts.tools.file import FileLoader
+
+from .windows import DialogWindow
 
 
 class InputDialog(DialogWindow):

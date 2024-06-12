@@ -1,9 +1,9 @@
+import json
+import os
 from typing import Optional
 
-import os
-import json
-
 from scr.scripts.tools.file import FileLoader
+
 from .pyproject_config import PyProjectConfig
 
 

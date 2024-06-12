@@ -1,11 +1,10 @@
-from .abstract_text_area import TextEditorArea
+from PySide6.QtCore import Qt
 
-from scr.scripts.tools.file import FileLoader
 from scr.scripts.tools.code import CodeAnalyzer
-
+from scr.scripts.tools.file import FileLoader
 from scr.widgets import CodeGlanceMap
 
-from PySide6.QtCore import Qt
+from .abstract_text_area import TextEditorArea
 
 
 class AbstractCodeEditorArea(TextEditorArea):

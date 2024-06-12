@@ -1,6 +1,6 @@
-from scr.scripts.tools.file import FileLoader
-
 import json
+
+from scr.scripts.tools.file import FileLoader
 
 
 class _SettingsUpdater:

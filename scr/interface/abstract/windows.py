@@ -1,10 +1,11 @@
+from typing import Optional
+
+from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QDialog, QHBoxLayout
-from PySide6.QtCore import Qt, QSize
 
 from scr.scripts.tools.file import FileLoader
-from .shell import ShellFrame
 
-from typing import Optional
+from .shell import ShellFrame
 
 
 class DialogWindow(QDialog):

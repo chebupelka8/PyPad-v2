@@ -1,13 +1,11 @@
+import math
 import os.path
+from typing import Optional
 
 from PIL import Image, ImageDraw, ImageFont, ImageQt
-
 from PySide6.QtGui import QIcon, QPixmap
 
-import math
 from scr.resources.colors import Gradients
-
-from typing import Optional
 
 
 class ProjectNameGenerator:

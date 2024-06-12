@@ -1,9 +1,9 @@
-from ..tools.file import FileLoader
-from .font import Font
+import json
 
 from PySide6.QtGui import QFont
 
-import json
+from ..tools.file import FileLoader
+from .font import Font
 
 
 class _FontManager:

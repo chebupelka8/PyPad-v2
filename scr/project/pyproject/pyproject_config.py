@@ -1,8 +1,8 @@
 import json
 import os
 
-from scr.scripts.tools.file import FileLoader
 from scr.project import ImageGenerator, ProjectNameGenerator
+from scr.scripts.tools.file import FileLoader
 
 
 class PyProjectConfig:

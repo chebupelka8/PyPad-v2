@@ -1,13 +1,12 @@
-from scr.scripts.tools.file import FileLoader
-from scr.scripts.font import Font, WorkbenchFontManager
-from scr.scripts.utils import IconProvider
-
-from scr.project import ProjectConfig
-
 import os
 
-from PySide6.QtWidgets import QTreeView, QFileSystemModel, QAbstractItemView
-from PySide6.QtCore import Qt, QSize
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import QAbstractItemView, QFileSystemModel, QTreeView
+
+from scr.project import ProjectConfig
+from scr.scripts.font import Font, WorkbenchFontManager
+from scr.scripts.tools.file import FileLoader
+from scr.scripts.utils import IconProvider
 
 
 class FileTree(QTreeView):

@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QFileDialog
-
 import os
+
+from PySide6.QtWidgets import QFileDialog
 
 
 class FileDialog:

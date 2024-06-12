@@ -1,6 +1,5 @@
-from scr.scripts.utils import restart_application
-
 from scr.interface.abstract import Dialog
+from scr.scripts.utils import restart_application
 
 
 class Restarter(Dialog):

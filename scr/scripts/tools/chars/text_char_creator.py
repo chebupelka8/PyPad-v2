@@ -1,4 +1,4 @@
-from PySide6.QtGui import QTextCharFormat, QColor, QFont
+from PySide6.QtGui import QColor, QFont, QTextCharFormat
 
 
 class TextCharCreator:

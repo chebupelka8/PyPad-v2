@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QListWidget, QListWidgetItem
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QListWidget, QListWidgetItem
 
 from scr.scripts.tools.file import FileLoader
 

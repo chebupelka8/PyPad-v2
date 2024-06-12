@@ -1,7 +1,8 @@
-from ...abstract import AbstractSettingsWidget, AbstractSettingFrame, FrameTitles
-
+from scr.interface.basic import DigitalEntry, DropDownMenu
 from scr.scripts.font import Font, WorkbenchFontManager
-from scr.interface.basic import DropDownMenu, DigitalEntry
+
+from ...abstract import (AbstractSettingFrame, AbstractSettingsWidget,
+                         FrameTitles)
 
 
 class MainSettingsWidget(AbstractSettingsWidget):

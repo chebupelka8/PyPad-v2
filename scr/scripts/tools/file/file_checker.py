@@ -1,6 +1,6 @@
-from scr.exceptions import WrongFileExtension, NotFileError
-
 import os
+
+from scr.exceptions import NotFileError, WrongFileExtension
 
 
 class FileChecker:

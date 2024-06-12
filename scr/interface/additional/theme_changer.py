@@ -1,9 +1,8 @@
-from scr.scripts.theme import ThemeManager
+from PySide6.QtWidgets import QHBoxLayout, QSizePolicy, QSpacerItem
 
-from scr.interface.basic import Text, DialogButton
 from scr.interface.abstract import ListChanger, TransparentDialogWindow
-
-from PySide6.QtWidgets import QHBoxLayout, QSpacerItem, QSizePolicy
+from scr.interface.basic import DialogButton, Text
+from scr.scripts.theme import ThemeManager
 
 from .restarter import Restarter
 

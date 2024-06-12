@@ -1,10 +1,10 @@
-from scr.scripts.tools.file import FileLoader
-from scr.scripts.font import Font
-from scr.configs.pics import IconPaths
-
-from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
+
+from scr.configs.pics import IconPaths
+from scr.scripts.font import Font
+from scr.scripts.tools.file import FileLoader
 
 
 class WelcomeScreen(QWidget):

@@ -1,17 +1,15 @@
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QHBoxLayout, QSpacerItem, QSizePolicy
-from PySide6.QtCore import QSize
-
-from scr.interface.abstract import TransparentDialogWindow, ListChanger
-from scr.interface.basic import Text, DialogButton
-
-from scr.scripts.font import Font
-from scr.scripts.tools.file import FileLoader, FileDialog
-
-from scr.project.pyproject import PyProjectConfig, SetupPyProject
-
 import os
 import random
+
+from PySide6.QtCore import QSize
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QHBoxLayout, QSizePolicy, QSpacerItem
+
+from scr.interface.abstract import ListChanger, TransparentDialogWindow
+from scr.interface.basic import DialogButton, Text
+from scr.project.pyproject import PyProjectConfig, SetupPyProject
+from scr.scripts.font import Font
+from scr.scripts.tools.file import FileDialog, FileLoader
 
 
 class ProjectChanger(ListChanger):

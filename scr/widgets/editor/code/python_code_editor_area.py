@@ -1,10 +1,10 @@
-from ..abstract.abstract_code_area import AbstractCodeEditorArea
-
 from PySide6.QtCore import Qt
 
 from scr.resources.highlighters import PythonCodeHighlighter
 from scr.resources.themes import PythonTheme
 from scr.scripts.tools.code import CodeAnalyzer
+
+from ..abstract.abstract_code_area import AbstractCodeEditorArea
 
 
 class PythonCodeEditorArea(AbstractCodeEditorArea):

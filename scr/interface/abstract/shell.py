@@ -1,7 +1,8 @@
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QHBoxLayout
-from scr.scripts.tools.file import FileLoader
-
 from typing import Optional, Union
+
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout
+
+from scr.scripts.tools.file import FileLoader
 
 
 class ShellFrame(QFrame):

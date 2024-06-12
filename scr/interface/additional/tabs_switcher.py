@@ -1,7 +1,7 @@
+import os
+
 from scr.interface.abstract import ListChanger, TransparentDialogWindow
 from scr.interface.basic import Text
-
-import os
 
 
 class TabsSwitcher(ListChanger):

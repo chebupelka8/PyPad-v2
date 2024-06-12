@@ -1,16 +1,15 @@
-from scr.scripts.tools.file import FileLoader, FileChecker
-from scr.configs.pics import IconPaths
-from .welcome_screen import WelcomeScreen
-
-from scr.scripts.font import WorkbenchFontManager
-
-from PySide6.QtWidgets import QTabWidget
-from PySide6.QtGui import QIcon
-from PySide6.QtCore import QSize, Qt
-
+from dataclasses import dataclass
 from typing import Any, Optional, Union
 
-from dataclasses import dataclass
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QTabWidget
+
+from scr.configs.pics import IconPaths
+from scr.scripts.font import WorkbenchFontManager
+from scr.scripts.tools.file import FileChecker, FileLoader
+
+from .welcome_screen import WelcomeScreen
 
 
 @dataclass

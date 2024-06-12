@@ -1,6 +1,6 @@
-from .abstract_theme import AbstractTheme
-
 from scr.scripts.tools.chars import TextCharCreator
+
+from .abstract_theme import AbstractTheme
 
 
 class PythonTheme(AbstractTheme):

@@ -1,6 +1,6 @@
-from .highlighter import CodeHighlighter
 from ...configs.patterns import HtmlPatterns
 from ..themes import HtmlTheme
+from .highlighter import CodeHighlighter
 
 
 class HtmlCodeHighlighter(CodeHighlighter):

@@ -1,10 +1,10 @@
-from PySide6.QtWidgets import QPlainTextEdit
-from PySide6.QtGui import QFont, QFontMetrics, QPalette, QColor
+import copy
+
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QColor, QFont, QFontMetrics, QPalette
+from PySide6.QtWidgets import QPlainTextEdit
 
 from scr.scripts.tools.file import FileLoader
-
-import copy
 
 
 class CodeGlanceMap(QPlainTextEdit):

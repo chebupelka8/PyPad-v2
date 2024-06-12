@@ -1,10 +1,10 @@
-from PySide6.QtWidgets import QMenu
-from PySide6.QtGui import QAction, QIcon
+from typing import Any
+
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QAction, QIcon
+from PySide6.QtWidgets import QMenu
 
 from scr.scripts.tools.file import FileLoader
-
-from typing import Any
 
 
 class AbstractActionMenu(QMenu):

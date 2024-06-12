@@ -1,9 +1,11 @@
 import os.path
 
-from PySide6.QtWidgets import QSplitter, QComboBox, QSpinBox, QLineEdit, QWidget, QHBoxLayout, QSpacerItem, QSizePolicy
-from PySide6.QtCore import Qt, QSize
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLineEdit, QSizePolicy,
+                               QSpacerItem, QSpinBox, QSplitter, QWidget)
 
-from scr.scripts.tools.file import FileLoader, FileDialog
+from scr.scripts.tools.file import FileDialog, FileLoader
+
 from .buttons import DefaultButton
 
 

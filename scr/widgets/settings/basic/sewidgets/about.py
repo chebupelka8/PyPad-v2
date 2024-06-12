@@ -1,11 +1,11 @@
-from ...abstract import AbstractSettingsWidget, AbstractSettingFrame
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QLabel
 
 from scr.configs.pics import IconPaths
 from scr.project import VersionConfig
 
-from PySide6.QtWidgets import QLabel
-from PySide6.QtGui import QPixmap
-from PySide6.QtCore import Qt
+from ...abstract import AbstractSettingFrame, AbstractSettingsWidget
 
 
 class InfoWidget(AbstractSettingsWidget):

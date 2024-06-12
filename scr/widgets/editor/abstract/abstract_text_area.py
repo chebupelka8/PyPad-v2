@@ -1,14 +1,13 @@
-from scr.scripts.tools.file import FileLoader, FileChecker
-from scr.scripts.tools.code import CodeAnalyzer
-from scr.scripts.font import Font, EditorFontManager
-from scr.scripts.settings import EditorSettingsUpdater
+from PySide6.QtCore import QPoint, QRect, QSize, Qt
+from PySide6.QtGui import QColor, QFontMetrics, QPainter, QPalette, QTextFormat
+from PySide6.QtWidgets import QHBoxLayout, QPlainTextEdit, QTextEdit, QWidget
 
 from scr.resources.themes import TextEditorTheme
+from scr.scripts.font import EditorFontManager, Font
+from scr.scripts.settings import EditorSettingsUpdater
+from scr.scripts.tools.code import CodeAnalyzer
+from scr.scripts.tools.file import FileChecker, FileLoader
 from scr.widgets import CodeGlanceMap
-
-from PySide6.QtWidgets import QPlainTextEdit, QTextEdit, QWidget, QHBoxLayout
-from PySide6.QtGui import QColor, QTextFormat, QPainter, QPalette, QFontMetrics
-from PySide6.QtCore import Qt, QRect, QSize, QPoint
 
 
 class AbstractTextEditorArea(QPlainTextEdit):

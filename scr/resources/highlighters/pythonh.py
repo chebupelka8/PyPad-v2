@@ -1,6 +1,6 @@
-from .highlighter import CodeHighlighter
 from ...configs.patterns import PythonPatterns
 from ..themes import PythonTheme
+from .highlighter import CodeHighlighter
 
 
 class PythonCodeHighlighter(CodeHighlighter):

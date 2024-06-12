@@ -1,8 +1,9 @@
-from .file_checker import FileChecker
-
 import json
 import os
+
 from PIL import Image
+
+from .file_checker import FileChecker
 
 
 class FileLoader:

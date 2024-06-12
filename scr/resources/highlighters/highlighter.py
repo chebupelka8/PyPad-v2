@@ -1,5 +1,6 @@
-from PySide6.QtGui import QSyntaxHighlighter
 import re
+
+from PySide6.QtGui import QSyntaxHighlighter
 
 
 class CodeHighlighter(QSyntaxHighlighter):

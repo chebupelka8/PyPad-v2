@@ -1,10 +1,10 @@
-from ...abstract import AbstractSettingsWidget, AbstractSettingFrame, FrameTitles
+import os
 
 from scr.interface.additional import ThemeChangerWindow
-
 from scr.scripts.tools.file import FileLoader
 
-import os
+from ...abstract import (AbstractSettingFrame, AbstractSettingsWidget,
+                         FrameTitles)
 
 
 class ThemeSettingsWidget(AbstractSettingsWidget):

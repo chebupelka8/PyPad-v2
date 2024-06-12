@@ -1,7 +1,7 @@
-from ..abstract.abstract_code_area import AbstractCodeEditorArea
-
 from scr.resources.highlighters import HtmlCodeHighlighter
 from scr.resources.themes import HtmlTheme
+
+from ..abstract.abstract_code_area import AbstractCodeEditorArea
 
 
 class HtmlCodeEditorArea(AbstractCodeEditorArea):

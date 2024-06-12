@@ -1,11 +1,9 @@
-from .windows import DialogWindow
-
-from PySide6.QtWidgets import (
-    QHBoxLayout, QVBoxLayout
-)
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QHBoxLayout, QVBoxLayout
 
 from scr.interface.basic import DialogButton, Text
+
+from .windows import DialogWindow
 
 
 class Dialog(DialogWindow):

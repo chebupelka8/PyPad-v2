@@ -1,8 +1,7 @@
 import json
+import os
 
 from ..tools.file import FileLoader
-
-import os
 
 
 class ThemeManager:

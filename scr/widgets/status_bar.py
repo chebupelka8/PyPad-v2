@@ -1,9 +1,10 @@
-from PySide6.QtWidgets import QLabel, QFrame, QHBoxLayout, QSpacerItem, QSizePolicy
+from PySide6.QtWidgets import (QFrame, QHBoxLayout, QLabel, QSizePolicy,
+                               QSpacerItem)
 
-from scr.scripts.tools.file import FileLoader
-from scr.scripts.font import Font, WorkbenchFontManager
-from scr.scripts.utils import Path
 from scr.project import ProjectConfig, VersionConfig
+from scr.scripts.font import Font, WorkbenchFontManager
+from scr.scripts.tools.file import FileLoader
+from scr.scripts.utils import Path
 
 
 class StatusBar(QFrame):

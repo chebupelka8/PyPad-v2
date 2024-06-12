@@ -1,14 +1,12 @@
-from scr.interface.abstract import TransparentDialogWindow
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QScrollArea
 
+from scr.interface.abstract import TransparentDialogWindow
 from scr.scripts.tools.file import FileLoader
 
-from PySide6.QtWidgets import QScrollArea
-from PySide6.QtCore import Qt
-
-from .basic import (
-    SettingTree, MainSettingsWidget, EditorSettingsWidget,
-    ThemeSettingsWidget, InfoWidget, InterpreterSettingsWidget
-)
+from .basic import (EditorSettingsWidget, InfoWidget,
+                    InterpreterSettingsWidget, MainSettingsWidget, SettingTree,
+                    ThemeSettingsWidget)
 
 
 class SettingsMenu(TransparentDialogWindow):

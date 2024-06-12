@@ -1,7 +1,7 @@
-from PySide6.QtWidgets import QListWidget
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QListWidget
 
-from scr.scripts.font import WorkbenchFontManager, Font
+from scr.scripts.font import Font, WorkbenchFontManager
 
 
 class SettingTree(QListWidget):

@@ -1,9 +1,10 @@
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QPushButton, QSpacerItem, QSizePolicy
-from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import (QFrame, QPushButton, QSizePolicy, QSpacerItem,
+                               QVBoxLayout)
 
-from scr.scripts.tools.file import FileLoader
 from scr.configs.pics import IconPaths
+from scr.scripts.tools.file import FileLoader
 
 
 class SideBarButton(QPushButton):
