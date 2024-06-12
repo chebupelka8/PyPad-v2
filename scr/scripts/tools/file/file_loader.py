@@ -7,10 +7,8 @@ from .file_checker import FileChecker
 
 
 class FileLoader:
-
     @staticmethod
     def __load_any_text_file(__path: str) -> str:
-
         with open(os.path.normpath(__path), "r", encoding="utf-8") as file:
             result = file.read()
 

@@ -2,7 +2,6 @@ import scr.resources.icons.ico_cfg
 
 
 class IconPaths:
-
     class FileIcons:
         PYTHON = ":/file_icons/python.png"
         CSS = ":/file_icons/css.png"

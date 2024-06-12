@@ -8,7 +8,6 @@ from scr.configs.pics import IconPaths
 class IconProvider(QFileIconProvider):
     def icon(self, __info: QFileInfo):
         try:
-
             if __info.isDir():
                 return QIcon(IconPaths.FolderIcons.DEFAULT)
 

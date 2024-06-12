@@ -23,11 +23,11 @@ class InfoWidget(AbstractSettingsWidget):
             PyPad supports some languages like a Python, Json, Html and CSS. 
             So far, PyPad is in development and it is not suitable for use, but you can watch the demo 
             version of the project and test it.
-            """
+            """,
         )
         hot_key_frame = AbstractSettingFrame(
             "Hot Keys",
-            """Ctrl+O - Open directory\nCtrl+P - Open file\nCtrl+, - Open settings\nCtrl+T - Open theme picker\nCtrl+Tab - Switch current file"""
+            """Ctrl+O - Open directory\nCtrl+P - Open file\nCtrl+, - Open settings\nCtrl+T - Open theme picker\nCtrl+Tab - Switch current file""",
         )
         version_info_frame = AbstractSettingFrame(
             "Info",
@@ -37,7 +37,7 @@ class InfoWidget(AbstractSettingsWidget):
             <br>Build: {VersionConfig.build}
             <br>License: {VersionConfig.license}
             <br>Page: <a href={VersionConfig.project_page}>GitHub</a>
-            """
+            """,
         )
 
         self.mainLayout.addWidget(label, alignment=Qt.AlignmentFlag.AlignHCenter)

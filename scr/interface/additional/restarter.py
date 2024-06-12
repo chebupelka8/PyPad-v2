@@ -11,7 +11,9 @@ class Restarter(Dialog):
         __parent (QWidget): Parent widget for the dialog.
         """
 
-        super().__init__(__parent, "Do you want to restart the IDE to save the changes", "Restart")
+        super().__init__(
+            __parent, "Do you want to restart the IDE to save the changes", "Restart"
+        )
 
         self.setMinimumWidth(500)
         self.__command = None

@@ -1,7 +1,6 @@
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (QFrame, QPushButton, QSizePolicy, QSpacerItem,
-                               QVBoxLayout)
+from PySide6.QtWidgets import QFrame, QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout
 
 from scr.configs.pics import IconPaths
 from scr.scripts.tools.file import FileLoader
@@ -38,7 +37,9 @@ class SideBar(QFrame):
         self.searchBtn = SideBarButton(IconPaths.SystemIcons.SEARCH)
         self.mainLayout.addWidget(self.searchBtn)
 
-        self.mainLayout.addItem(QSpacerItem(30, 0, QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Expanding))
+        self.mainLayout.addItem(
+            QSpacerItem(30, 0, QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Expanding)
+        )
 
         self.runFileBtn = SideBarButton(IconPaths.SystemIcons.RUN)
         self.mainLayout.addWidget(self.runFileBtn)

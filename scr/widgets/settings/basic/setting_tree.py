@@ -21,7 +21,8 @@ class SettingTree(QListWidget):
 
     def update_font(self) -> None:
         self.__main_font = Font.get_system_font(
-            WorkbenchFontManager.get_current_family(), WorkbenchFontManager.get_current_font_size()
+            WorkbenchFontManager.get_current_family(),
+            WorkbenchFontManager.get_current_font_size(),
         )
         self.setFont(self.__main_font)
 
@@ -33,6 +34,7 @@ class SettingTree(QListWidget):
             ...
 
     def __connection(self, __text):
-        if __text not in list(self.__commands.keys()): return
+        if __text not in list(self.__commands.keys()):
+            return
 
         self.__commands[__text]()

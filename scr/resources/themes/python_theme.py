@@ -21,4 +21,3 @@ class PythonTheme(AbstractTheme):
     DIGITS = TextCharCreator.create_char_format(*theme["digits"].values())
     BRACKETS = TextCharCreator.create_char_format(*theme["brackets"].values())
     SPECIAL = TextCharCreator.create_char_format(*theme["special"].values())
-

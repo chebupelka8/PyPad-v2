@@ -3,7 +3,7 @@ import sys
 
 
 def restart_application() -> None:
-    os.execv(sys.executable, ['python'] + sys.argv)
+    os.execv(sys.executable, ["python"] + sys.argv)
 
 
 def smallest_multiple(lst) -> int | None:

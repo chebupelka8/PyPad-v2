@@ -3,8 +3,13 @@ import sys
 
 from PySide6.QtCore import QModelIndex, Qt
 from PySide6.QtGui import QIcon, QShortcut
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow,
-                               QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QMainWindow,
+    QVBoxLayout,
+    QWidget,
+)
 
 from scr import *
 from scr.interface.basic import Splitter
@@ -51,7 +56,9 @@ class MainWidget(QWidget):
         self.mainLayout.addWidget(self.statusBar)
 
     def setup_ui(self) -> None:
-        self.tabEditor.add_tab(Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME))
+        self.tabEditor.add_tab(
+            Tab("Welcome!", WelcomeScreen(), icon=IconPaths.SystemIcons.WELCOME)
+        )
         self.__changed_tab()
 
         # connections
@@ -64,7 +71,9 @@ class MainWidget(QWidget):
         self.fileTree.directory_changed_connect(self.__changed_tab)
 
         self.settingActionMenu.connect_by_title("Themes...", self.__show_theme_changer)
-        self.settingActionMenu.connect_by_title("Open Settings...", self.settingsMenu.show)
+        self.settingActionMenu.connect_by_title(
+            "Open Settings...", self.settingsMenu.show
+        )
 
         # shortcuts
         QShortcut("Ctrl+W", self).activated.connect(self.projectList.show)
@@ -77,10 +86,14 @@ class MainWidget(QWidget):
             lambda: self.fileTree.open_directory(FileDialog.get_open_directory())
         )
         QShortcut("Ctrl+P", self).activated.connect(
-            lambda: self.__click_file_tree(self.fileTree.open_file(FileDialog.get_open_file_name()))
+            lambda: self.__click_file_tree(
+                self.fileTree.open_file(FileDialog.get_open_file_name())
+            )
         )
         QShortcut("Ctrl+F5", self).activated.connect(
-            lambda: FileRunner.run_python_file(self.tabEditor.get_current_path(), self.fileTree.get_current_directory())
+            lambda: FileRunner.run_python_file(
+                self.tabEditor.get_current_path(), self.fileTree.get_current_directory()
+            )
         )
 
         # updaters
@@ -102,17 +115,29 @@ class MainWidget(QWidget):
     def __open_file_for_edit(self, __path: str, __icon) -> None:
         if FileChecker.is_python_file(__path):
             self.tabEditor.add_tab(
-                Tab(os.path.basename(__path), PythonCodeEditorArea(__path), __icon, __path)
+                Tab(
+                    os.path.basename(__path),
+                    PythonCodeEditorArea(__path),
+                    __icon,
+                    __path,
+                )
             )
 
         elif FileChecker.is_style_file(__path):
             self.tabEditor.add_tab(
-                Tab(os.path.basename(__path), StyleCodeEditorArea(__path), __icon, __path)
+                Tab(
+                    os.path.basename(__path),
+                    StyleCodeEditorArea(__path),
+                    __icon,
+                    __path,
+                )
             )
 
         elif FileChecker.is_json_file(__path):
             self.tabEditor.add_tab(
-                Tab(os.path.basename(__path), JsonCodeEditorArea(__path), __icon, __path)
+                Tab(
+                    os.path.basename(__path), JsonCodeEditorArea(__path), __icon, __path
+                )
             )
 
         elif FileChecker.is_picture_file(__path):
@@ -122,13 +147,17 @@ class MainWidget(QWidget):
 
         elif FileChecker.is_html_file(__path):
             self.tabEditor.add_tab(
-                Tab(os.path.basename(__path), HtmlCodeEditorArea(__path), __icon, __path)
+                Tab(
+                    os.path.basename(__path), HtmlCodeEditorArea(__path), __icon, __path
+                )
             )
 
         elif FileChecker.is_readable(__path):
             try:
                 self.tabEditor.add_tab(
-                    Tab(os.path.basename(__path), TextEditorArea(__path), __icon, __path)
+                    Tab(
+                        os.path.basename(__path), TextEditorArea(__path), __icon, __path
+                    )
                 )
             except UnicodeDecodeError:
                 pass
@@ -139,11 +168,14 @@ class MainWidget(QWidget):
         self.tabsSwitcher.show_window(
             self.tabEditor.get_tabs(),
             self.tabEditor.currentIndex(),
-            lambda index: self.tabEditor.setCurrentIndex(index)
+            lambda index: self.tabEditor.setCurrentIndex(index),
         )
 
     def __show_theme_changer(self):
-        themes = [FileLoader.load_json(f"scr/data/themes/{i}")["name"] for i in os.listdir("scr/data/themes")]
+        themes = [
+            FileLoader.load_json(f"scr/data/themes/{i}")["name"]
+            for i in os.listdir("scr/data/themes")
+        ]
 
         self.themeChanger.themeChanger.set_items(*themes)
         self.themeChanger.show()
@@ -169,7 +201,8 @@ class Window(QMainWindow):
         self.setWindowTitle("PyPad")
         self.setWindowIcon(QIcon(IconPaths.SystemIcons.ICON))
         self.setStyleSheet(
-            FileLoader.load_style("scr/style/main.css") + FileLoader.load_style("scr/subwidgets/styles/action_menu.css")
+            FileLoader.load_style("scr/style/main.css")
+            + FileLoader.load_style("scr/subwidgets/styles/action_menu.css")
         )
         self.setObjectName("window")
 

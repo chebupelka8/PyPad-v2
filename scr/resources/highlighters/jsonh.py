@@ -14,4 +14,3 @@ class JsonCodeHighLighter(CodeHighlighter):
         self.highlight_match(JsonPatterns.SYMBOLS, JsonTheme.SYMBOLS, text)
         self.highlight_match(JsonPatterns.BRACKETS, JsonTheme.BRACKETS, text)
         self.highlight_match(JsonPatterns.STRING, JsonTheme.STRING, text)
-

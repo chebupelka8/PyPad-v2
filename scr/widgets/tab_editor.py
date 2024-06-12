@@ -98,7 +98,11 @@ class TabEditor(QTabWidget):
 
     def update_font(self) -> None:
         self.__main_font = WorkbenchFontManager.get_current_font_as_font()
-        self.setIconSize(QSize(self.__main_font.pointSize() * 1.3, self.__main_font.pointSize() * 1.3))
+        self.setIconSize(
+            QSize(
+                self.__main_font.pointSize() * 1.3, self.__main_font.pointSize() * 1.3
+            )
+        )
         self.__main_font.setPointSize(self.__main_font.pointSize())
         self.setFont(self.__main_font)
 
@@ -121,7 +125,7 @@ class TabEditor(QTabWidget):
                 "widget": tab.widget,
                 "icon": tab.icon,
                 "path": tab.path,
-                "index": tab.index
+                "index": tab.index,
             }
 
         return res
@@ -177,7 +181,8 @@ class TabEditor(QTabWidget):
         for tab in self.__tabs:
             tab.index = self.indexOf(tab.widget)
 
-            if tab.index == -1: self.__tabs.remove(tab)
+            if tab.index == -1:
+                self.__tabs.remove(tab)
 
         self.__tabs.sort(key=lambda t: t.index)
 
@@ -186,7 +191,9 @@ class TabEditor(QTabWidget):
         super().removeTab(__index)
 
         if self.count() == 0:  # add welcome screen tab if tab bar is clear
-            self.add_tab(Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME))
+            self.add_tab(
+                Tab("Welcome!", WelcomeScreen(), IconPaths.SystemIcons.WELCOME)
+            )
 
         self.__update_indexes()
 

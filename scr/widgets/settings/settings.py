@@ -4,9 +4,14 @@ from PySide6.QtWidgets import QScrollArea
 from scr.interface.abstract import TransparentDialogWindow
 from scr.scripts.tools.file import FileLoader
 
-from .basic import (EditorSettingsWidget, InfoWidget,
-                    InterpreterSettingsWidget, MainSettingsWidget, SettingTree,
-                    ThemeSettingsWidget)
+from .basic import (
+    EditorSettingsWidget,
+    InfoWidget,
+    InterpreterSettingsWidget,
+    MainSettingsWidget,
+    SettingTree,
+    ThemeSettingsWidget,
+)
 
 
 class SettingsMenu(TransparentDialogWindow):
@@ -17,12 +22,17 @@ class SettingsMenu(TransparentDialogWindow):
 
         self.setWindowTitle("Settings")
         self.setMinimumSize(1000, 700)
-        self.setStyleSheet(self.styleSheet() + FileLoader.load_style("scr/widgets/styles/settings_menu.css"))
+        self.setStyleSheet(
+            self.styleSheet()
+            + FileLoader.load_style("scr/widgets/styles/settings_menu.css")
+        )
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
         self.settingsArea = QScrollArea()
         self.settingsArea.setMinimumWidth(800)
-        self.settingsArea.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.settingsArea.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
         self.settingsArea.setWidget(MainSettingsWidget())
 
         self.settingTree = SettingTree()
@@ -33,10 +43,12 @@ class SettingsMenu(TransparentDialogWindow):
             "Editor", lambda: self.settingsArea.setWidget(EditorSettingsWidget())
         )
         self.settingTree.connect_by_title(
-            "Theme", lambda: self.settingsArea.setWidget(ThemeSettingsWidget(self.restarter))
+            "Theme",
+            lambda: self.settingsArea.setWidget(ThemeSettingsWidget(self.restarter)),
         )
         self.settingTree.connect_by_title(
-            "Interpreter", lambda: self.settingsArea.setWidget(InterpreterSettingsWidget())
+            "Interpreter",
+            lambda: self.settingsArea.setWidget(InterpreterSettingsWidget()),
         )
         self.settingTree.connect_by_title(
             "About", lambda: self.settingsArea.setWidget(InfoWidget())

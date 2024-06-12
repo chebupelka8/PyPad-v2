@@ -38,7 +38,9 @@ class PyProject:
         bool: True if the project is valid, False otherwise.
         """
 
-        return ".pypad" in os.listdir(__path) and os.path.exists(os.path.join(__path, ".pypad\\config.json"))
+        return ".pypad" in os.listdir(__path) and os.path.exists(
+            os.path.join(__path, ".pypad\\config.json")
+        )
 
 
 class SetupPyProject:
@@ -56,8 +58,14 @@ if __name__ == '__main__':
     __python_interpreter_path = config["python_interpreter_path"]
 
     @classmethod
-    def create_new_project(cls, __path: str, __name: str, __version: Optional[str] = None,
-                           make_welcome_script: bool = True, after_command = None) -> None:
+    def create_new_project(
+        cls,
+        __path: str,
+        __name: str,
+        __version: Optional[str] = None,
+        make_welcome_script: bool = True,
+        after_command=None,
+    ) -> None:
         """
         Creates a new PyPad project.
 
@@ -77,28 +85,34 @@ if __name__ == '__main__':
         - Executes the after_command if provided.
         """
 
-        if __name in PyProjectConfig.get_projects_names():  # Checks if the project name already exists
+        if (
+            __name in PyProjectConfig.get_projects_names()
+        ):  # Checks if the project name already exists
             return
 
         output_path = os.path.join(__path, __name)
 
-        os.system(f'call scr\\project\\pyproject\\scripts\\create_pyproject.bat "{__path}" "{__name}"')
-        os.system(f'call scr\\project\\pyproject\\scripts\\virtual_venv.bat "{output_path}" "{cls.__python_interpreter_path}"')
+        os.system(
+            f'call scr\\project\\pyproject\\scripts\\create_pyproject.bat "{__path}" "{__name}"'
+        )
+        os.system(
+            f'call scr\\project\\pyproject\\scripts\\virtual_venv.bat "{output_path}" "{cls.__python_interpreter_path}"'
+        )
 
-        data = {
-            "name": __name,
-            "version": __version
-        }
+        data = {"name": __name, "version": __version}
 
-        with open(f'{__path}\\{__name}\\.pypad\\config.json', "w", encoding="utf-8") as file:
+        with open(
+            f"{__path}\\{__name}\\.pypad\\config.json", "w", encoding="utf-8"
+        ) as file:
             json.dump(data, file, indent=4)
 
         # create a welcome script
-        with open(f'{__path}\\{__name}\\main.py', "w", encoding="utf-8") as file:
+        with open(f"{__path}\\{__name}\\main.py", "w", encoding="utf-8") as file:
             if make_welcome_script:
                 file.write(cls.WELCOME_SCRIPT)
             else:
                 file.write("")
 
         PyProjectConfig.add_project(output_path, os.path.basename(output_path))
-        if after_command is not None: after_command()
+        if after_command is not None:
+            after_command()

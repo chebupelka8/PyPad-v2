@@ -11,7 +11,9 @@ class PythonCodeHighlighter(CodeHighlighter):
         self.highlight_match(PythonPatterns.CLASS_NAME, PythonTheme.CLASS_NAMES, text)
         self.highlight_match(PythonPatterns.FUNCTION_NAME, PythonTheme.FUNC_NAMES, text)
         self.highlight_match(PythonPatterns.KEYWORDS, PythonTheme.KEYWORDS, text)
-        self.highlight_match(PythonPatterns.PYTHON_FUNCTIONS, PythonTheme.FUNCTIONS, text)
+        self.highlight_match(
+            PythonPatterns.PYTHON_FUNCTIONS, PythonTheme.FUNCTIONS, text
+        )
         self.highlight_match(PythonPatterns.BOOLEAN, PythonTheme.BOOLEAN, text)
         self.highlight_match(PythonPatterns.NONE_TYPE, PythonTheme.NONE_TYPE, text)
         self.highlight_match(PythonPatterns.DATA_TYPES, PythonTheme.DATA_TYPES, text)
@@ -21,7 +23,8 @@ class PythonCodeHighlighter(CodeHighlighter):
         self.highlight_match(PythonPatterns.PYTHON_SYMBOLS, PythonTheme.SYMBOLS, text)
         self.highlight_match(PythonPatterns.DECORATOR, PythonTheme.DECORATOR, text)
         self.highlight_match(PythonPatterns.COMMENT, PythonTheme.COMMENT, text)
-        self.highlight_match(PythonPatterns.STRING_DOUBLE_QUOTATION, PythonTheme.STRING, text)
+        self.highlight_match(
+            PythonPatterns.STRING_DOUBLE_QUOTATION, PythonTheme.STRING, text
+        )
         self.highlight_match(PythonPatterns.STRING_APOSTROPHE, PythonTheme.STRING, text)
         self.highlight_match(PythonPatterns.LONG_STRING, PythonTheme.STRING, text)
-

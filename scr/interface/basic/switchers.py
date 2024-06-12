@@ -1,8 +1,16 @@
 import os.path
 
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLineEdit, QSizePolicy,
-                               QSpacerItem, QSpinBox, QSplitter, QWidget)
+from PySide6.QtWidgets import (
+    QComboBox,
+    QHBoxLayout,
+    QLineEdit,
+    QSizePolicy,
+    QSpacerItem,
+    QSpinBox,
+    QSplitter,
+    QWidget,
+)
 
 from scr.scripts.tools.file import FileDialog, FileLoader
 
@@ -19,10 +27,14 @@ class Splitter(QSplitter):
     """
 
     def __init__(self, __orientation: str, *, parent=None) -> None:
-        if __orientation == "horizontal": super().__init__(Qt.Orientation.Horizontal, parent)
-        elif __orientation == "vertical": super().__init__(Qt.Orientation.Vertical, parent)
+        if __orientation == "horizontal":
+            super().__init__(Qt.Orientation.Horizontal, parent)
+        elif __orientation == "vertical":
+            super().__init__(Qt.Orientation.Vertical, parent)
 
-        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/splitter.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/interface/basic/styles/splitter.css")
+        )
 
     def addWidget(self, widget):
         super().addWidget(widget)
@@ -47,7 +59,9 @@ class DropDownMenu(QComboBox):
         self.__values = [*__values]
         self.addItems(self.__values)
 
-        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/drop_down_menu.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/interface/basic/styles/drop_down_menu.css")
+        )
 
     def set_items(self, *__values: str) -> None:
         self.__values = [*__values]
@@ -62,14 +76,22 @@ class Entry(QLineEdit):
     - __init__(__placed: str, placeholder: str = "", width: int = 200, height: int = 25): None - Initializes the text entry with default text and placeholder.
     """
 
-    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 200, height: int = 25) -> None:
+    def __init__(
+        self,
+        __placed: str = "",
+        placeholder: str = "",
+        width: int = 200,
+        height: int = 25,
+    ) -> None:
         super().__init__()
 
         self.setFixedSize(QSize(width, height))
         self.setText(__placed)
         self.setPlaceholderText(placeholder)
 
-        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/entry.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/interface/basic/styles/entry.css")
+        )
 
 
 class DigitalEntry(QSpinBox):
@@ -80,14 +102,23 @@ class DigitalEntry(QSpinBox):
     - __init__(__range: tuple[int, int], width: int = 30, height: int = 25, show_buttons: bool = False): None - Initializes the digital entry with a specified range, width, height, and button display.
     """
 
-    def __init__(self, __range: tuple[int, int], width: int = 30, height: int = 25, show_buttons: bool = False) -> None:
+    def __init__(
+        self,
+        __range: tuple[int, int],
+        width: int = 30,
+        height: int = 25,
+        show_buttons: bool = False,
+    ) -> None:
         super().__init__()
 
         self.setFixedSize(QSize(width, height))
-        if not show_buttons: self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
+        if not show_buttons:
+            self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
 
         self.setRange(*__range)
-        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/digital_entry.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/interface/basic/styles/digital_entry.css")
+        )
 
 
 class PathEntry(QWidget):
@@ -103,22 +134,36 @@ class PathEntry(QWidget):
     - This widget includes Entry and PushButton to specify the path to your file or directory
     """
 
-    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25) -> None:
+    def __init__(
+        self,
+        __placed: str = "",
+        placeholder: str = "",
+        width: int = 400,
+        height: int = 25,
+    ) -> None:
         super().__init__()
 
         self.setObjectName("path-entry-widget")
-        self.setStyleSheet(FileLoader.load_style("scr/interface/basic/styles/path_entry.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/interface/basic/styles/path_entry.css")
+        )
 
         self.mainLayout = QHBoxLayout()
 
         self.pathEntry = Entry(__placed, placeholder, width, height)
 
         self.specifyPathBtn = DefaultButton("...", width=25)
-        self.specifyPathBtn.clicked.connect(lambda: self.set_path(FileDialog.get_open_file_name()))
+        self.specifyPathBtn.clicked.connect(
+            lambda: self.set_path(FileDialog.get_open_file_name())
+        )
 
         self.mainLayout.addWidget(self.pathEntry)
         self.mainLayout.addWidget(self.specifyPathBtn)
-        self.mainLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        self.mainLayout.addItem(
+            QSpacerItem(
+                20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+            )
+        )
         self.setLayout(self.mainLayout)
 
     def set_path(self, __path: str, only_existing: bool = True) -> None:

@@ -4,12 +4,15 @@ from scr.scripts.font import Font
 
 
 class Text:
-
     @staticmethod
     def label(
-            __text: str, font_family: str, font_size: int,
-            bold: bool = False, italic: bool = False,
-            color: str = "#ffffff", word_wrap: bool = False
+        __text: str,
+        font_family: str,
+        font_size: int,
+        bold: bool = False,
+        italic: bool = False,
+        color: str = "#ffffff",
+        word_wrap: bool = False,
     ) -> QLabel:
         label = QLabel(__text)
         label.setStyleSheet(f"color: {color}")

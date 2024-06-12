@@ -14,9 +14,7 @@ class PythonCodeEditorArea(AbstractCodeEditorArea):
         # self.set_default_text_color(PythonTheme.DEFAULT)
 
     def keyPressEvent(self, event):
-        key_func = lambda: (
-            self.key_press_filter(event, True, True, True, True, True)
-        )
+        key_func = lambda: (self.key_press_filter(event, True, True, True, True, True))
 
         self.lineNumberArea.update()
 
@@ -29,7 +27,7 @@ class PythonCodeEditorArea(AbstractCodeEditorArea):
 
             elif not previous.isspace() and previous.strip(" ") != "":
                 try:
-                    prev = previous[:cursor.positionInBlock()].rstrip()
+                    prev = previous[: cursor.positionInBlock()].rstrip()
                     prev[-1]  # checks if there is a character at the end of the line
 
                 except IndexError:
@@ -37,11 +35,15 @@ class PythonCodeEditorArea(AbstractCodeEditorArea):
             else:
                 prev = previous
 
-            if prev[-1] == ":" or self.get_current_line_text()[:1] == "\t" or self.get_current_line_text()[:4] == "    ":
+            if (
+                prev[-1] == ":"
+                or self.get_current_line_text()[:1] == "\t"
+                or self.get_current_line_text()[:4] == "    "
+            ):
                 tab_count = (
-                    CodeAnalyzer.find_tabs_in_string(previous, cursor.positionInBlock()) +
-                    CodeAnalyzer.check_last_character_is_colon(prev) +
-                    CodeAnalyzer.find_tabs_in_string_by_spaces(
+                    CodeAnalyzer.find_tabs_in_string(previous, cursor.positionInBlock())
+                    + CodeAnalyzer.check_last_character_is_colon(prev)
+                    + CodeAnalyzer.find_tabs_in_string_by_spaces(
                         previous, cursor.positionInBlock(), self.get_current_tab_width()
                     )
                 )

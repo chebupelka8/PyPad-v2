@@ -44,7 +44,8 @@ class FileTree(QTreeView):
 
     def update_font(self):
         self.__main_font = Font.get_system_font(
-            WorkbenchFontManager.get_current_family(), WorkbenchFontManager.get_current_font_size()
+            WorkbenchFontManager.get_current_family(),
+            WorkbenchFontManager.get_current_font_size(),
         )
         self.setFont(self.__main_font)
 

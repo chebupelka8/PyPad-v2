@@ -32,14 +32,21 @@ class Dialog(DialogWindow):
     - reject(): Signal emitted when the reject button is clicked.
     """
 
-    def __init__(self, __parent, __message: str, accept_title: str = "Ok", reject_title: str = "Cancel") -> None:
+    def __init__(
+        self,
+        __parent,
+        __message: str,
+        accept_title: str = "Ok",
+        reject_title: str = "Cancel",
+    ) -> None:
         super().__init__(__parent)
 
         self.mainLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
 
         self.mainLayout.addWidget(
-            Text.label(__message, "CascadiaMono.ttf", 9), alignment=Qt.AlignmentFlag.AlignCenter
+            Text.label(__message, "CascadiaMono.ttf", 9),
+            alignment=Qt.AlignmentFlag.AlignCenter,
         )
         self.mainLayout.addLayout(self.buttonLayout)
 
@@ -49,7 +56,11 @@ class Dialog(DialogWindow):
         self.acceptBtn.clicked.connect(self.accept)
         self.rejectBtn.clicked.connect(self.reject)
 
-        self.buttonLayout.addWidget(self.acceptBtn, alignment=Qt.AlignmentFlag.AlignRight)
-        self.buttonLayout.addWidget(self.rejectBtn, alignment=Qt.AlignmentFlag.AlignLeft)
+        self.buttonLayout.addWidget(
+            self.acceptBtn, alignment=Qt.AlignmentFlag.AlignRight
+        )
+        self.buttonLayout.addWidget(
+            self.rejectBtn, alignment=Qt.AlignmentFlag.AlignLeft
+        )
 
         self.setLayout(self.mainLayout)

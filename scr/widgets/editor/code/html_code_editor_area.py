@@ -11,6 +11,4 @@ class HtmlCodeEditorArea(AbstractCodeEditorArea):
         # self.set_default_text_color(HtmlTheme.DEFAULT)
 
     def keyPressEvent(self, event):
-        self.key_press_filter(
-            event, False, False, False, True, True, True
-        )
+        self.key_press_filter(event, False, False, False, True, True, True)

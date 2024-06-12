@@ -43,7 +43,10 @@ class ListChanger(QListWidget):
     def __init__(self, *__values) -> None:
         super().__init__()
 
-        self.setStyleSheet(self.styleSheet() + FileLoader.load_style("scr/interface/abstract/styles/list_changer.css"))
+        self.setStyleSheet(
+            self.styleSheet()
+            + FileLoader.load_style("scr/interface/abstract/styles/list_changer.css")
+        )
 
         self.addItems([*__values])
 

@@ -23,7 +23,9 @@ class ThemeChanger(ListChanger):
         self.restarter.show()
 
     def open(self):
-        self.setCurrentItem(self.get_item_by_text(ThemeManager.get_current_theme_name()))
+        self.setCurrentItem(
+            self.get_item_by_text(ThemeManager.get_current_theme_name())
+        )
 
     def use(self):
         self.change_theme(self.get_current_item().text())
@@ -44,7 +46,9 @@ class ThemeChangerWindow(TransparentDialogWindow):
         self.rejectBtn.clicked.connect(self.reject)
 
         self.buttonsLayout = QHBoxLayout()
-        self.buttonsLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        self.buttonsLayout.addItem(
+            QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        )
         self.buttonsLayout.addWidget(self.acceptBtn)
         self.buttonsLayout.addWidget(self.rejectBtn)
         self.add_layout(self.buttonsLayout)
