@@ -32,7 +32,7 @@ Ctrl+Tab - Switch current file
 <h3>How to run</h3>
 <h4>Windows<h4>
 
-```shell
+```sh
 git clone https://github.com/chebupelka8/PyPad-v2
 cd .\PyPad-v2
 
@@ -45,7 +45,7 @@ python main.py  # run script
 
 <h4>Linux<h4>
 
-```shell
+```sh
 git clone https://github.com/chebupelka8/PyPad-v2
 cd ./PyPad-v2
 
