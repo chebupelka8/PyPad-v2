@@ -1,1 +1,1 @@
-from .settings_updater import WorkbenchSettingsUpdater, EditorSettingsUpdater
+from .settings_updater import EditorSettingsUpdater, WorkbenchSettingsUpdater

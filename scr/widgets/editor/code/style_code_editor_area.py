@@ -1,7 +1,7 @@
-from ..abstract.abstract_code_area import AbstractCodeEditorArea
-
 from scr.resources.highlighters import StyleCodeHighLighter
 from scr.resources.themes import StyleTheme
+
+from ..abstract.abstract_code_area import AbstractCodeEditorArea
 
 
 class StyleCodeEditorArea(AbstractCodeEditorArea):

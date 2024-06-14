@@ -1,8 +1,8 @@
-from scr.scripts.tools.file import FileLoader
-
-from PySide6.QtWidgets import QGraphicsScene, QGraphicsView
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QPixmap, QPainter
+from PySide6.QtGui import QPainter, QPixmap
+from PySide6.QtWidgets import QGraphicsScene, QGraphicsView
+
+from scr.scripts.tools.file import FileLoader
 
 
 class ImageViewer(QGraphicsView):

@@ -1,9 +1,9 @@
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QPushButton
+from typing import Any, Optional
+
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QFrame, QPushButton, QVBoxLayout
 
 from .frame_titles import FrameTitles
-
-from typing import Optional, Any
 
 
 class AbstractSettingFrame(QFrame):
@@ -15,8 +15,10 @@ class AbstractSettingFrame(QFrame):
         self.setMinimumHeight(100)
         self.setContentsMargins(10, 0, 0, 0)
 
-        if __title is not None: self.__add_subtitle(__title)
-        if __description is not None: self.__add_description(__description)
+        if __title is not None:
+            self.__add_subtitle(__title)
+        if __description is not None:
+            self.__add_description(__description)
 
         self.setLayout(self.mainLayout)
 
@@ -34,7 +36,8 @@ class AbstractSettingFrame(QFrame):
         btn = QPushButton(__text)
         btn.setFixedWidth(__width)
         btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-        if is_highlighted: btn.setObjectName("highlighted-btn")
+        if is_highlighted:
+            btn.setObjectName("highlighted-btn")
 
         self.mainLayout.addWidget(btn)
 

@@ -1,7 +1,7 @@
-from ..abstract.abstract_code_area import AbstractCodeEditorArea
-
 from scr.resources.highlighters import HtmlCodeHighlighter
 from scr.resources.themes import HtmlTheme
+
+from ..abstract.abstract_code_area import AbstractCodeEditorArea
 
 
 class HtmlCodeEditorArea(AbstractCodeEditorArea):
@@ -11,6 +11,4 @@ class HtmlCodeEditorArea(AbstractCodeEditorArea):
         # self.set_default_text_color(HtmlTheme.DEFAULT)
 
     def keyPressEvent(self, event):
-        self.key_press_filter(
-            event, False, False, False, True, True, True
-        )
+        self.key_press_filter(event, False, False, False, True, True, True)

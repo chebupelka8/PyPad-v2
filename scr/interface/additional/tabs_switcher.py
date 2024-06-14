@@ -1,7 +1,7 @@
+import os
+
 from scr.interface.abstract import ListChanger, TransparentDialogWindow
 from scr.interface.basic import Text
-
-import os
 
 
 class TabsSwitcher(ListChanger):
@@ -49,10 +49,13 @@ class TabsSwitcher(ListChanger):
         """
 
         current_item = self.currentItem()
-        if current_item is None: return
+        if current_item is None:
+            return
 
         if self.__items[__index].is_file():
-            current_item.setText(f'{current_item.text()}{" " * 25}{self.__to_shorter_path(self.__items[__index].path)}')
+            current_item.setText(
+                f'{current_item.text()}{" " * 25}{self.__to_shorter_path(self.__items[__index].path)}'
+            )
 
         self.__reset_titles()
 

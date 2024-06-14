@@ -1,5 +1,5 @@
-from PySide6.QtGui import QIcon
 from PySide6.QtCore import QFileInfo
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QFileIconProvider
 
 from scr.configs.pics import IconPaths
@@ -8,7 +8,6 @@ from scr.configs.pics import IconPaths
 class IconProvider(QFileIconProvider):
     def icon(self, __info: QFileInfo):
         try:
-
             if __info.isDir():
                 return QIcon(IconPaths.FolderIcons.DEFAULT)
 

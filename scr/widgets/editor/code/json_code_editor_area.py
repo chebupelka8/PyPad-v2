@@ -1,7 +1,7 @@
-from ..abstract.abstract_code_area import AbstractCodeEditorArea
-
 from scr.resources.highlighters import JsonCodeHighLighter
 from scr.resources.themes import JsonTheme
+
+from ..abstract.abstract_code_area import AbstractCodeEditorArea
 
 
 class JsonCodeEditorArea(AbstractCodeEditorArea):

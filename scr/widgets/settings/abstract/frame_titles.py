@@ -4,7 +4,6 @@ from scr.interface.basic import Text
 
 
 class FrameTitles:
-
     @staticmethod
     def title(__text: str) -> QLabel:
         return Text.label(__text, "CascadiaMono.ttf", 17, True)

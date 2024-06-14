@@ -1,6 +1,6 @@
-from .highlighter import CodeHighlighter
 from ...configs.patterns import JsonPatterns
 from ..themes import JsonTheme
+from .highlighter import CodeHighlighter
 
 
 class JsonCodeHighLighter(CodeHighlighter):
@@ -14,4 +14,3 @@ class JsonCodeHighLighter(CodeHighlighter):
         self.highlight_match(JsonPatterns.SYMBOLS, JsonTheme.SYMBOLS, text)
         self.highlight_match(JsonPatterns.BRACKETS, JsonTheme.BRACKETS, text)
         self.highlight_match(JsonPatterns.STRING, JsonTheme.STRING, text)
-

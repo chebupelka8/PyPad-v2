@@ -1,13 +1,12 @@
-from scr.scripts.tools.file import FileLoader
-from scr.scripts.font import Font, WorkbenchFontManager
-from scr.scripts.utils import IconProvider
-
-from scr.project import ProjectConfig
-
 import os
 
-from PySide6.QtWidgets import QTreeView, QFileSystemModel, QAbstractItemView
-from PySide6.QtCore import Qt, QSize
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import QAbstractItemView, QFileSystemModel, QTreeView
+
+from scr.project import ProjectConfig
+from scr.scripts.font import Font, WorkbenchFontManager
+from scr.scripts.tools.file import FileLoader
+from scr.scripts.utils import IconProvider
 
 
 class FileTree(QTreeView):
@@ -45,7 +44,8 @@ class FileTree(QTreeView):
 
     def update_font(self):
         self.__main_font = Font.get_system_font(
-            WorkbenchFontManager.get_current_family(), WorkbenchFontManager.get_current_font_size()
+            WorkbenchFontManager.get_current_family(),
+            WorkbenchFontManager.get_current_font_size(),
         )
         self.setFont(self.__main_font)
 

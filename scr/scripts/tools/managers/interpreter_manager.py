@@ -1,6 +1,6 @@
-from ..file import FileLoader
-
 import json
+
+from ..file import FileLoader
 
 
 class InterpreterManager:

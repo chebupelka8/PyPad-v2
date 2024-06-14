@@ -1,10 +1,11 @@
+from typing import Optional
+
+from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QDialog, QHBoxLayout
-from PySide6.QtCore import Qt, QSize
 
 from scr.scripts.tools.file import FileLoader
-from .shell import ShellFrame
 
-from typing import Optional
+from .shell import ShellFrame
 
 
 class DialogWindow(QDialog):
@@ -12,9 +13,15 @@ class DialogWindow(QDialog):
     Customizable dialog window with frameless and keyboard inclusion settings.
     """
 
-    def __init__(self, __parent,
-                 width: int = 600, height: int = 400, *,
-                 frameless: bool = True, keyboard_include: bool = True) -> None:
+    def __init__(
+        self,
+        __parent,
+        width: int = 600,
+        height: int = 400,
+        *,
+        frameless: bool = True,
+        keyboard_include: bool = True,
+    ) -> None:
         """
         Initializes the DialogWindow object with the specified parameters.
 
@@ -26,14 +33,18 @@ class DialogWindow(QDialog):
         keyboard_include (bool): Flag to include keyboard shortcuts (default: True).
         """
 
-        if frameless: super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
-        else: super().__init__(__parent)
+        if frameless:
+            super().__init__(__parent, f=Qt.WindowType.FramelessWindowHint)
+        else:
+            super().__init__(__parent)
 
         self.setMinimumSize(QSize(width, height))
 
         self.__keyboard_include = keyboard_include
 
-        self.setStyleSheet(FileLoader.load_style("scr/interface/abstract/styles/dialog.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/interface/abstract/styles/dialog.css")
+        )
         self.setWindowModality(Qt.WindowModality.ApplicationModal)
 
     def keyPressEvent(self, event):
@@ -56,9 +67,15 @@ class TransparentDialogWindow(DialogWindow):
     Transparent dialog window with a shell frame.
     """
 
-    def __init__(self, __parent, shell_layout_type: str = "vertical",
-                 width: int = 600, height: int = 400, *,
-                 frameless: bool = True) -> None:
+    def __init__(
+        self,
+        __parent,
+        shell_layout_type: str = "vertical",
+        width: int = 600,
+        height: int = 400,
+        *,
+        frameless: bool = True,
+    ) -> None:
         """
         Initializes the TransparentDialogWindow object with the specified parameters.
 

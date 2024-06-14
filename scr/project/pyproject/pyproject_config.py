@@ -1,8 +1,8 @@
 import json
 import os
 
-from scr.scripts.tools.file import FileLoader
 from scr.project import ImageGenerator, ProjectNameGenerator
+from scr.scripts.tools.file import FileLoader
 
 
 class PyProjectConfig:
@@ -98,8 +98,10 @@ class PyProjectConfig:
             "path": __path,
             "icon": ImageGenerator.save(
                 __name,
-                ImageGenerator.generate((300, 300), ProjectNameGenerator.get_basename(__name))
-            )
+                ImageGenerator.generate(
+                    (300, 300), ProjectNameGenerator.get_basename(__name)
+                ),
+            ),
         }
 
         cls.__dump(config)

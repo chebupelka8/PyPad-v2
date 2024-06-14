@@ -1,10 +1,9 @@
-from PySide6.QtWidgets import QFileDialog
-
 import os
+
+from PySide6.QtWidgets import QFileDialog
 
 
 class FileDialog:
-
     @staticmethod
     def get_open_file_name():
         """

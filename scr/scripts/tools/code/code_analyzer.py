@@ -2,7 +2,6 @@ from ...utils import from_multiple
 
 
 class CodeAnalyzer:
-
     @staticmethod
     def find_tabs_in_string(string: str, __cursor_index: int) -> int:
         """
@@ -31,7 +30,9 @@ class CodeAnalyzer:
         return res
 
     @staticmethod
-    def find_tabs_in_string_by_spaces(string, __cursor_index: int, __tab_count: int = 4) -> int:
+    def find_tabs_in_string_by_spaces(
+        string, __cursor_index: int, __tab_count: int = 4
+    ) -> int:
         """
         Finds the number of tabs in a string based on spaces up to a specified cursor index.
 
@@ -74,7 +75,8 @@ class CodeAnalyzer:
         """
 
         for i, letter in enumerate(__line):
-            if letter != " ": return i
+            if letter != " ":
+                return i
 
     @classmethod
     def get_tab_width_by_text(cls, __text: str) -> int | None:
@@ -95,7 +97,8 @@ class CodeAnalyzer:
 
         for line in __text.split("\n"):
             count = line.count(" ", 0, cls.get_index_first_symbol_of_line(line))
-            if count > 1: res.append(count)
+            if count > 1:
+                res.append(count)
 
         return from_multiple(res, [i for i in range(2, 9)])
 

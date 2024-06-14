@@ -1,8 +1,7 @@
 import json
+import os
 
 from ..tools.file import FileLoader
-
-import os
 
 
 class ThemeManager:
@@ -43,7 +42,7 @@ class ThemeManager:
         settings = FileLoader.load_json("scr/data/settings.json")
         settings["theme"] = {
             "path": __path,
-            "name": FileLoader.load_json(__path)["name"]
+            "name": FileLoader.load_json(__path)["name"],
         }
 
         cls.unsaved = settings
@@ -58,10 +57,7 @@ class ThemeManager:
         """
 
         settings = FileLoader.load_json("scr/data/settings.json")
-        settings["theme"] = {
-            "path": cls.get_theme_path_by_name(__name),
-            "name": __name
-        }
+        settings["theme"] = {"path": cls.get_theme_path_by_name(__name), "name": __name}
 
         cls.unsaved = settings
 

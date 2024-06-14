@@ -1,13 +1,11 @@
+import math
 import os.path
+from typing import Optional
 
 from PIL import Image, ImageDraw, ImageFont, ImageQt
-
 from PySide6.QtGui import QIcon, QPixmap
 
-import math
 from scr.resources.colors import Gradients
-
-from typing import Optional
 
 
 class ProjectNameGenerator:
@@ -26,7 +24,8 @@ class ProjectNameGenerator:
         uppers = []
 
         for char in __string:
-            if char.isupper(): uppers.append(char)
+            if char.isupper():
+                uppers.append(char)
 
         match len(uppers):
             case upp if upp in (1, 2):
@@ -35,7 +34,8 @@ class ProjectNameGenerator:
             case upp if upp > 2:
                 return "".join(uppers[:2])
 
-            case _: return None
+            case _:
+                return None
 
     @staticmethod
     def __spliter(__string: str) -> Optional[str]:
@@ -73,7 +73,8 @@ class ProjectNameGenerator:
         """
 
         for char in __string:
-            if char.isalpha(): return char.upper()
+            if char.isalpha():
+                return char.upper()
 
         return __string[0].upper()
 
@@ -89,18 +90,26 @@ class ProjectNameGenerator:
         str: The generated basename for the input name.
         """
 
-        result = list(filter(lambda x: x != None, [cls.__upper_letters(__name), cls.__spliter(__name)]))
+        result = list(
+            filter(
+                lambda x: x != None,
+                [cls.__upper_letters(__name), cls.__spliter(__name)],
+            )
+        )
 
-        if len(result) != 0: return result[0]
-        else: return cls.__first_letter(__name)
+        if len(result) != 0:
+            return result[0]
+        else:
+            return cls.__first_letter(__name)
 
 
 class ImageGenerator:
-
     @classmethod
     def __diagonal_gradient(
-            cls, __image: Image.Image,
-            __from: tuple[int, int, int], __to: tuple[int, int, int]
+        cls,
+        __image: Image.Image,
+        __from: tuple[int, int, int],
+        __to: tuple[int, int, int],
     ) -> Image.Image:
         """
         Creates a diagonal gradient on an image from one color to another.
@@ -126,7 +135,7 @@ class ImageGenerator:
                 r, g, b = map(
                     lambda start, end: start + end,
                     map(lambda start: start * (1 - dist), __from),
-                    map(lambda end: end * dist, __to)
+                    map(lambda end: end * dist, __to),
                 )
 
                 pixel_data[x, y] = int(r), int(g), int(b)
@@ -146,17 +155,24 @@ class ImageGenerator:
         Image.Image: Image with rounded corners.
         """
 
-        circle = Image.new('L', (__radius * 2, __radius * 2), 0)
+        circle = Image.new("L", (__radius * 2, __radius * 2), 0)
         draw = ImageDraw.Draw(circle)
         draw.ellipse((0, 0, __radius * 2 - 1, __radius * 2 - 1), fill=255)
-        alpha = Image.new('L', __image.size, 255)
+        alpha = Image.new("L", __image.size, 255)
 
         w, h = __image.size
 
         alpha.paste(circle.crop((0, 0, __radius, __radius)), (0, 0))
-        alpha.paste(circle.crop((0, __radius, __radius, __radius * 2)), (0, h - __radius))
-        alpha.paste(circle.crop((__radius, 0, __radius * 2, __radius)), (w - __radius, 0))
-        alpha.paste(circle.crop((__radius, __radius, __radius * 2, __radius * 2)), (w - __radius, h - __radius))
+        alpha.paste(
+            circle.crop((0, __radius, __radius, __radius * 2)), (0, h - __radius)
+        )
+        alpha.paste(
+            circle.crop((__radius, 0, __radius * 2, __radius)), (w - __radius, 0)
+        )
+        alpha.paste(
+            circle.crop((__radius, __radius, __radius * 2, __radius * 2)),
+            (w - __radius, h - __radius),
+        )
 
         __image.putalpha(alpha)
 
@@ -201,7 +217,7 @@ class ImageGenerator:
         Image.Image: The generated image.
         """
 
-        __image = Image.new('RGB', __size)
+        __image = Image.new("RGB", __size)
 
         __image = cls.__diagonal_gradient(__image, *Gradients.get_random_gradient())
         __image = cls.__round_corners(__image, 50)

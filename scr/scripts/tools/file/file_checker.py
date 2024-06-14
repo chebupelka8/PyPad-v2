@@ -1,10 +1,9 @@
-from scr.exceptions import WrongFileExtension, NotFileError
-
 import os
+
+from scr.exceptions import NotFileError, WrongFileExtension
 
 
 class FileChecker:
-
     @staticmethod
     def verify_file_extensions(__path: str, *__extensions):
         """
@@ -72,7 +71,13 @@ class FileChecker:
 
     @staticmethod
     def is_picture_file(__path: str) -> bool:
-        return os.path.splitext(__path)[1].lower() in (".jpg", ".jpeg", ".png", ".ico", ".gif")
+        return os.path.splitext(__path)[1].lower() in (
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".ico",
+            ".gif",
+        )
 
     @staticmethod
     def is_readable(__path: str) -> bool:
@@ -89,10 +94,17 @@ class FileChecker:
         - Verifies if the file is readable and not an image file based on its extension.
         """
 
-        if __path is None: return False
+        if __path is None:
+            return False
 
         with open(__path, "r") as file:
-            return file.readable() and os.path.splitext(__path)[1] not in (".jpg", ".jpeg", ".png", ".ico", ".gif")
+            return file.readable() and os.path.splitext(__path)[1] not in (
+                ".jpg",
+                ".jpeg",
+                ".png",
+                ".ico",
+                ".gif",
+            )
 
     @classmethod
     def verify_python_file(cls, __path: str):

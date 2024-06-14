@@ -1,6 +1,5 @@
-from scr.scripts.utils import restart_application
-
 from scr.interface.abstract import Dialog
+from scr.scripts.utils import restart_application
 
 
 class Restarter(Dialog):
@@ -12,7 +11,9 @@ class Restarter(Dialog):
         __parent (QWidget): Parent widget for the dialog.
         """
 
-        super().__init__(__parent, "Do you want to restart the IDE to save the changes", "Restart")
+        super().__init__(
+            __parent, "Do you want to restart the IDE to save the changes", "Restart"
+        )
 
         self.setMinimumWidth(500)
         self.__command = None

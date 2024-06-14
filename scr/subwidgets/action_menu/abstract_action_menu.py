@@ -1,10 +1,10 @@
-from PySide6.QtWidgets import QMenu
-from PySide6.QtGui import QAction, QIcon
+from typing import Any
+
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QAction, QIcon
+from PySide6.QtWidgets import QMenu
 
 from scr.scripts.tools.file import FileLoader
-
-from typing import Any
 
 
 class AbstractActionMenu(QMenu):
@@ -13,12 +13,18 @@ class AbstractActionMenu(QMenu):
 
         self.setFixedWidth(width)
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.NoDropShadowWindowHint)
-        self.setStyleSheet(FileLoader.load_style("scr/subwidgets/styles/action_menu.css"))
+        self.setStyleSheet(
+            FileLoader.load_style("scr/subwidgets/styles/action_menu.css")
+        )
 
-    def add_action(self, __title: str, path_to_icon: str | None = None, shortcut: Any | None = None):
+    def add_action(
+        self, __title: str, path_to_icon: str | None = None, shortcut: Any | None = None
+    ):
         action = QAction(__title, self)
-        if shortcut is not None: action.setShortcut(shortcut)
-        if path_to_icon is not None: action.setIcon(QIcon(path_to_icon))
+        if shortcut is not None:
+            action.setShortcut(shortcut)
+        if path_to_icon is not None:
+            action.setIcon(QIcon(path_to_icon))
 
         self.addAction(action)
 

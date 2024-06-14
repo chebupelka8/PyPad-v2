@@ -1,11 +1,10 @@
-from .abstract_text_area import TextEditorArea
+from PySide6.QtCore import Qt
 
-from scr.scripts.tools.file import FileLoader
 from scr.scripts.tools.code import CodeAnalyzer
-
+from scr.scripts.tools.file import FileLoader
 from scr.widgets import CodeGlanceMap
 
-from PySide6.QtCore import Qt
+from .abstract_text_area import TextEditorArea
 
 
 class AbstractCodeEditorArea(TextEditorArea):
@@ -27,7 +26,9 @@ class AbstractCodeEditorArea(TextEditorArea):
 
         # insert text
         text = FileLoader.load_text(__path)
-        text = CodeAnalyzer.refactor_spaces_to_tabs(text, CodeAnalyzer.get_tab_width_by_text(text))
+        text = CodeAnalyzer.refactor_spaces_to_tabs(
+            text, CodeAnalyzer.get_tab_width_by_text(text)
+        )
         self.insertPlainText(text)
 
         # glance setup
@@ -92,9 +93,20 @@ class AbstractCodeEditorArea(TextEditorArea):
 
         cursor = self.textCursor()
 
-        if len(self.toPlainText().split("\n")[self.get_current_line()][cursor.positionInBlock():]) != 0:
-
-            if self.toPlainText().split("\n")[self.get_current_line()][cursor.positionInBlock()] == __target:
+        if (
+            len(
+                self.toPlainText().split("\n")[self.get_current_line()][
+                    cursor.positionInBlock() :
+                ]
+            )
+            != 0
+        ):
+            if (
+                self.toPlainText().split("\n")[self.get_current_line()][
+                    cursor.positionInBlock()
+                ]
+                == __target
+            ):
                 cursor.setPosition(cursor.position() + 1)
                 self.setTextCursor(cursor)
 
@@ -104,19 +116,18 @@ class AbstractCodeEditorArea(TextEditorArea):
         else:
             return "exception"
 
-    def get_last_word_of_current_line(self):
-        ...
+    def get_last_word_of_current_line(self): ...
 
     def key_press_filter(
-            self, __event,
-            paren: bool = False,
-            brace: bool = False,
-            bracket: bool = False,
-            quote_dbl: bool = False,
-            apostrophe: bool = False,
-            tag: bool = False
+        self,
+        __event,
+        paren: bool = False,
+        brace: bool = False,
+        bracket: bool = False,
+        quote_dbl: bool = False,
+        apostrophe: bool = False,
+        tag: bool = False,
     ):
-
         """
         Filters key press events based on specified conditions.
 

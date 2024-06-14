@@ -1,9 +1,9 @@
-from ..tools.file import FileLoader
-from .font import Font
+import json
 
 from PySide6.QtGui import QFont
 
-import json
+from ..tools.file import FileLoader
+from .font import Font
 
 
 class _FontManager:
@@ -51,7 +51,9 @@ class _FontManager:
             str: Current font family.
         """
 
-        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"]["family"]
+        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"][
+            "family"
+        ]
 
     @classmethod
     def get_current_font_size(cls) -> int:
@@ -62,7 +64,9 @@ class _FontManager:
             int: Current font size.
         """
 
-        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"]["size"]
+        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"][
+            "size"
+        ]
 
     @classmethod
     def is_current_bold(cls) -> bool:
@@ -73,7 +77,9 @@ class _FontManager:
             bool: True if the current font is bold, False otherwise.
         """
 
-        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"]["bold"]
+        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"][
+            "bold"
+        ]
 
     @classmethod
     def is_current_italic(cls) -> bool:
@@ -84,7 +90,9 @@ class _FontManager:
             bool: True if the current font is italic, False otherwise.
         """
 
-        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"]["italic"]
+        return FileLoader.load_json("scr/data/settings.json")[cls.directory]["font"][
+            "italic"
+        ]
 
     @classmethod
     def add_font_updater(cls, *__updaters):
@@ -95,15 +103,16 @@ class _FontManager:
             *__updaters: Variable number of font updaters to add.
         """
 
-        for i in __updaters: cls.font_updaters.append(i)
+        for i in __updaters:
+            cls.font_updaters.append(i)
 
     @classmethod
     def set_current_font(
-            cls,
-            family: str | None = None,
-            size: int | None = None,
-            bold: bool | None = None,
-            italic: bool | None = None
+        cls,
+        family: str | None = None,
+        size: int | None = None,
+        bold: bool | None = None,
+        italic: bool | None = None,
     ) -> None:
         """
         Set the current font settings and update the settings file.
@@ -117,10 +126,14 @@ class _FontManager:
 
         data = FileLoader.load_json("scr/data/settings.json")
 
-        if family is None: family = cls.get_current_family()
-        if size is None: size = cls.get_current_font_size()
-        if bold is None: bold = data[cls.directory]["font"]["bold"]
-        if italic is None: italic = data[cls.directory]["font"]["italic"]
+        if family is None:
+            family = cls.get_current_family()
+        if size is None:
+            size = cls.get_current_font_size()
+        if bold is None:
+            bold = data[cls.directory]["font"]["bold"]
+        if italic is None:
+            italic = data[cls.directory]["font"]["italic"]
 
         data[cls.directory]["font"] = {
             "family": family,
