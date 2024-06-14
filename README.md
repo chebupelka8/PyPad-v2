@@ -29,6 +29,35 @@ Ctrl+B - Hide/Show file tree
 Ctrl+Tab - Switch current file
 ```
 
+<h3>How to run</h3>
+<h4>Windows<h4>
+
+```shell
+git clone https://github.com/chebupelka8/PyPad-v2
+cd .\PyPad-v2
+
+python -m venv .venv  # create virtual environment
+.\.venv\Scripts\activate  # activate virtual environment
+pip install -r requirements.txt  # install dependencies
+
+python main.py  # run script
+```
+
+<h4>Linux<h4>
+
+```shell
+git clone https://github.com/chebupelka8/PyPad-v2
+cd ./PyPad-v2
+
+python -m venv .venv  # create virtual environment
+source ./.venv/bin/activate  # activate virtual environment
+pip install -r requirements.txt  # install dependencies
+
+python main.py  # run script
+```
+
+<h2>Screenshots<h2>
+
 <p align="center">
   <img src="screenshots/screen1.png">
   <img src="screenshots/screen5.png">
